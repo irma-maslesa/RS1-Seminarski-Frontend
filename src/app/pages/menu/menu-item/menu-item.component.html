@@ -1,0 +1,29 @@
+<mat-list-item 
+  (click)="onItemClicked()">
+    <div class="menu-item" [routerLink]="data.url" mat-flat-button>
+      <div>
+        <mat-icon id="toolbarMenu">
+          {{data.icon}}
+        </mat-icon>
+  
+        <ng-container *ngFor="let index of [].constructor(depth)">
+          &nbsp;
+        </ng-container>
+        {{data.label}}
+      </div>
+      
+      <div class="expand-more" *ngIf="data.children && data.children.length">
+        <mat-icon [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
+          expand_more
+        </mat-icon>
+      </div>
+    </div>
+</mat-list-item>
+
+<div *ngIf="expanded">
+  <menu-item 
+    *ngFor="let child of data.children"
+    [data]="child"
+    [depth]="depth+1">
+  </menu-item>
+</div>

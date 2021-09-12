@@ -1,0 +1,65 @@
+<div class="container">
+        <div class="header">
+            <h4>Add/edit franchise</h4>
+        </div>
+
+        <form [formGroup]="franchiseForm" (ngSubmit)="addOrEditFranchise(franchiseForm.value)" 
+            autocomplete="off" novalidate>
+            <div class="form-group row" [ngClass]="{'error':
+                franchiseForm.controls.name.invalid &&
+                franchiseForm.controls.name.touched }">
+                <label for="name" class="col-sm-2 col-form-label">Name:</label>
+                <div class="col-sm-10">
+                    <input formControlName="name" id="name" type="text" class="form-control" placeholder="Name">
+                </div>
+
+                <small class="col-sm-2 offset-sm-2 error-msg" 
+                    *ngIf="franchiseForm.controls.name.invalid &&
+                    franchiseForm.controls.name.touched">
+                        This field is required
+                </small>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Franchise information:</label>
+                <div class="col-sm-9">
+                    <button type="button" class="btn btn-zira">Add Franchise Information</button>
+                </div> 
+            </div>
+
+            <div class="form-group row">
+                <label for="outline" class="col-sm-2 col-form-label">Outline:</label>
+                <div class="col-sm-10">
+                    <textarea formControlName="outline" id="outline" name="outline" rows="2" type="text" class="form-control" placeholder="Outline"></textarea>    
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="games" class="col-sm-2 col-form-label">Games:</label>
+                <div class="col-sm-10">
+                    <select formControlName="games" id="games" name="games" class="form-select" multiple>
+                        <option value="1">The Last Guardian</option>
+                        <option value="2">Pokemon</option>
+                        <option value="3">Hotline Miami 2: Wrong Number</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row" [ngClass]="{'error':
+            franchiseForm.controls.aliases.invalid &&
+            franchiseForm.controls.aliases.touched }">
+                <label for="aliases" class="col-sm-2 col-form-label">Aliases:</label>
+                <div class="col-sm-10">
+                    <input formControlName="aliases" id="aliases" type="text" class="form-control" placeholder="Aliases">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col">
+                    <button type="submit" class="btn btn-zira col-sm-2 offset-sm-8">Save</button>
+                    <button type="reset" class="btn btn-zira col-sm-2">Cancel</button>
+                </div>
+            </div>
+
+        </form>
+</div>

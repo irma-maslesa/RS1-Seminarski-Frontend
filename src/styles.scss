@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-alpine.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.ag-theme-alpine {
+    border: 1px solid #95a9d1;
+    border-radius: 5px;
+
+    .ag-header-cell {
+        color: #1a3469
+    }
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+menu {
+    padding: 0;
+    margin: 0;
+}

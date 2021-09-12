@@ -1,0 +1,96 @@
+buildscript {
+    repositories {
+        maven {
+          url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.moowork.gradle:gradle-node-plugin:1.1.*"
+        classpath("com.netflix.nebula:gradle-ospackage-plugin:3.4.0")
+    }
+}
+
+plugins {
+    id "com.moowork.node" version "1.1.1"
+    id "nebula.ospackage" version "3.4.0"
+}
+
+apply plugin: 'com.moowork.node'
+apply plugin: "nebula.ospackage"
+
+node {
+    version = '12.16.1'
+    npmVersion = '6.4.1'
+    download = true
+}
+
+def environment = project.hasProperty('env') ? env : 'prod'
+
+task buildapp {}
+buildapp.dependsOn npmInstall
+buildapp.dependsOn npm_run{args = [environment]}
+
+
+task cleanapp (type: Delete) {
+  delete 'dist', 'node_modules', 'build.tar.gz', 'build'
+}
+
+
+task tar(type: Tar) {
+     extension = 'tar.gz'
+     baseName = 'build'
+     compression = Compression.GZIP
+     into("/") { from "dist/vgr" }
+}
+tar.dependsOn buildapp
+
+task rpm {}
+rpm.dependsOn npmInstall
+rpm.dependsOn npm_run{args = [environment]}
+rpm.dependsOn buildRpm
+
+task deb {}
+deb.dependsOn npmInstall
+deb.dependsOn npm_run{args = [environment]}
+deb.dependsOn buildDeb
+
+ospackage {
+
+    packageName = "build"
+
+    // Uses the main project version
+    version = "v0.0.1"
+
+    /* Could be anything - in our production builds,
+       this is set to the git commit hash */
+    release = 1
+
+    os = LINUX
+    type = BINARY
+    arch = X86_64
+
+    /* Our install scripts - see the full code for examples.
+       They usually do simple prep/cleanup tasks */
+    installUtils = file('scripts/rpm/utils.sh')
+    preInstall file('scripts/rpm/preInstall.sh')
+    postInstall file('scripts/rpm/postInstall.sh')
+    preUninstall file('scripts/rpm/preUninstall.sh')
+    postUninstall file('scripts/rpm/postUninstall.sh')
+
+    // Sets our working directory and permissions, basically
+    //into "/var/www/test"
+
+    // Copy the actual .jar file
+    from('dist') {
+        // Strip the version from the jar filename
+        fileMode 0500
+        into "/"
+    }
+
+    // Copy the config files
+    /*from("install/unix/conf") {
+        fileType CONFIG | NOREPLACE
+        fileMode 0754
+        into "conf"
+    }*/
+}

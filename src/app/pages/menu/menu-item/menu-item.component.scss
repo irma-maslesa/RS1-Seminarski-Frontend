@@ -1,0 +1,41 @@
+#toolbarMenu {
+    cursor: pointer;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 0;
+    text-align: left;
+    color: #1a3469;
+    padding: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background-color: #eee;
+    color: #1a3469;
+    font-weight: bold;
+}
+
+.expand-more {
+    display: none;
+}
+
+
+.menu-item mat-icon {
+    margin-left: 12px;
+    margin-right: 13px;
+}
+
+.expand-more {
+    display: inline-block;
+    margin-right: 0px !important;
+}
+

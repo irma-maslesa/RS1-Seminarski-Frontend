@@ -1,0 +1,16 @@
+<div id="sidenav">
+  <mat-list id="menus">
+
+    <menu-item 
+      [data]="{'label':'Home', 'icon':'home', 'url':'home'}"
+      [depth]="0">
+    </menu-item>
+
+    <ng-container *ngFor="let menuItem of menuList">
+      <menu-item
+        [data]="menuItem"
+        [depth]="0">
+      </menu-item>
+    </ng-container>
+  </mat-list>
+</div>   

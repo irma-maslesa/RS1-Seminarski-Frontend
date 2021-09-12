@@ -1,0 +1,8 @@
+<div class="franchise-container">
+
+    <h2 class="header">Franchises list</h2>
+
+    <ag-grid-angular style="width: 90%; height: 300px" class="ag-theme-alpine" [rowData]="rowData"
+        [columnDefs]="columnDefs" (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+</div>

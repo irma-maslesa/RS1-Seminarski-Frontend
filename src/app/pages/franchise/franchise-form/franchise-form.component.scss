@@ -1,0 +1,51 @@
+.container {
+    padding-top: 20px;
+    margin-top: 20px;
+    border: 2px solid #95a9d1;
+    border-radius: 5px;
+    width: 90%;
+    color: #1a3469;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+.form-select {
+    color: #1a3469;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.btn-zira {
+    color: #1a3469;
+    border: 2px solid #95a9d1;
+    background-color: white;
+}
+
+.error input {
+    background-color: #E3C3C5;
+}
+
+.error ::-webkit-input-placeholder {
+    color: #999;
+}
+
+.error ::-moz-placeholder {
+    color: #999;
+}
+
+.error :-moz-placeholder {
+    color: #999;
+}
+
+.error :-ms-input-placeholder {
+    color: #999;
+}
+
+.error-msg {
+    color: #d86068;
+    margin-top: 5px;
+}
