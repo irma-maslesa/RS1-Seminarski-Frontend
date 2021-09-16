@@ -27,3 +27,18 @@ menu {
     padding: 0;
     margin: 0;
 }
+
+.c-btn,
+.dropdown-list ul li {
+    line-height: 1.5 !important;
+    font-weight: 300 !important;
+    color: #6c757d !important;
+    font-size: 1rem !important;
+    .c-angle-down,
+    .c-angle-up {
+        top: 30% !important;
+    }
+    .clear-all {
+        top: 45% !important;
+    }
+}

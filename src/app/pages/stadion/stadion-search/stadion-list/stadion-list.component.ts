@@ -4,19 +4,19 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmModal } from 'src/app/pages/shared/confirm-modal/confirm.modal';
 import { RestApiService } from 'src/app/pages/shared/rest-api.service';
-import { TrenerApi } from '../../shared/trener-api.constant';
-import { Trener } from '../../shared/trener.model';
-import { TrenerAddEditFormComponent } from '../../trener-add-edit-form/trener-add-edit-form.component';
+import { StadionApi } from '../../shared/stadion-api.constant';
+import { Stadion } from '../../shared/stadion.model';
+import { StadionAddEditFormComponent } from '../../stadion-add-edit-form/stadion-add-edit-form.component';
 
 @Component({
-  selector: 'trener-list',
-  templateUrl: './trener-list.component.html',
-  styleUrls: ['./trener-list.component.scss']
+  selector: 'stadion-list',
+  templateUrl: './stadion-list.component.html',
+  styleUrls: ['./stadion-list.component.scss']
 })
-export class TrenerListComponent implements OnInit, OnChanges {
+export class StadionListComponent implements OnInit, OnChanges {
   @Input() searchObject;
 
-  trenerList: Trener[] = [new Trener(), new Trener(), new Trener()];
+  stadionList: Stadion[] = [];
 
   constructor(
     private api: RestApiService,
@@ -24,9 +24,9 @@ export class TrenerListComponent implements OnInit, OnChanges {
     private matDialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.api.get(TrenerApi.GET_TRENER)
+    this.api.get(StadionApi.GET_STADION)
       .subscribe((response) => {
-        this.trenerList = response;
+        this.stadionList = response;
       });
   }
 
@@ -37,27 +37,28 @@ export class TrenerListComponent implements OnInit, OnChanges {
       var searchObject = currentObject.currentValue;
 
       var params = new HttpParams();
-      params = searchObject.ime ? params.set('ime', searchObject.ime) : params;
-      params = searchObject.prezime ? params.set('prezime', searchObject.prezime) : params;
-      params = searchObject.mail ? params.set('mail', searchObject.mail) : params;
-      params = searchObject.datumRodjenja ? params.set('datumRodjenja', searchObject.datumRodjenja) : params;
+      params = searchObject?.naziv ? params.set('naziv', searchObject.naziv) : params;
+      params = searchObject?.kapacitet ? params.set('kapacitet', searchObject.kapacitet) : params;
+      params = searchObject?.gradId ? params.set('gradId', searchObject.gradId) : params;
+      params = searchObject?.klubId ? params.set('klubId', searchObject.klubId) : params;
 
       var options = { params: params };
-      this.api.get(TrenerApi.GET_TRENER, options)
+      this.api.get(StadionApi.GET_STADION, options)
         .subscribe((response) => {
-          this.trenerList = response;
+          this.stadionList = response;
         });
     }
   }
 
   handleClick(id = 0) {
+
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
     dialogConfig.width = "450px";
 
     dialogConfig.data = { id: id }
-    this.matDialog.open(TrenerAddEditFormComponent, dialogConfig).afterClosed()
+    this.matDialog.open(StadionAddEditFormComponent, dialogConfig).afterClosed()
       .subscribe(() => this.ngOnInit());
   }
 
@@ -69,8 +70,8 @@ export class TrenerListComponent implements OnInit, OnChanges {
     dialogConfig.data = { naziv: event.naziv }
     this.matDialog.open(ConfirmModal, dialogConfig).afterClosed().subscribe((response) => {
       if (response == "YES") {
-        this.api.delete(TrenerApi.DELETE_TRENER.replace('#', event.id.toString())).subscribe(() => {
-          this.toastr.success("Trener uspješno obrisan!");
+        this.api.delete(StadionApi.DELETE_STADION.replace('#', event.id.toString())).subscribe(() => {
+          this.toastr.success("Stadion uspješno obrisan!");
           this.ngOnInit();
         })
       }

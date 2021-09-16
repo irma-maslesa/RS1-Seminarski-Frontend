@@ -16,7 +16,6 @@ export class TrenerListElementComponent {
   constructor(private router: Router) { }
 
   edit() {
-    console.log(this.trener);
     this.editEmitter.emit(this.trener.id);
   }
 

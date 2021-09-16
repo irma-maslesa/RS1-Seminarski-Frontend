@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { RestApiService } from './rest-api.service';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { ConfirmModal } from './confirm-modal/confirm.modal';
+import { RestApiService } from './rest-api.service';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ConfirmModal } from './confirm-modal/confirm.modal';
         RouterModule,
         CommonModule,
         MatIconModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        AngularMultiSelectModule
     ],
     exports: [
         FormsModule,
@@ -25,7 +27,8 @@ import { ConfirmModal } from './confirm-modal/confirm.modal';
         RouterModule,
         CommonModule,
         MatIconModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        AngularMultiSelectModule
     ],
     entryComponents: [
         ConfirmModal

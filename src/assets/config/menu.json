@@ -16,71 +16,16 @@
                 "icon": "public",
                 "attributes": {},
                 "children": [{
-                        "code": "HUB_TRENERI_STATIC",
-                        "label": "Treneri",
-                        "url": "trener",
-                        "attributes": {}
-                    }, {
-                        "code": "HUB_GAMES_STATIC",
-                        "label": "Games",
-                        "url": "game/search",
-                        "attributes": {}
-                    },
-                    {
-                        "code": "HUB_FRANCHISES_STATIC",
-                        "label": "Franchises",
-                        "url": "franchise",
-                        "attributes": {}
-                    },
-                    {
-                        "code": "HUB_PLATFORMS_STATIC",
-                        "label": "Platforms",
-                        "url": "platform/search",
-                        "attributes": {}
-                    },
-                    {
-                        "code": "HUB_COMPANIES_STATIC",
-                        "label": "Companies",
-                        "url": "company/search",
-                        "attributes": {}
-                    },
-                    {
-                        "code": "HUB_CHARACTERS_STATIC",
-                        "label": "Characters",
-                        "url": "character/search",
-                        "attributes": {}
-                    },
-                    {
-                        "code": "HUB_LOCATIONS_STATIC",
-                        "label": "Locations",
-                        "url": "location/search",
-                        "attributes": {}
-                    },
-                    {
-                        "code": "HUB_CONCEPTS_STATIC",
-                        "label": "Concepts",
-                        "url": "concept/search",
-                        "attributes": {}
-                    },
-                    {
-                        "code": "HUB_PERSONS_STATIC",
-                        "label": "Persons",
-                        "url": "person/search",
-                        "attributes": {}
-                    },
-                    {
-                        "code": "HUB_OBJECTS_STATIC",
-                        "label": "Objects",
-                        "url": "object/search",
-                        "attributes": {}
-                    },
-                    {
-                        "code": "HUB_FEATURES_STATIC",
-                        "label": "Features",
-                        "url": "feature/search",
-                        "attributes": {}
-                    }
-                ]
+                    "code": "HUB_TRENERI_STATIC",
+                    "label": "Treneri",
+                    "url": "trener",
+                    "attributes": {}
+                }, {
+                    "code": "HUB_STADIONI_STATIC",
+                    "label": "Stadion",
+                    "url": "stadion",
+                    "attributes": {}
+                }]
             },
             {
                 "code": "HUB_REWIEWS_STATIC",

@@ -1,0 +1,4 @@
+<div class="trener-search-container">
+    <trener-list [searchObject]="searchObject" class="trener-list"></trener-list>
+    <trener-search-form (reloadEmitter)="submit($event)" (searchEmitter)="submit($event)" class="trener-search-form"></trener-search-form>
+</div>

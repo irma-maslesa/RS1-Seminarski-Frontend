@@ -21,11 +21,14 @@ import { TrenerSearchComponent } from './trener-search/trener-search.component';
         TrenerListComponent,
         TrenerSearchFormComponent,
         TrenerSearchComponent,
-        TrenerAddEditFormComponent],
+        TrenerAddEditFormComponent
+    ],
     entryComponents: [
         TrenerAddEditFormComponent
     ],
-    providers: [{ provide: MAT_DIALOG_DATA, useValue: {} },
-        { provide: MatDialogRef, useValue: {} }]
+    providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} }
+    ]
 })
 export class TrenerModule { }

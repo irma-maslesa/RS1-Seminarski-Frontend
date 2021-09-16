@@ -27,6 +27,5 @@ export class MenuItemComponent implements OnInit{
 
     onItemClicked(){
         this.expanded = !this.expanded
-        console.log(this.expanded)
     }
 }
