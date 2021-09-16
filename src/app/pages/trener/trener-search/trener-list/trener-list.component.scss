@@ -1,0 +1,27 @@
+.trener-list-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
+        margin-bottom: 0;
+        padding-left: 10px;
+    }
+}
+
+.trener-list-element {
+    margin: 10px;
+}
+
+.trener-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+hr {
+    border-top: 2px solid #1a3469;
+}
+
+h1 {
+    font-weight: 300;
+}

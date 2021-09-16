@@ -1,156 +1,155 @@
 {
-	"payload": {
-		"label": "HUB",
-		"type": "MODULE",
-		"children": [
-			{
-				"code": "HUB_RELEASES_STATIC",
-				"label": "Releases",
-				"url": "release",
-				"icon": "new_releases",
-				"attributes": {},
-				"description": "Releases"
-			},
-			{
-				"code": "HUB_WIKI_STATIC",
-				"label": "Wiki",
-				"icon": "public",
-				"attributes": {},
-				"children": [
-					{
-						"code": "HUB_GAMES_STATIC",
-						"label": "Games",
-						"url": "game/search",
-						"attributes": {}
-					},
-					{
-						"code": "HUB_FRANCHISES_STATIC",
-						"label": "Franchises",
-						"url": "franchise",
-						"attributes": {}
-					},
-					{
-						"code": "HUB_PLATFORMS_STATIC",
-						"label": "Platforms",
-						"url": "platform/search",
-						"attributes": {}
-					},
-					{
-						"code": "HUB_COMPANIES_STATIC",
-						"label": "Companies",
-						"url": "company/search",
-						"attributes": {}
-					},
-					{
-						"code": "HUB_CHARACTERS_STATIC",
-						"label": "Characters",
-						"url": "character/search",
-						"attributes": {}
-					},
-					{
-						"code": "HUB_LOCATIONS_STATIC",
-						"label": "Locations",
-						"url": "location/search",
-						"attributes": {}
-					},
-					{
-						"code": "HUB_CONCEPTS_STATIC",
-						"label": "Concepts",
-						"url": "concept/search",
-						"attributes": {}
-					},
-					{
-						"code": "HUB_PERSONS_STATIC",
-						"label": "Persons",
-						"url": "person/search",
-						"attributes": {}
-					},
-					{
-						"code": "HUB_OBJECTS_STATIC",
-						"label": "Objects",
-						"url": "object/search",
-						"attributes": {}
-					},
-					{
-						"code": "HUB_FEATURES_STATIC",
-						"label": "Features",
-						"url": "feature/search",
-						"attributes": {}
-					}
-				]
-			},
-			{
-				"code": "HUB_REWIEWS_STATIC",
-				"label": "Rewiews",
-				"icon": "reviews",
-				"attributes": {},
-				"children": [
-					{
-						"code": "HUB_EXTERNAL_STATIC",
-						"label": "External",
-						"url": "external",
-						"attributes": {}
-					},
-					{
-						"code": "HUB_INTERNAL_STATIC",
-						"label": "Internal",
-						"attributes": {},
-						"children": [
-							{
-								"code": "HUB_INTERNAL_PREVIEW_STATIC",
-								"label": "Preview",
-								"url": "internal/preview",
-								"attributes": {}
-							},
-							{
-								"code": "HUB_INTERNAL_ADMIN_STATIC",
-								"label": "Admin",
-								"url": "internal/admin",
-								"attributes": {}
-							}
-						]
-					}
-				]
-			},
-			{
-				"code": "HUB_CONFIGURATION_STATIC",
-				"label": "Configuration",
-				"icon": "settings",
-				"attributes": {},
-				"children": [
-					{
-						"code": "HUB_MEDIA_STATIC",
-						"label": "Media",
-						"url": "configuration/media",
-						"attributes": {}
-					},
-					{
-						"code": "HUB_RSS_STATIC",
-						"label": "RSS",
-						"url": "configuration/rss",
-						"attributes": {}
-					},
-					{
-						"code": "HUB_REVIEW_FORMULAS_STATIC",
-						"label": "Review Formulas",
-						"attributes": {},
-						"children": [
-							{
-								"code": "HUB_PREVIEW_STATIC",
-								"label": "Preview",
-								"url": "reviewFormulas/preview",
-								"attributes": {}
-							},
-							{
-								"code": "HUB_ADMIN_STATIC",
-								"label": "Admin",
-								"url": "reviewFormulas/admin",
-								"attributes": {}
-							}
-						]
-					}
-				]
-			}
-		]
-	}
+    "payload": {
+        "label": "HUB",
+        "type": "MODULE",
+        "children": [{
+                "code": "HUB_RELEASES_STATIC",
+                "label": "Releases",
+                "url": "release",
+                "icon": "new_releases",
+                "attributes": {},
+                "description": "Releases"
+            },
+            {
+                "code": "HUB_WIKI_STATIC",
+                "label": "Wiki",
+                "icon": "public",
+                "attributes": {},
+                "children": [{
+                        "code": "HUB_TRENERI_STATIC",
+                        "label": "Treneri",
+                        "url": "trener",
+                        "attributes": {}
+                    }, {
+                        "code": "HUB_GAMES_STATIC",
+                        "label": "Games",
+                        "url": "game/search",
+                        "attributes": {}
+                    },
+                    {
+                        "code": "HUB_FRANCHISES_STATIC",
+                        "label": "Franchises",
+                        "url": "franchise",
+                        "attributes": {}
+                    },
+                    {
+                        "code": "HUB_PLATFORMS_STATIC",
+                        "label": "Platforms",
+                        "url": "platform/search",
+                        "attributes": {}
+                    },
+                    {
+                        "code": "HUB_COMPANIES_STATIC",
+                        "label": "Companies",
+                        "url": "company/search",
+                        "attributes": {}
+                    },
+                    {
+                        "code": "HUB_CHARACTERS_STATIC",
+                        "label": "Characters",
+                        "url": "character/search",
+                        "attributes": {}
+                    },
+                    {
+                        "code": "HUB_LOCATIONS_STATIC",
+                        "label": "Locations",
+                        "url": "location/search",
+                        "attributes": {}
+                    },
+                    {
+                        "code": "HUB_CONCEPTS_STATIC",
+                        "label": "Concepts",
+                        "url": "concept/search",
+                        "attributes": {}
+                    },
+                    {
+                        "code": "HUB_PERSONS_STATIC",
+                        "label": "Persons",
+                        "url": "person/search",
+                        "attributes": {}
+                    },
+                    {
+                        "code": "HUB_OBJECTS_STATIC",
+                        "label": "Objects",
+                        "url": "object/search",
+                        "attributes": {}
+                    },
+                    {
+                        "code": "HUB_FEATURES_STATIC",
+                        "label": "Features",
+                        "url": "feature/search",
+                        "attributes": {}
+                    }
+                ]
+            },
+            {
+                "code": "HUB_REWIEWS_STATIC",
+                "label": "Rewiews",
+                "icon": "reviews",
+                "attributes": {},
+                "children": [{
+                        "code": "HUB_EXTERNAL_STATIC",
+                        "label": "External",
+                        "url": "external",
+                        "attributes": {}
+                    },
+                    {
+                        "code": "HUB_INTERNAL_STATIC",
+                        "label": "Internal",
+                        "attributes": {},
+                        "children": [{
+                                "code": "HUB_INTERNAL_PREVIEW_STATIC",
+                                "label": "Preview",
+                                "url": "internal/preview",
+                                "attributes": {}
+                            },
+                            {
+                                "code": "HUB_INTERNAL_ADMIN_STATIC",
+                                "label": "Admin",
+                                "url": "internal/admin",
+                                "attributes": {}
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "code": "HUB_CONFIGURATION_STATIC",
+                "label": "Configuration",
+                "icon": "settings",
+                "attributes": {},
+                "children": [{
+                        "code": "HUB_MEDIA_STATIC",
+                        "label": "Media",
+                        "url": "configuration/media",
+                        "attributes": {}
+                    },
+                    {
+                        "code": "HUB_RSS_STATIC",
+                        "label": "RSS",
+                        "url": "configuration/rss",
+                        "attributes": {}
+                    },
+                    {
+                        "code": "HUB_REVIEW_FORMULAS_STATIC",
+                        "label": "Review Formulas",
+                        "attributes": {},
+                        "children": [{
+                                "code": "HUB_PREVIEW_STATIC",
+                                "label": "Preview",
+                                "url": "reviewFormulas/preview",
+                                "attributes": {}
+                            },
+                            {
+                                "code": "HUB_ADMIN_STATIC",
+                                "label": "Admin",
+                                "url": "reviewFormulas/admin",
+                                "attributes": {}
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
 }

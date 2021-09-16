@@ -5,29 +5,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AgGridModule } from 'ag-grid-angular';
-
+import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
-import { FranchiseFormComponent } from './pages/franchise/franchise-form/franchise-form.component';
-import { FranchiseComponent } from './pages/franchise/franchise.component';
-import { FranchisesListComponent } from './pages/franchise/franchises-list/franchises-list.component';
-import { FranchiseService } from './pages/franchise/shared/franchise.service';
 import { HomeComponent } from './pages/home/home.component';
 import { MenuItemComponent } from './pages/menu/menu-item/menu-item.component';
 import { MenuComponent } from './pages/menu/menu.component';
+import { SharedModule } from './pages/shared/shared.module';
+import { TrenerModule } from './pages/trener/trener.module';
 import { appRoutes } from './routes';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     MenuItemComponent,
-    FranchiseComponent,
     HomeComponent,
-    FranchisesListComponent,
-    FranchiseFormComponent
   ],
   imports: [
+    SharedModule,
     BrowserModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
@@ -35,10 +32,12 @@ import { appRoutes } from './routes';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
+    ToastrModule.forRoot(),
     AgGridModule.withComponents([]),
-    HttpClientModule
+    HttpClientModule,
+    TrenerModule
   ],
-  providers: [FranchiseService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

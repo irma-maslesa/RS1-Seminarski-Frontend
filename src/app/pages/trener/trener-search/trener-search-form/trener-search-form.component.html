@@ -1,0 +1,37 @@
+<div class="container">
+    <h4 class="mb-3">Pretraga trenera:</h4>
+    <form #trenersearchform="ngForm" (ngSubmit)="search()">
+        <div class="row input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Ime</span>
+            </div>
+            <input [(ngModel)]="searchObject.ime" class="form-control" name="ime" id="ime" type="text" placeholder="Ime">
+        </div>
+
+        <div class="row input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Prezime</span>
+            </div>
+            <input [(ngModel)]="searchObject.prezime" class="form-control" name="prezime" id="prezime" type="text" placeholder="Prezime">
+        </div>
+        <div class="row input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Mail</span>
+            </div>
+            <input [(ngModel)]="searchObject.mail" class="form-control" name="mail" id="mail" type="text" placeholder="Mail">
+        </div>
+        <div class="row input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Datum rođenja</span>
+            </div>
+            <input [(ngModel)]="searchObject.datumRodjenja" class="form-control" name="datumRodjenja" id="datumRodjenja" type="date">
+        </div>
+
+        <div class="row input-group">
+            <div class="col btn-group">
+                <button type="reset" class="btn btn-outline-secondary mr-1" (click)="cancel()">Očisti</button>
+                <button type="submit" class="btn btn-secondary">Traži</button>
+            </div>
+        </div>
+    </form>
+</div>

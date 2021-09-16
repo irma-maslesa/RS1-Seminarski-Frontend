@@ -1,0 +1,42 @@
+<div class="d-flex flex-row-reverse">
+    <mat-icon class="p-2" (click)="closeModal()">close</mat-icon>
+</div>
+
+<h3 *ngIf="isEdit">Uredi trenera</h3>
+<h3 *ngIf="!isEdit">Dodaj trenera</h3>
+<form #trenerForm="ngForm" (ngSubmit)="save()" novalidate>
+    <div class="row input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Ime</span>
+        </div>
+        <input [(ngModel)]="trener.ime" class="form-control" name="ime" id="ime" type="text" placeholder="Ime">
+    </div>
+
+    <div class="row input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Prezime</span>
+        </div>
+        <input [(ngModel)]="trener.prezime" class="form-control" name="prezime" id="prezime" type="text" placeholder="Prezime">
+    </div>
+
+    <div class="row input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Mail</span>
+        </div>
+        <input [(ngModel)]="trener.mail" class="form-control" name="mail" id="mail" type="text" placeholder="Mail">
+    </div>
+
+    <div class="row input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Datum rođenja</span>
+        </div>
+        <input [(ngModel)]="trener.datumRodjenja" class="form-control" name="datumRodjenja" id="datumRodjenja" type="date">
+    </div>
+
+    <div class="row input-group">
+        <div class="col btn-group">
+            <button type="reset" class="btn btn-outline-secondary mr-1" (click)="clear()">Očisti</button>
+            <button type="submit" class="btn btn-secondary">Spremi</button>
+        </div>
+    </div>
+</form>

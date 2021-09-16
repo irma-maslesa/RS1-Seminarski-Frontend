@@ -1,0 +1,8 @@
+<div class="trener-list-header">
+    <h1>Treneri</h1>
+    <button type="button" class="btn btn-secondary" (click)="handleClick()">Dodaj trenera</button>
+</div>
+<hr/>
+<div class="trener-list">
+    <trener-list-element *ngFor="let trener of trenerList" [trener]="trener" (editEmitter)="handleClick($event)" (deleteEmitter)="delete($event)" class="trener-list-element"></trener-list-element>
+</div>
