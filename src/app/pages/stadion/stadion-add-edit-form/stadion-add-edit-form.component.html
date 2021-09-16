@@ -4,7 +4,7 @@
 
 <h3 *ngIf="isEdit">Uredi stadion</h3>
 <h3 *ngIf="!isEdit">Dodaj stadion</h3>
-<form #stadionForm="ngForm" (ngSubmit)="save()" novalidate="novalidate">
+<form #stadionForm="ngForm" novalidate="novalidate">
     <div class="row input-group mb-3">
         <div class="input-group-prepend">
             <span class="input-group-text">Naziv</span>
@@ -19,12 +19,12 @@
         <div class="input-group-prepend">
             <span class="input-group-text">Grad</span>
         </div>
-        <angular2-multiselect class="form-control" name="gradovi" [settings]="settings" [data]="gradovi.dropdownList" [(ngModel)]="gradovi.selectedItems"></angular2-multiselect>
+        <angular2-multiselect class="form-control" name="gradovi" [settings]="settings" [data]="gradovi.dropdownList" [(ngModel)]="gradovi.selectedItems" (onAddFilterNewItem)="onAddItem($event)"></angular2-multiselect>
     </div>
     <div class="row input-group">
         <div class="col btn-group">
             <button type="reset" class="btn btn-outline-secondary mr-1" (click)="clear()">Očisti</button>
-            <button type="submit" class="btn btn-secondary">Spremi</button>
+            <button type="submit" class="btn btn-secondary" (click)="save()">Spremi</button>
         </div>
     </div>
 </form>

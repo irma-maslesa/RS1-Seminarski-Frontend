@@ -1,0 +1,34 @@
+<div class="container">
+    <h4 class="mb-3">Pretraga stadiona:</h4>
+    <form #searchObjectsearchform="ngForm" (ngSubmit)="search()">
+        <div class="row input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Naziv</span>
+            </div>
+            <input [(ngModel)]="searchObject.naziv" class="form-control" name="naziv" id="naziv" type="text" placeholder="Naziv"></div>
+        <div class="row input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Ime</span>
+            </div>
+            <input [(ngModel)]="searchObject.kapacitet" class="form-control" name="kapacitet" id="kapacitet" type="number" min="1" placeholder="Kapacitet"></div>
+        <div class="row input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Grad</span>
+            </div>
+            <angular2-multiselect class="form-control" name="gradovi" [settings]="settingsGrad" [data]="gradovi.dropdownList" [(ngModel)]="gradovi.selectedItems"></angular2-multiselect>
+        </div>
+        <div class="row input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Klub</span>
+            </div>
+            <angular2-multiselect class="form-control" name="klubovi" [settings]="settingsKlub" [data]="klubovi.dropdownList" [(ngModel)]="klubovi.selectedItems"></angular2-multiselect>
+        </div>
+
+        <div class="row input-group">
+            <div class="col btn-group">
+                <button type="reset" class="btn btn-outline-secondary mr-1" (click)="cancel()">Očisti</button>
+                <button type="submit" class="btn btn-secondary">Traži</button>
+            </div>
+        </div>
+    </form>
+</div>

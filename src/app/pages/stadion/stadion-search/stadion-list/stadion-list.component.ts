@@ -51,7 +51,6 @@ export class StadionListComponent implements OnInit, OnChanges {
   }
 
   handleClick(id = 0) {
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";

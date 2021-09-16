@@ -1,22 +1,18 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'trener-search',
-  templateUrl: './trener-search.component.html',
-  styleUrls: ['./trener-search.component.scss']
+  selector: 'stadion-search',
+  templateUrl: './stadion-search.component.html',
+  styleUrls: ['./stadion-search.component.scss']
 })
-export class TrenerSearchComponent {
+export class StadionSearchComponent {
 
   searchObject;
 
   submit(searchObject) {
     this.searchObject = searchObject;
 
-    if (searchObject.ime === '')
+    if (searchObject.naziv === '')
       this.searchObject.ime = null;
-    if (searchObject.prezime === '')
-      this.searchObject.prezime = null;
-    if (searchObject.mail === '')
-      this.searchObject.mail = null;
   }
 }

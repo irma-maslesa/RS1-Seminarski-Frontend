@@ -20,14 +20,15 @@ export class GradAddFormComponent implements OnInit {
   grad: GradCreate;
 
   entiteti: MultiselectHelper = new MultiselectHelper();
-  settings = [{
+  settings = {
     text: "Entitet",
     singleSelection: true,
     maxHeight: 150,
     labelKey: 'item_text',
     primaryKey: 'item_id',
-    autoPosition: false
-  }];
+    autoPosition: false,
+    classes: 'multiselect-custom'
+  };
 
   constructor(
     private api: RestApiService,
@@ -37,6 +38,7 @@ export class GradAddFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.grad = new GradCreate();
+    this.grad.naziv = this.data.naziv;
 
     this.api.get(EntitetApi.GET_ENTITET).subscribe((response) => {
       if (response) {
@@ -50,19 +52,27 @@ export class GradAddFormComponent implements OnInit {
   }
 
   save() {
-    this.api.post(GradApi.CREATE_GRAD, this.grad).subscribe((response) => {
-      if (response) {
-        this.toastr.success("Grad uspješno kreiran!");
-        this.closeModal();
-      }
-    })
+    this.grad.entitetId = this.entiteti.selectedItems[0]?.item_id;
+    
+    if (this.grad.entitetId != null && this.grad.naziv != null && this.grad.naziv.trim() != "") {
+      this.api.post(GradApi.CREATE_GRAD, this.grad).subscribe((response) => {
+        if (response) {
+          this.toastr.success("Grad uspješno kreiran!");
+          this.closeModal(response);
+        }
+      });
+    }
+    else {
+      this.toastr.warning("Sva polja su obavezna!");
+    }
   }
 
   clear() {
-    this.ngOnInit();
+    this.grad = new GradCreate();
+    this.grad.naziv = this.data.naziv;
   }
 
-  closeModal() {
-    this.dialogRef.close();
+  closeModal(argument = null) {
+    this.dialogRef.close(argument);
   }
 }

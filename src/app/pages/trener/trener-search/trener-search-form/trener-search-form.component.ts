@@ -10,17 +10,6 @@ export class TrenerSearchFormComponent implements OnInit {
 
   searchObject: any;
 
-  filter: string;
-
-  sortSettings = {
-    text: "Select sort",
-    singleSelection: true,
-    maxHeight: 150,
-    labelKey: 'item_text',
-    primaryKey: 'item_text',
-    autoPosition: false
-  };
-
   ngOnInit(): void {
     this.searchObject = {
       ime: "",

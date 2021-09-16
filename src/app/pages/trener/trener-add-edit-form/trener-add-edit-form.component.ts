@@ -43,19 +43,26 @@ export class TrenerAddEditFormComponent implements OnInit {
   }
 
   save() {
-    if (this.isEdit) {
-      this.api.put(TrenerApi.EDIT_TRENER.replace('#', this.id.toString()), this.trener).subscribe(() => {
-        this.toastr.success("Trener uspješno uređen!");
-        this.closeModal();
-      })
+    if (this.trener.ime != null && this.trener.ime.trim() != "" &&
+      this.trener.prezime != null && this.trener.prezime.trim() != "" &&
+      this.trener.mail != null && this.trener.mail.trim() != "" && this.trener.datumRodjenja != null) {
+      if (this.isEdit) {
+        this.api.put(TrenerApi.EDIT_TRENER.replace('#', this.id.toString()), this.trener).subscribe(() => {
+          this.toastr.success("Trener uspješno uređen!");
+          this.closeModal();
+        })
+      }
+      else {
+        this.api.post(TrenerApi.CREATE_TRENER, this.trener).subscribe((response) => {
+          if (response) {
+            this.toastr.success("Trener uspješno kreiran!");
+            this.closeModal();
+          }
+        })
+      }
     }
     else {
-      this.api.post(TrenerApi.CREATE_TRENER, this.trener).subscribe((response) => {
-        if (response) {
-          this.toastr.success("Trener uspješno kreiran!");
-          this.closeModal();
-        }
-      })
+      this.toastr.warning("Sva polja su obavezna!");
     }
   }
 

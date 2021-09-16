@@ -6,6 +6,8 @@ import { SharedModule } from '../shared/shared.module';
 import { StadionAddEditFormComponent } from './stadion-add-edit-form/stadion-add-edit-form.component';
 import { StadionListElementComponent } from './stadion-search/stadion-list/stadion-list-element/stadion-list-element.component';
 import { StadionListComponent } from './stadion-search/stadion-list/stadion-list.component';
+import { StadionSearchFormComponent } from './stadion-search/stadion-search-form/stadion-search-form.component';
+import { StadionSearchComponent } from './stadion-search/stadion-search.component';
 
 
 @NgModule({
@@ -18,9 +20,12 @@ import { StadionListComponent } from './stadion-search/stadion-list/stadion-list
     declarations: [
         StadionAddEditFormComponent,
         StadionListElementComponent,
-        StadionListComponent
+        StadionListComponent,
+        StadionSearchFormComponent,
+        StadionSearchComponent
     ],
     entryComponents: [
+        StadionAddEditFormComponent,
         GradAddFormComponent
     ],
     providers: [

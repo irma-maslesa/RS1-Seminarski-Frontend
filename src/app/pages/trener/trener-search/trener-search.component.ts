@@ -12,7 +12,7 @@ export class TrenerSearchComponent {
   submit(searchObject) {
     this.searchObject = searchObject;
 
-    if (searchObject.ime === '')
+    if (searchObject.naziv === '')
       this.searchObject.ime = null;
     if (searchObject.prezime === '')
       this.searchObject.prezime = null;

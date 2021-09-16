@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { GradAddFormComponent } from '../../grad/grad-add-form/grad-add-form.component';
 import { GradApi } from '../../grad/shared/grad-api.constant';
 import { MultiselectHelper } from '../../shared/multiselect-helper.model';
 import { RestApiService } from '../../shared/rest-api.service';
@@ -27,7 +28,9 @@ export class StadionAddEditFormComponent implements OnInit {
     labelKey: 'item_text',
     primaryKey: 'item_id',
     autoPosition: false,
-    classes: "multiselect-custom"
+    classes: "multiselect-custom",
+    enableSearchFilter: true,
+    addNewItemOnFilter: true
   };
 
   constructor(
@@ -35,22 +38,15 @@ export class StadionAddEditFormComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private dialogRef: MatDialogRef<StadionAddEditFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.stadion = new StadionCreate();
 
     this.id = +this.data.id;
 
-    this.api.get(GradApi.GET_GRAD).subscribe((response) => {
-      if (response) {
-        var helperList: SelectItem[] = [];
-        if (response != null && response.length > 0) {
-          helperList = response.map(function (item) { return { item_id: item.id, item_text: item.naziv }; });
-        }
-        this.gradovi.dropdownList = helperList;
-      }
-    })
+    this.getGradove();
 
     if (this.id) {
       this.isEdit = true;
@@ -59,7 +55,7 @@ export class StadionAddEditFormComponent implements OnInit {
           this.stadion.naziv = response.naziv;
           this.stadion.kapacitet = response.kapacitet;
           this.stadion.gradId = response.grad.id;
-          
+
           this.gradovi.selectedItems = [];
           this.gradovi.selectedItems.push(this.gradovi.dropdownList.find((item) => { return item.item_id == this.stadion.gradId }));
         }
@@ -69,20 +65,43 @@ export class StadionAddEditFormComponent implements OnInit {
     }
   }
 
+  private getGradove() {
+    this.api.get(GradApi.GET_GRAD).subscribe((response) => {
+      if (response) {
+        var helperList: SelectItem[] = [];
+        if (response != null && response.length > 0) {
+          helperList = response.map(function (item) { return { item_id: item.id, item_text: item.naziv }; });
+        }
+        this.gradovi.dropdownList = helperList;
+      }
+    });
+  }
+
   save() {
-    if (this.isEdit) {
-      this.api.put(StadionApi.EDIT_STADION.replace('#', this.id.toString()), this.stadion).subscribe(() => {
-        this.toastr.success("Stadion uspješno uređen!");
-        this.closeModal();
-      })
+    this.stadion.gradId = this.gradovi.selectedItems[0]?.item_id;
+    if (this.stadion.kapacitet != null && this.stadion.kapacitet < 0) {
+      this.toastr.warning("Kapacitet stadiona mora biti veći od 0!");
+      return;
+    }
+
+    if (this.stadion.gradId != null && this.stadion.naziv != null && this.stadion.kapacitet != null && this.stadion.naziv.trim() != "") {
+      if (this.isEdit) {
+        this.api.put(StadionApi.EDIT_STADION.replace('#', this.id.toString()), this.stadion).subscribe(() => {
+          this.toastr.success("Stadion uspješno uređen!");
+          this.closeModal();
+        });
+      }
+      else {
+        this.api.post(StadionApi.CREATE_STADION, this.stadion).subscribe((response) => {
+          if (response) {
+            this.toastr.success("Stadion uspješno kreiran!");
+            this.closeModal();
+          }
+        })
+      }
     }
     else {
-      this.api.post(StadionApi.CREATE_STADION, this.stadion).subscribe((response) => {
-        if (response) {
-          this.toastr.success("Stadion uspješno kreiran!");
-          this.closeModal();
-        }
-      })
+      this.toastr.warning("Sva polja su obavezna!");
     }
   }
 
@@ -92,5 +111,24 @@ export class StadionAddEditFormComponent implements OnInit {
 
   closeModal() {
     this.dialogRef.close();
+  }
+
+  onAddItem(data: string) {
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component2";
+    dialogConfig.width = "500px";
+
+    dialogConfig.data = { naziv: data }
+
+    this.matDialog.open(GradAddFormComponent, dialogConfig).afterClosed()
+      .subscribe(
+        (grad) => {
+          this.gradovi.dropdownList = [];
+          this.getGradove();
+          this.gradovi.selectedItems.push({ item_id: grad.id, item_text: grad.naziv });
+        }
+      );
   }
 }
