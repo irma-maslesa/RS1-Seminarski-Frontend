@@ -45,6 +45,7 @@ export class StadionAddEditFormComponent implements OnInit {
     this.stadion = new StadionCreate();
 
     this.id = +this.data.id;
+    this.stadion.naziv = this.data.naziv;
 
     this.getGradove();
 
@@ -95,7 +96,7 @@ export class StadionAddEditFormComponent implements OnInit {
         this.api.post(StadionApi.CREATE_STADION, this.stadion).subscribe((response) => {
           if (response) {
             this.toastr.success("Stadion uspješno kreiran!");
-            this.closeModal();
+            this.closeModal(response);
           }
         })
       }
@@ -106,15 +107,15 @@ export class StadionAddEditFormComponent implements OnInit {
   }
 
   clear() {
-    this.ngOnInit();
+    this.stadion = new StadionCreate();
+    this.stadion.naziv = this.data.naziv;
   }
 
-  closeModal() {
-    this.dialogRef.close();
+  closeModal(argument = null) {
+    this.dialogRef.close(argument);
   }
 
   onAddItem(data: string) {
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component2";
@@ -124,10 +125,12 @@ export class StadionAddEditFormComponent implements OnInit {
 
     this.matDialog.open(GradAddFormComponent, dialogConfig).afterClosed()
       .subscribe(
-        (grad) => {
-          this.gradovi.dropdownList = [];
-          this.getGradove();
-          this.gradovi.selectedItems.push({ item_id: grad.id, item_text: grad.naziv });
+        (response) => {
+          if (response) {
+            this.gradovi.dropdownList = [];
+            this.getGradove();
+            this.gradovi.selectedItems.push({ item_id: response.id, item_text: response.naziv });
+          }
         }
       );
   }

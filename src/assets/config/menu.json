@@ -3,97 +3,31 @@
         "label": "HUB",
         "type": "MODULE",
         "children": [{
-                "code": "HUB_RELEASES_STATIC",
-                "label": "Releases",
-                "url": "release",
-                "icon": "new_releases",
-                "attributes": {},
-                "description": "Releases"
+                "code": "HUB_STADIONI_STATIC",
+                "label": "Stadioni",
+                "url": "stadion",
+                "icon": "location_on",
+                "attributes": {}
             },
             {
-                "code": "HUB_WIKI_STATIC",
-                "label": "Wiki",
-                "icon": "public",
-                "attributes": {},
-                "children": [{
-                    "code": "HUB_TRENERI_STATIC",
-                    "label": "Treneri",
-                    "url": "trener",
-                    "attributes": {}
-                }, {
-                    "code": "HUB_STADIONI_STATIC",
-                    "label": "Stadion",
-                    "url": "stadion",
-                    "attributes": {}
-                }]
+                "code": "HUB_TRENERI_STATIC",
+                "label": "Treneri",
+                "url": "trener",
+                "icon": "person",
+                "attributes": {}
             },
             {
-                "code": "HUB_REWIEWS_STATIC",
-                "label": "Rewiews",
-                "icon": "reviews",
-                "attributes": {},
-                "children": [{
-                        "code": "HUB_EXTERNAL_STATIC",
-                        "label": "External",
-                        "url": "external",
-                        "attributes": {}
-                    },
-                    {
-                        "code": "HUB_INTERNAL_STATIC",
-                        "label": "Internal",
-                        "attributes": {},
-                        "children": [{
-                                "code": "HUB_INTERNAL_PREVIEW_STATIC",
-                                "label": "Preview",
-                                "url": "internal/preview",
-                                "attributes": {}
-                            },
-                            {
-                                "code": "HUB_INTERNAL_ADMIN_STATIC",
-                                "label": "Admin",
-                                "url": "internal/admin",
-                                "attributes": {}
-                            }
-                        ]
-                    }
-                ]
+                "code": "HUB_KLUBOVI_STATIC",
+                "label": "Klubovi",
+                "url": "klub",
+                "icon": "sports_soccer",
+                "attributes": {}
             },
             {
-                "code": "HUB_CONFIGURATION_STATIC",
-                "label": "Configuration",
-                "icon": "settings",
-                "attributes": {},
-                "children": [{
-                        "code": "HUB_MEDIA_STATIC",
-                        "label": "Media",
-                        "url": "configuration/media",
-                        "attributes": {}
-                    },
-                    {
-                        "code": "HUB_RSS_STATIC",
-                        "label": "RSS",
-                        "url": "configuration/rss",
-                        "attributes": {}
-                    },
-                    {
-                        "code": "HUB_REVIEW_FORMULAS_STATIC",
-                        "label": "Review Formulas",
-                        "attributes": {},
-                        "children": [{
-                                "code": "HUB_PREVIEW_STATIC",
-                                "label": "Preview",
-                                "url": "reviewFormulas/preview",
-                                "attributes": {}
-                            },
-                            {
-                                "code": "HUB_ADMIN_STATIC",
-                                "label": "Admin",
-                                "url": "reviewFormulas/admin",
-                                "attributes": {}
-                            }
-                        ]
-                    }
-                ]
+                "code": "HUB_IGRACI_STATIC",
+                "label": "Igrači",
+                "icon": "people",
+                "attributes": {}
             }
         ]
     }

@@ -1,0 +1,54 @@
+:root {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.klub-list-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
+        margin-bottom: 0;
+        padding-left: 10px;
+    }
+}
+
+.klub-list-element {
+    margin: 10px;
+}
+
+.klub-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.klub-list-scroll {
+    display: flex;
+    overflow-x: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 0.5em;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(#f8d43c, 0.5);
+}
+
+hr {
+    border-top: 2px solid #1a3469;
+}
+
+.h5-container {
+    min-height: 307px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1,
+h5,
+button {
+    font-weight: 300;
+}

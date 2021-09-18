@@ -1,0 +1,7 @@
+<div class="sezona-list-header">
+    <h1>Sezone</h1>
+    <button type="button" class="btn btn-secondary" (click)="edit()">Dodaj sezonu</button>
+</div>
+<div class="sezona-list">
+    <sezona-list-element *ngFor="let sezona of sezonaList" [sezona]="sezona" (editEmitter)="edit($event)" (deleteEmitter)="delete($event)" (clickEmitter)="handleClick($event)" class="sezona-list-element"></sezona-list-element>
+</div>

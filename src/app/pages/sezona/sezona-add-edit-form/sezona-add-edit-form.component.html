@@ -1,0 +1,30 @@
+<div class="d-flex flex-row-reverse">
+    <mat-icon class="p-2" (click)="closeModal()">close</mat-icon>
+</div>
+
+<h3 *ngIf="isEdit">Uredi sezonu</h3>
+<h3 *ngIf="!isEdit">Dodaj sezonu</h3>
+<form #sezonaForm="ngForm" novalidate="novalidate">
+    <div class="row input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Datum početka</span>
+        </div>
+        <input [(ngModel)]="sezona.datumPocetka" class="form-control" name="datumPocetka" id="datumPocetka" type="date"></div>
+    <div class="row input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Datum završetka</span>
+        </div>
+        <input [(ngModel)]="sezona.datumZavrsetka" class="form-control" name="datumZavrsetka" id="datumZavrsetka" type="date"></div>
+    <div class="row input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Liga</span>
+        </div>
+        <angular2-multiselect class="form-control" name="lige" [settings]="settings" [data]="lige.dropdownList" [(ngModel)]="lige.selectedItems"></angular2-multiselect>
+    </div>
+    <div class="row input-group">
+        <div class="col btn-group">
+            <button type="reset" class="btn btn-outline-secondary mr-1" (click)="clear()">Očisti</button>
+            <button type="submit" class="btn btn-secondary" (click)="save()">Spremi</button>
+        </div>
+    </div>
+</form>

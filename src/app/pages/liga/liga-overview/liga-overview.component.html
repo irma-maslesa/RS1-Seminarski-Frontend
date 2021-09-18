@@ -1,0 +1,13 @@
+<div class="wrapper">
+    <h1 *ngIf="liga">{{liga.naziv}}</h1>
+    <div class="klubovi">
+        <h3>Klubovi</h3>
+        <klub-list [searchObject]="searchObjectKlubSezona" [scrollable]="true" class="klub-list"></klub-list>
+    </div>
+
+    <div class="bottom-container">
+        <sezona-list [searchObject]="searchObjectKlubSezona" (clickEmitter)="handleClick($event)" class="sezona-list"></sezona-list>
+        <!-- <utakmica-list [searchObject]="searchObjectUtakmica" class="utakmica-list"></utakmica-list> -->
+        <div class="utakmica-list" *ngIf="utakmica"></div>
+    </div>
+</div>

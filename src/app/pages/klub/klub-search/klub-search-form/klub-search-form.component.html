@@ -1,0 +1,24 @@
+<div class="container">
+    <h4 class="mb-3">Pretraga klubova:</h4>
+    <form #trenersearchform="ngForm" (ngSubmit)="search()">
+        <div class="row input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Naziv</span>
+            </div>
+            <input [(ngModel)]="searchObject.naziv" class="form-control" name="naziv" id="naziv" type="text" placeholder="Naziv">
+        </div>
+        <div class="row input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Liga</span>
+            </div>
+            <angular2-multiselect class="form-control" name="lige" [settings]="settings" [data]="lige.dropdownList" [(ngModel)]="lige.selectedItems"></angular2-multiselect>
+        </div>
+
+        <div class="row input-group">
+            <div class="col btn-group">
+                <button type="reset" class="btn btn-outline-secondary mr-1" (click)="cancel()">Očisti</button>
+                <button type="submit" class="btn btn-secondary">Traži</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,26 @@
+<div class="wrapper">
+    <div class="container">
+        <div class="klub-details">
+            <h4 *ngIf="klub.naziv">{{klub.naziv}}
+            </h4>
+            <p *ngIf="klub.adresa">
+                <em>{{klub.adresa}}</em>
+            </p>
+            <p *ngIf="klub.mail">
+                <em>{{klub.mail}}</em>
+            </p>
+            <p *ngIf="klub.stadionNaziv">
+                <em>{{klub.stadionNaziv}}</em>
+            </p>
+            <p *ngIf="klub.trenerImePrezime">
+                <em>Trener: {{klub.trenerImePrezime}} </em>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="d-flex flex-row-reverse">
+        <mat-icon class="p-2" (click)="edit()">edit</mat-icon>
+        <mat-icon class="p-2" (click)="delete()">delete</mat-icon>
+    </div>
+</div>

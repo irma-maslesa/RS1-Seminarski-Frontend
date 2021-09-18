@@ -27,6 +27,9 @@ export class TrenerAddEditFormComponent implements OnInit {
     this.trener = new TrenerCreate();
 
     this.id = +this.data.id;
+    
+    this.trener.ime = this.data.ime;
+    this.trener.prezime = this.data.prezime;
 
     if (this.id) {
       this.isEdit = true;
@@ -56,7 +59,7 @@ export class TrenerAddEditFormComponent implements OnInit {
         this.api.post(TrenerApi.CREATE_TRENER, this.trener).subscribe((response) => {
           if (response) {
             this.toastr.success("Trener uspješno kreiran!");
-            this.closeModal();
+            this.closeModal(response);
           }
         })
       }
@@ -67,10 +70,13 @@ export class TrenerAddEditFormComponent implements OnInit {
   }
 
   clear() {
-    this.ngOnInit();
+    this.trener = new TrenerCreate();
+
+    this.trener.ime = this.data.ime;
+    this.trener.prezime = this.data.prezime;
   }
 
-  closeModal() {
-    this.dialogRef.close();
+  closeModal(argument = null) {
+    this.dialogRef.close(argument);
   }
 }
