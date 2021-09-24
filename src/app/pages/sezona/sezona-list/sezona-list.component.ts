@@ -16,6 +16,7 @@ import { Sezona } from '../shared/sezona.model';
 export class SezonaListComponent implements OnInit, OnChanges {
   @Output() clickEmitter = new EventEmitter();
   @Input() searchObject;
+  @Input() show = true;
 
   sezonaList: Sezona[] = [];
 

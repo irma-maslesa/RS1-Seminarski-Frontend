@@ -16,6 +16,7 @@ import { Klub } from '../../shared/klub.model';
 export class KlubListComponent implements OnInit, OnChanges {
   @Input() searchObject;
   @Input() scrollable = false;
+  @Input() show = true;
 
   klubList: Klub[] = [];
 

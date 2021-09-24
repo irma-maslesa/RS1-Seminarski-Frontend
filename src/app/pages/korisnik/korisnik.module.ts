@@ -5,22 +5,17 @@ import { KlubModule } from '../klub/klub.module';
 import { SezonaModule } from '../sezona/sezona.module';
 import { SharedModule } from '../shared/shared.module';
 import { UtakmicaModule } from '../utakmica/utakmica.module';
-import { LigaHomeComponent } from './liga-home.component';
-import { LigaOverviewComponent } from './liga-overview/liga-overview.component';
+import { PrijavaComponent } from './prijava/prijava.component';
 
 @NgModule({
     imports: [
         SharedModule,
         MatDialogModule,
-        ToastrModule.forRoot(),
-        KlubModule,
-        SezonaModule,
-        UtakmicaModule
+        ToastrModule.forRoot()
     ],
     exports: [],
     declarations: [
-        LigaHomeComponent,
-        LigaOverviewComponent
+        PrijavaComponent
     ],
     entryComponents: [
     ],
@@ -28,4 +23,4 @@ import { LigaOverviewComponent } from './liga-overview/liga-overview.component';
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef, useValue: {} }]
 })
-export class LigaModule { }
+export class KorisnikModule { }

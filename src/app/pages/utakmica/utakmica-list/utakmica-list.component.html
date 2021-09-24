@@ -1,0 +1,44 @@
+<div class="utakmica-list-header">
+    <h3>Utakmice</h3>
+</div>
+<div class="utakmica-list">
+    <table class="table table-striped" *ngIf="utakmicaList.length">
+        <tbody>
+            <tr *ngFor="let utakmica of utakmicaList">
+                <td *ngIf="utakmica.isProduzeci" style="text-align:center; width: 90px;">Kraj</td>
+                <td *ngIf="utakmica.minutaIgre == -1" style="text-align:center; width: 90px;">-</td>
+
+                <td *ngIf="utakmica.isPoluvrijeme" style="text-align:center; width: 90px;">Poluvrijeme</td>
+
+                <td *ngIf="!utakmica.isProduzeci && utakmica.minutaIgre != -1 && !utakmica.isPoluvrijeme && utakmica.isProduzeci" style="text-align:center; width: 90px;">(Produžeci)</td>
+                <td *ngIf="!utakmica.isProduzeci && utakmica.minutaIgre != -1 && !utakmica.isPoluvrijeme " style="text-align:center; width: 90px;">U toku</td>
+
+                <td style="text-align:right; width:150px">
+                    {{utakmica.klubDomacinNaziv}}
+                    <img style="width:20px;height:20px;" src="../../../../assets/images/back.png" alt="grb" />
+                </td>
+
+                <td *ngIf="utakmica.minutaIgre == -1" style="text-align:center; width: 45px;">/</td>
+                <td *ngIf="utakmica.minutaIgre == -1" style="text-align:center; width: 40px;">
+                    <span>-</span>
+                </td>
+                <td *ngIf="utakmica.minutaIgre == -1" style="text-align:center; width: 45px;">/</td>
+
+
+                <td *ngIf="utakmica.minutaIgre != -1" style="text-align:center; width: 45px;">{{utakmica.rezultatDomacin}}</td>
+                <td *ngIf="utakmica.minutaIgre != -1" style="text-align:center; width: 40px;">
+                    <span>-</span>
+                </td>
+                <td *ngIf="utakmica.minutaIgre != -1" style="text-align:center; width: 45px;">{{utakmica.rezultatGost}}</td>
+
+                <td style="text-align:left; width:150px">
+                    <img style="width:20px;height:20px;" src="../../../../assets/images/back2.png" alt="grb" /> {{utakmica.klubGostNaziv}}
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="!utakmicaList.length" class="h5-container">
+        <h5>Trenutno nema utakmica</h5>
+    </div>
+</div>

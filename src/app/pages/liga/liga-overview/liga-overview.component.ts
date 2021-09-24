@@ -13,6 +13,7 @@ import { LigaApi } from '../shared/liga-api.constant';
 export class LigaOverviewComponent implements OnInit {
   liga: LoV;
   searchObjectKlubSezona: any = {};
+  searchObjectUtakmicaSezona: any = {};
   utakmica = false;
 
   constructor(
@@ -30,8 +31,9 @@ export class LigaOverviewComponent implements OnInit {
 
   }
 
-  handleClick(sezonaId){
+  handleClick(sezonaId) {
     this.utakmica = true;
-    console.log(sezonaId);
+    this.searchObjectUtakmicaSezona = { SezonaId: sezonaId };
+    console.log(this.searchObjectUtakmicaSezona);
   }
 }

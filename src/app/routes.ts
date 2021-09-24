@@ -1,10 +1,12 @@
 import { Routes } from '@angular/router';
 import { KlubSearchComponent } from './pages/klub/klub-search/klub-search.component';
+import { PrijavaComponent } from './pages/korisnik/prijava/prijava.component';
 import { LigaHomeComponent } from './pages/liga/liga-home.component';
 import { LigaOverviewComponent } from './pages/liga/liga-overview/liga-overview.component';
 import { StadionSearchComponent } from './pages/stadion/stadion-search/stadion-search.component';
 import { TrenerAddEditFormComponent } from './pages/trener/trener-add-edit-form/trener-add-edit-form.component';
 import { TrenerSearchComponent } from './pages/trener/trener-search/trener-search.component';
+import { UtakmicaListComponent } from './pages/utakmica/utakmica-list/utakmica-list.component';
 
 
 export const appRoutes: Routes = [
@@ -14,5 +16,6 @@ export const appRoutes: Routes = [
     { path: 'liga', component: LigaHomeComponent },
     { path: 'liga/:id', component: LigaOverviewComponent },
     { path: 'klub', component: KlubSearchComponent },
+    { path: 'prijava', component: PrijavaComponent },
     { path: '', redirectTo: '/liga', pathMatch: 'full' }
 ]

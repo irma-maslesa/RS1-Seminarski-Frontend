@@ -28,6 +28,13 @@
                 "label": "Igrači",
                 "icon": "people",
                 "attributes": {}
+            },
+            {
+                "code": "HUB_LOGIN_STATIC",
+                "label": "Prijava",
+                "url": "prijava",
+                "icon": "login",
+                "attributes": {}
             }
         ]
     }

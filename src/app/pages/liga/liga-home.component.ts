@@ -24,8 +24,7 @@ export class LigaHomeComponent implements OnInit {
   };
   constructor(
     private api: RestApiService,
-    private router: Router,
-    private toastr: ToastrService) { }
+    private router: Router) { }
 
   ngOnInit(): void {
     

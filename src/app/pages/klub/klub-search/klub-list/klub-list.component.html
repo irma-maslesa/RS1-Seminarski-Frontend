@@ -7,7 +7,7 @@
 <div *ngIf="klubList.length" [ngClass]="{
                                     'klub-list-scroll': scrollable,
                                     'klub-list': !scrollable }">
-    <klub-list-element *ngFor="let klub of klubList" [klub]="klub" (editEmitter)="handleClick($event)" (deleteEmitter)="delete($event)" class="klub-list-element"></klub-list-element>
+    <klub-list-element *ngFor="let klub of klubList" [show]="show" [klub]="klub" (editEmitter)="handleClick($event)" (deleteEmitter)="delete($event)" class="klub-list-element"></klub-list-element>
 
 </div>
 <div *ngIf="!klubList.length" class="h5-container">

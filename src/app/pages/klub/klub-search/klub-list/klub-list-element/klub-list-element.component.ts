@@ -11,6 +11,7 @@ export class KlubListElementComponent {
   @Output() deleteEmitter = new EventEmitter();
 
   @Input() klub: Klub;
+  @Input() show;
 
   constructor() { }
 

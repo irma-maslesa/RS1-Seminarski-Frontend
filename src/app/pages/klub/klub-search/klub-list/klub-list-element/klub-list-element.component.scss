@@ -32,11 +32,19 @@ h4 {
     margin-bottom: 1px;
 }
 
-mat-icon {
+.mat-icon-show {
+    mat-icon {
+        margin-top: -15px;
+        margin-right: 15px;
+        color: #1a3469;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.mat-icon-hide {
     margin-top: -15px;
     margin-right: 15px;
-    color: #1a3469;
-    &:hover {
-        cursor: pointer;
-    }
+    visibility: hidden;
 }

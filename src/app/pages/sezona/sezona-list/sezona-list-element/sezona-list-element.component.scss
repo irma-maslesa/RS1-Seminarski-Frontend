@@ -13,12 +13,21 @@ h4 {
     font-weight: 300;
 }
 
-mat-icon {
+.mat-icon-show {
+    mat-icon {
+        position: relative;
+        top: -40px;
+        margin-right: 15px;
+        color: #1a3469;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.mat-icon-hide {
     position: relative;
     top: -40px;
     margin-right: 15px;
-    color: #1a3469;
-    &:hover {
-        cursor: pointer;
-    }
+    visibility: hidden;
 }

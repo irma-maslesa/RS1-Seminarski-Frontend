@@ -1,0 +1,33 @@
+<div class="wrapper">
+    <div class="background">
+        <div class="centered">
+            <h3>Prijava</h3>
+            <form #prijavaForm="ngForm" novalidate="novalidate" (ngSubmit)="prijava()">
+                <div class="row input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Email</span>
+                    </div>
+                    <input [(ngModel)]="korisnik.Email" class="form-control" name="Email" id="Email" type="text" placeholder="Email"></div>
+
+                <div class="row input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Lozinka</span>
+                    </div>
+                    <input [(ngModel)]="korisnik.Password" class="form-control" name="Password" id="Password" type="password" placeholder="Lozinka"></div>
+
+                <div class="row form-check mb-3">
+                    <input [(ngModel)]="korisnik.RememberMe" class="form-check-input" type="checkbox" name="RememberMe" id="RememberMe">
+                    <label class="form-check-label" for="RememberMe">
+                                    Zapamti me
+                                </label>
+                </div>
+                <div class="row input-group">
+                    <div class="col btn-group">
+                        <button type="reset" class="btn btn-outline-secondary mr-1" (click)="ocisti()">Očisti</button>
+                        <button type="submit" class="btn btn-secondary">Prijava</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

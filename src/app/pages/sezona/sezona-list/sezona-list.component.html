@@ -1,7 +1,13 @@
 <div class="sezona-list-header">
-    <h1>Sezone</h1>
-    <button type="button" class="btn btn-secondary" (click)="edit()">Dodaj sezonu</button>
+    <h1 *ngIf="show">Sezone</h1>
+    <h3 *ngIf="!show">Sezone</h3>
+    <button *ngIf="show" type="button" class="btn btn-secondary" (click)="edit()">Dodaj sezonu</button>
 </div>
 <div class="sezona-list">
-    <sezona-list-element *ngFor="let sezona of sezonaList" [sezona]="sezona" (editEmitter)="edit($event)" (deleteEmitter)="delete($event)" (clickEmitter)="handleClick($event)" class="sezona-list-element"></sezona-list-element>
+    <div *ngIf="sezonaList.length">
+        <sezona-list-element *ngFor="let sezona of sezonaList" [show]="show" [sezona]="sezona" (editEmitter)="edit($event)" (deleteEmitter)="delete($event)" (clickEmitter)="handleClick($event)" class="sezona-list-element"></sezona-list-element>
+    </div>
+    <div *ngIf="!sezonaList.length" class="h5-container">
+        <h5>Trenutno nema sezona.</h5>
+    </div>
 </div>
