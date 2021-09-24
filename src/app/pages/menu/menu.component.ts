@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import data from './../../../assets/config/menu.json';
 
@@ -7,6 +7,14 @@ import data from './../../../assets/config/menu.json';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent {
-  menuList = data.payload.children
+export class MenuComponent implements OnChanges {
+  @Input() menuList = data.payload1.children;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    var currentObject = changes.menuList;
+
+    if (!currentObject.firstChange) {
+      this.menuList = currentObject.currentValue;
+    }
+  }
 }

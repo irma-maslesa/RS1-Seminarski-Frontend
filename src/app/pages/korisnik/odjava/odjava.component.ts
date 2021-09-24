@@ -5,15 +5,10 @@ import { KorisnikPrijava } from '../shared/korisnik-prijava.model';
 import { KorisnikApi } from '../shared/liga-api.constant';
 
 
-import data from './../../../../assets/config/menu.json';
-
 @Component({
-  selector: 'prijava',
-  templateUrl: './prijava.component.html',
-  styleUrls: ['./prijava.component.scss']
+  selector: 'odjava'
 })
-export class PrijavaComponent implements OnInit {
-  korisnik: KorisnikPrijava = new KorisnikPrijava();
+export class OdjavaComponent implements OnInit {
   constructor(
     private api: RestApiService,
     private router: Router) { }
@@ -21,11 +16,12 @@ export class PrijavaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  prijava() {
-    this.api.post(KorisnikApi.KORISNIK_PRIJAVA, this.korisnik).subscribe(
+  odjava() {
+    this.api.post(KorisnikApi.KORISNIK_ODJAVA).subscribe(
       (response) => {
-        localStorage.setItem("token", response.token);
-        localStorage.setItem("uloga", response.token);
+        console.log(response);
+        localStorage.removeItem("token");
+        localStorage.removeItem("uloga");
       })
   }
 

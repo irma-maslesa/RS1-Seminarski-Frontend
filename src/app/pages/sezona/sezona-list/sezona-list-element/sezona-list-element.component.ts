@@ -28,7 +28,6 @@ export class SezonaListElementComponent {
 
   handleClick() {
     this.clickEmitter.emit(this.sezona.id);
-    console.log(this.sezona.id);
   }
 
 }

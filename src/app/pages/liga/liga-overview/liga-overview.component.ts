@@ -34,6 +34,5 @@ export class LigaOverviewComponent implements OnInit {
   handleClick(sezonaId) {
     this.utakmica = true;
     this.searchObjectUtakmicaSezona = { SezonaId: sezonaId };
-    console.log(this.searchObjectUtakmicaSezona);
   }
 }

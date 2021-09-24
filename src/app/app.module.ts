@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { JwtModule } from '@auth0/angular-jwt';
 import { AgGridModule } from 'ag-grid-angular';
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
@@ -21,6 +22,9 @@ import { TrenerModule } from './pages/trener/trener.module';
 import { UtakmicaModule } from './pages/utakmica/utakmica.module';
 import { appRoutes } from './routes';
 
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
   declarations: [
@@ -47,7 +51,14 @@ import { appRoutes } from './routes';
     KlubModule,
     SezonaModule,
     UtakmicaModule,
-    KorisnikModule
+    KorisnikModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ["localhost:5001"],
+        blacklistedRoutes: []
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

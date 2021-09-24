@@ -42,7 +42,6 @@ export class KlubListComponent implements OnInit, OnChanges {
     if (!currentObject.firstChange) {
       var searchObject = currentObject.currentValue;
 
-      console.log(searchObject);
       this.getKlubve(searchObject);
     }
   }

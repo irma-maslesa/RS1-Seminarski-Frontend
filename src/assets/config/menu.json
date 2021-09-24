@@ -1,5 +1,5 @@
 {
-    "payload": {
+    "payload1": {
         "label": "HUB",
         "type": "MODULE",
         "children": [{
@@ -34,6 +34,46 @@
                 "label": "Prijava",
                 "url": "prijava",
                 "icon": "login",
+                "attributes": {}
+            }
+        ]
+    },
+
+    "payload2": {
+        "label": "HUB",
+        "type": "MODULE",
+        "children": [{
+                "code": "HUB_STADIONI_STATIC",
+                "label": "Stadioni",
+                "url": "stadion",
+                "icon": "location_on",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_TRENERI_STATIC",
+                "label": "Treneri",
+                "url": "trener",
+                "icon": "person",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_KLUBOVI_STATIC",
+                "label": "Klubovi",
+                "url": "klub",
+                "icon": "sports_soccer",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_IGRACI_STATIC",
+                "label": "Igrači",
+                "icon": "people",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_LOGOUT_STATIC",
+                "label": "Odjava",
+                "url": "odjava",
+                "icon": "logout",
                 "attributes": {}
             }
         ]

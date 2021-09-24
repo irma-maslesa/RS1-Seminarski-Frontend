@@ -23,7 +23,6 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes.searchObject);
     var currentObject = changes.searchObject;
 
     if (!currentObject.firstChange) {

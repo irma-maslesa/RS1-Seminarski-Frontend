@@ -87,8 +87,6 @@ export class KlubAddEditFormComponent implements OnInit {
           this.klub.stadionId = response.stadionID;
           this.klub.ligaId = response.liga.id;
 
-          console.log(this.klub);
-
           if (this.klub.trenerId) {
             this.api.get(TrenerApi.GET_TRENER_BY_ID.replace('#', this.klub.trenerId.toString())).subscribe((response) => {
               if (response) {
@@ -163,7 +161,6 @@ export class KlubAddEditFormComponent implements OnInit {
   }
 
   save() {
-    console.log(this.matDialog.openDialogs);
     if (this.matDialog.openDialogs.length > 1) {
       return;
     }
