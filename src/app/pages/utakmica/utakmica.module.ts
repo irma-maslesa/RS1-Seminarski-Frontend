@@ -4,7 +4,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmModal } from '../shared/confirm-modal/confirm.modal';
 import { SharedModule } from '../shared/shared.module';
-import { UtakmicaListComponent } from './utakmica-list/utakmica-list.component';
+import { UtakmicaListComponent } from './utakmica-search/utakmica-list/utakmica-list.component';
+import { UtakmicaSearchFormComponent } from './utakmica-search/utakmica-search-form/utakmica-search-form.component';
+import { UtakmicaSearchComponent } from './utakmica-search/utakmica-search.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { UtakmicaListComponent } from './utakmica-list/utakmica-list.component';
         UtakmicaListComponent
     ],
     declarations: [
-        UtakmicaListComponent
+        UtakmicaListComponent,
+        UtakmicaSearchFormComponent,
+        UtakmicaSearchComponent
     ],
     entryComponents: [
         ConfirmModal

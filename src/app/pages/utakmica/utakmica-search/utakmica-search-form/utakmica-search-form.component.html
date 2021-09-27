@@ -1,0 +1,18 @@
+<div class="container">
+    <h4 class="mb-3">Pretraga utakmica:</h4>
+    <form #utakmicasearchform="ngForm" (ngSubmit)="search()">
+        <div class="row input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Stadion</span>
+            </div>
+            <angular2-multiselect class="form-control" name="stadioni" [settings]="settings" [data]="stadioni.dropdownList" [(ngModel)]="stadioni.selectedItems"></angular2-multiselect>
+        </div>
+
+        <div class="row input-group">
+            <div class="col btn-group">
+                <button type="reset" class="btn btn-outline-secondary mr-1" (click)="cancel()">Očisti</button>
+                <button type="submit" class="btn btn-secondary">Traži</button>
+            </div>
+        </div>
+    </form>
+</div>

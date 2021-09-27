@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    width: 320px;
+    height: 200px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.wrapper {
+    width: 320px;
+    height: 250px;
+    border: 2px solid #1a3469;
+    border-radius: 5px;
+    margin: 10px 5px;
+    padding: 15px 5px;
+    box-shadow: 3px 3px #6c757d;
+}
+
+p,
+h4 {
+    font-weight: 300;
+}
+
+mat-icon {
+    margin-top: -15px;
+    margin-right: 15px;
+    color: #1a3469;
+    &:hover {
+        cursor: pointer;
+    }
+}

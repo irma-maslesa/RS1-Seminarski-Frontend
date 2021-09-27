@@ -1,0 +1,21 @@
+<div class="d-flex flex-row-reverse">
+    <mat-icon class="p-2" (click)="closeModal()">close</mat-icon>
+</div>
+
+<h3 *ngIf="isEdit">Uredi ligu</h3>
+<h3 *ngIf="!isEdit">Dodaj ligu</h3>
+<form #ligaForm="ngForm" (ngSubmit)="save()" novalidate>
+    <div class="row input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Naziv</span>
+        </div>
+        <input [(ngModel)]="liga.naziv" class="form-control" name="naziv" id="naziv" type="text" placeholder="Naziv">
+    </div>
+
+    <div class="row input-group">
+        <div class="col btn-group">
+            <button type="reset" class="btn btn-outline-secondary mr-1" (click)="clear()">Očisti</button>
+            <button type="submit" class="btn btn-secondary">Spremi</button>
+        </div>
+    </div>
+</form>

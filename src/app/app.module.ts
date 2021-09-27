@@ -22,9 +22,6 @@ import { TrenerModule } from './pages/trener/trener.module';
 import { UtakmicaModule } from './pages/utakmica/utakmica.module';
 import { appRoutes } from './routes';
 
-export function tokenGetter() {
-  return localStorage.getItem("token");
-}
 
 @NgModule({
   declarations: [
@@ -51,14 +48,7 @@ export function tokenGetter() {
     KlubModule,
     SezonaModule,
     UtakmicaModule,
-    KorisnikModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        whitelistedDomains: ["localhost:5001"],
-        blacklistedRoutes: []
-      }
-    })
+    KorisnikModule
   ],
   providers: [],
   bootstrap: [AppComponent]

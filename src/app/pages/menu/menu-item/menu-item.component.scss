@@ -19,7 +19,7 @@
 }
 
 .menu-item:hover {
-    background-color: #eee;
+    background-color: rgba(#6c757d, 0.15);
     color: #1a3469;
     font-weight: bold;
 }
@@ -27,7 +27,6 @@
 .expand-more {
     display: none;
 }
-
 
 .menu-item mat-icon {
     margin-left: 12px;
@@ -38,4 +37,3 @@
     display: inline-block;
     margin-right: 0px !important;
 }
-

@@ -1,4 +1,70 @@
 {
+    "AUtakmice": {
+        "label": "Administrator za utakmice",
+        "type": "MODULE",
+        "children": [{
+                "code": "HUB_UTAKMICE_STATIC",
+                "label": "Utakmice",
+                "url": "utakmica",
+                "icon": "sports",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_STADIONI_STATIC",
+                "label": "Stadioni",
+                "url": "stadion",
+                "icon": "location_on",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_LOGOUT_STATIC",
+                "label": "Odjava",
+                "url": "odjava",
+                "icon": "logout",
+                "attributes": {}
+            }
+        ]
+    },
+    "AKlubovi": {
+        "label": "Administrator za klubove",
+        "type": "MODULE",
+        "children": [{
+                "code": "HUB_KLUBOVI_STATIC",
+                "label": "Klubovi",
+                "url": "klub",
+                "icon": "sports_soccer",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_STADIONI_STATIC",
+                "label": "Stadioni",
+                "url": "stadion",
+                "icon": "location_on",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_LIGE_STATIC",
+                "label": "Lige",
+                "url": "liga",
+                "icon": "emoji_events",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_TRENERI_STATIC",
+                "label": "Treneri",
+                "url": "trener",
+                "icon": "person",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_LOGOUT_STATIC",
+                "label": "Odjava",
+                "url": "odjava",
+                "icon": "logout",
+                "attributes": {}
+            }
+        ]
+    },
     "payload1": {
         "label": "HUB",
         "type": "MODULE",
@@ -38,7 +104,6 @@
             }
         ]
     },
-
     "payload2": {
         "label": "HUB",
         "type": "MODULE",

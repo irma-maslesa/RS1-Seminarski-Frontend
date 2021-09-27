@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { LoV } from '../../shared/LoV.model';
 import { RestApiService } from '../../shared/rest-api.service';
 import { LigaApi } from '../shared/liga-api.constant';
+import { Liga } from '../shared/liga.model';
 
 @Component({
   selector: 'liga-overview',
@@ -11,16 +11,18 @@ import { LigaApi } from '../shared/liga-api.constant';
   styleUrls: ['./liga-overview.component.scss']
 })
 export class LigaOverviewComponent implements OnInit {
-  liga: LoV;
+  liga: Liga;
   searchObjectKlubSezona: any = {};
   searchObjectUtakmicaSezona: any = {};
   utakmica = false;
+  show = false;
 
   constructor(
     private route: ActivatedRoute,
     private api: RestApiService,
     private router: Router,
     private toastr: ToastrService) { }
+
 
   ngOnInit(): void {
     this.searchObjectKlubSezona.ligaId = +this.route.snapshot.paramMap.get('id');
@@ -29,6 +31,9 @@ export class LigaOverviewComponent implements OnInit {
       this.liga = response;
     })
 
+    if(history.state.show){
+      this.show = history.state.show;
+    }
   }
 
   handleClick(sezonaId) {

@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrModule } from 'ngx-toastr';
-import { KlubModule } from '../klub/klub.module';
-import { SezonaModule } from '../sezona/sezona.module';
 import { SharedModule } from '../shared/shared.module';
-import { UtakmicaModule } from '../utakmica/utakmica.module';
+import { OdjavaComponent } from './odjava/odjava.component';
 import { PrijavaComponent } from './prijava/prijava.component';
 
 @NgModule({
@@ -15,7 +13,8 @@ import { PrijavaComponent } from './prijava/prijava.component';
     ],
     exports: [],
     declarations: [
-        PrijavaComponent
+        PrijavaComponent,
+        OdjavaComponent
     ],
     entryComponents: [
     ],

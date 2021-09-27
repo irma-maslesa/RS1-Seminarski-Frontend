@@ -1,4 +1,4 @@
-import { LoV } from "../../shared/LoV.model";
+import { Liga } from "../../liga/shared/liga.model";
 
 export class Utakmica {
     id: number;
@@ -20,5 +20,5 @@ export class Utakmica {
     isPoluvrijeme: boolean;
     minutaIgre: number;
     
-    liga: LoV
+    liga: Liga
 }

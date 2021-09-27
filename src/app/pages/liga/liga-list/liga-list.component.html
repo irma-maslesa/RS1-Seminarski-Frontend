@@ -1,0 +1,10 @@
+<body>
+    <div class="liga-list-header">
+        <h1>Lige</h1>
+        <button type="button" class="btn btn-secondary" (click)="edit()">Dodaj ligu</button>
+    </div>
+    <hr/>
+    <div class="liga-list">
+        <liga-list-element *ngFor="let liga of ligaList" [liga]="liga" (clickEmitter)="handleClick($event)" (editEmitter)="edit($event)" (deleteEmitter)="delete($event)" class="liga-list-element"></liga-list-element>
+    </div>
+</body>

@@ -1,6 +1,4 @@
-import { LoV } from "../../shared/LoV.model";
-import { Stadion } from "../../stadion/shared/stadion.model";
-import { Trener } from "../../trener/shared/trener.model";
+import { Liga } from "../../liga/shared/liga.model";
 
 export class Klub {
     id: number;
@@ -13,5 +11,5 @@ export class Klub {
     trenerImePrezime: string;
     stadionID: number;
     stadionNaziv: string;
-    liga: LoV;
+    liga: Liga;
 }

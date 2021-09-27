@@ -1,6 +1,10 @@
 <div class="utakmica-list-header">
-    <h3>Utakmice</h3>
+    <h1 *ngIf="show">Utakmice</h1>
+    <h3 *ngIf="!show">Utakmice</h3>
+    <button *ngIf="show" type="button" class="btn btn-secondary" (click)="edit()">Dodaj utakmicu</button>
 </div>
+
+<hr *ngIf="show" />
 <div class="utakmica-list">
     <table class="table table-striped" *ngIf="utakmicaList.length">
         <tbody>
@@ -35,6 +39,10 @@
                     <img style="width:20px;height:20px;" src="../../../../assets/images/back2.png" alt="grb" /> {{utakmica.klubGostNaziv}}
                 </td>
 
+                <td *ngIf="show" style="text-align:left; width:100px">
+                    <mat-icon class="p-2" (click)="edit(utakmica.id)">edit</mat-icon>
+                    <mat-icon class="p-2" (click)="delete(utakmica.id)">delete</mat-icon>
+                </td>
             </tr>
         </tbody>
     </table>

@@ -1,0 +1,37 @@
+h3,
+h5 {
+    margin-left: 15px;
+    font-weight: 300;
+}
+
+.utakmica-list-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
+        font-weight: 300;
+        margin-bottom: 0;
+        padding-left: 10px;
+    }
+}
+
+.h5-container {
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+mat-icon {
+    position: relative;
+    margin-right: 15px;
+    color: #1a3469;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+hr {
+    border-top: 2px solid #1a3469;
+}

@@ -1,10 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { LoadingOverlayComponent } from 'ag-grid-community/dist/lib/rendering/overlays/loadingOverlayComponent';
 import { ToastrService } from 'ngx-toastr';
 import { EntitetApi } from '../../entitet/shared/entitet-api.constant';
-import { LoV } from '../../shared/LoV.model';
 import { MultiselectHelper } from '../../shared/multiselect-helper.model';
 import { RestApiService } from '../../shared/rest-api.service';
 import { SelectItem } from '../../shared/select-item.model';
