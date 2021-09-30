@@ -8,14 +8,12 @@
 
 <hr *ngIf="uloga == uloge.ADMINISTRATOR_UTAKMICA" />
 
-<div class="buttons-liga btn-group" [ngClass]="{
-                                                                                                'buttons-liga-self': uloga == uloge.KORISNIK}" role="group" *ngIf="uloga == uloge.KORISNIK && ligaList.length > 0 && !omiljene && ligaFilter">
+<div class="buttons-liga btn-group" [ngClass]="{'buttons-liga-self': uloga == uloge.KORISNIK || uloga == uloge.GOST}" role="group" *ngIf="(uloga == uloge.KORISNIK || uloga == uloge.GOST) && ligaList.length > 0 && !omiljene && ligaFilter">
     <button type="button" class="btn btn-secondary col-3" (click)="filterLiga($event)">Sve lige</button>
     <button type="button" *ngFor="let liga of ligaList" class="btn btn-outline-secondary ml-2 col-3" (click)="filterLiga($event, liga.id)">{{liga.naziv}}</button>
 </div>
 
-<div class="buttons btn-group" [ngClass]="{
-                                                                                                'buttons-self': uloga == uloge.KORISNIK}" role="group" *ngIf="!omiljene && statusFilter">
+<div class="buttons btn-group" [ngClass]="{'buttons-self': uloga == uloge.KORISNIK}" role="group" *ngIf="!omiljene && statusFilter">
     <button type="button" class="btn btn-secondary col-3" (click)="filter($event, 'SVE')">Svi statusi</button>
     <button type="button" class="btn btn-outline-secondary ml-2 col-3" (click)="filter($event,'ZAVRSENA')">Završene</button>
     <button type="button" class="btn btn-outline-secondary mr-2 ml-2 col-3" (click)="filter($event,'U TOKU')">U toku</button>

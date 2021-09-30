@@ -26,6 +26,7 @@ export const appRoutes: Routes = [
     { path: 'klubG', component: KlubSearchComponent, data: { uloga: Uloga.GOST } },
     { path: 'klub/:id', component: KlubOverviewComponent },
     { path: 'utakmica', component: UtakmicaSearchComponent },
+    { path: 'utakmicaG', component: UtakmicaListComponent, data: { uloga: Uloga.GOST }  },
     { path: 'utakmicaK', component: UtakmicaListComponent, data: { uloga: Uloga.KORISNIK }  },
     { path: 'utakmicaKO', component: UtakmicaListComponent, data: { uloga: Uloga.KORISNIK, omiljene: true }  },
     { path: 'prijava', component: PrijavaComponent },

@@ -26,10 +26,10 @@ export class AppComponent {
           else if (korisnik.uloga == Uloga.KORISNIK)
             this.menuList = data.Korisnik.children;
           else
-            this.menuList = data.payload2.children;
+            this.menuList = data.Gost.children;
         }
         else
-          this.menuList = data.payload1.children;
+          this.menuList = data.Gost.children;
       }
     });
   }

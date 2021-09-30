@@ -130,6 +130,51 @@
             }
         ]
     },
+    "Gost": {
+        "label": "Gost",
+        "type": "MODULE",
+        "children": [{
+                "code": "HUB_LIGE_STATIC",
+                "label": "Lige",
+                "url": "home",
+                "icon": "emoji_events",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_UTAKMICE_STATIC",
+                "label": "Utakmice",
+                "url": "utakmicaG",
+                "icon": "sports",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_KLUBOVI_STATIC",
+                "label": "Klubovi",
+                "url": "klubG",
+                "icon": "sports_soccer",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_IGRACI_STATIC",
+                "label": "Igrači",
+                "icon": "people",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_NOVOSTI_STATIC",
+                "label": "Novosti",
+                "icon": "article",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_LOGIN_STATIC",
+                "label": "Prijava",
+                "url": "prijava",
+                "icon": "login",
+                "attributes": {}
+            }
+        ]
+    },
     "payload1": {
         "label": "HUB",
         "type": "MODULE",
