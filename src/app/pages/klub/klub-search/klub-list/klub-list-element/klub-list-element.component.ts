@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { Uloga } from 'src/app/pages/shared/uloga.constant';
 import { Klub } from '../../../shared/klub.model';
 
 @Component({
@@ -11,9 +13,12 @@ export class KlubListElementComponent {
   @Output() deleteEmitter = new EventEmitter();
 
   @Input() klub: Klub;
-  @Input() show;
+  @Input() uloga = Uloga.ADMINISTRATOR_KLUBOVA;
+  uloge = Uloga;
 
-  constructor() { }
+  imageSrcBase: string = "https://localhost:5001";
+
+  constructor(private router: Router) { }
 
   edit() {
     this.editEmitter.emit(this.klub.id);
@@ -21,6 +26,10 @@ export class KlubListElementComponent {
 
   delete() {
     this.deleteEmitter.emit({ id: this.klub.id, naziv: this.klub.naziv });
+  }
+
+  handleClick() {
+    this.router.navigateByUrl(`klub/${this.klub.id}`);
   }
 
 }

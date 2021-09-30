@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Uloga } from 'src/app/pages/shared/uloga.constant';
 import { Sezona } from '../../shared/sezona.model';
 
 @Component({
@@ -12,7 +13,9 @@ export class SezonaListElementComponent {
   @Output() deleteEmitter = new EventEmitter();
   @Output() clickEmitter = new EventEmitter();
 
-  @Input() show: boolean;
+  @Input() uloga = Uloga.ADMINISTRATOR_KLUBOVA;
+  uloge = Uloga;
+  
   @Input() sezona: Sezona;
 
   constructor(private router: Router) {

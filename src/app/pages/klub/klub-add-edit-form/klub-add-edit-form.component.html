@@ -45,6 +45,15 @@
         <angular2-multiselect class="form-control" name="lige" [settings]="settingsLiga" [data]="lige.dropdownList" [(ngModel)]="lige.selectedItems"></angular2-multiselect>
     </div>
 
+    <div class="image" style="width: 50%">
+        <label style="margin-top: 2%;">Slika: </label>
+        <img *ngIf="imageSrc" [src]="imageSrc" alt="Image" />
+        <div *ngIf="!imageSrc" style="margin-top: 2%;min-width:100px;min-height:100px;font-size: 200px;border: 2px solid #1a3469;">
+        </div>
+        <input (change)="onSelectFile($event)" style="margin-top: 2%;" #imageInput hidden="true" type='file' accept="image/*">
+        <button class="btn btn-secondary btn-sm" (click)="imageInput.click()" style="margin-top:18%;" type="button">Choose Photo</button>
+    </div>
+
     <div class="row input-group">
         <div class="col btn-group">
             <button type="reset" class="btn btn-outline-secondary mr-1" (click)="clear()">Očisti</button>

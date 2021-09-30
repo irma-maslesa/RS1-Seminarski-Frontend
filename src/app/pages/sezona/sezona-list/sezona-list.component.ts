@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { RestApiService } from 'src/app/pages/shared/rest-api.service';
 import { ConfirmModal } from '../../shared/confirm-modal/confirm.modal';
+import { Uloga } from '../../shared/uloga.constant';
 import { SezonaAddEditFormComponent } from '../sezona-add-edit-form/sezona-add-edit-form.component';
 import { SezonaApi } from '../shared/sezona-api.constant';
 import { Sezona } from '../shared/sezona.model';
@@ -16,7 +17,8 @@ import { Sezona } from '../shared/sezona.model';
 export class SezonaListComponent implements OnInit, OnChanges {
   @Output() clickEmitter = new EventEmitter();
   @Input() searchObject;
-  @Input() show = true;
+  @Input() uloga = Uloga.ADMINISTRATOR_KLUBOVA;
+  uloge = Uloga;
 
   sezonaList: Sezona[] = [];
 

@@ -1,6 +1,6 @@
 .container {
     display: flex;
-    width: 320px;
+    width: 380px;
     height: 200px;
     flex-direction: row;
     align-items: center;
@@ -9,7 +9,7 @@
 }
 
 .wrapper {
-    width: 320px;
+    width: 380px;
     height: 250px;
     border: 2px solid #1a3469;
     border-radius: 5px;
@@ -18,17 +18,8 @@
     box-shadow: 3px 3px #6c757d;
 }
 
-.klub-cover {
-    margin: 10px 10px 10px 0;
-    width: 150px;
-    height: 200px;
-    border: 2px solid #95a9d1;
-    border-radius: 5px;
-}
-
 p,
 h4 {
-    font-weight: 300;
     margin-bottom: 1px;
 }
 
@@ -47,4 +38,11 @@ h4 {
     margin-top: -15px;
     margin-right: 15px;
     visibility: hidden;
+}
+
+.klub-cover {
+    margin: 5px 5px 5px 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
 }

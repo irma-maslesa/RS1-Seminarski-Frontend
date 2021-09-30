@@ -1,0 +1,41 @@
+<div class="top">
+    <img alt="Klub image" [src]="imageSrcBase + klub.slika" />
+    <div class="top-info">
+        <div>
+            <h1>{{klub.naziv}}</h1>
+        </div>
+        <h4>{{klub.adresa}}
+        </h4>
+        <h4 style="color: #1a3469">&#9679;
+        </h4>
+        <h4>{{klub.mail}}</h4>
+        <h5 *ngIf="klub.trenerImePrezime">Trener: {{klub.trenerImePrezime}}
+        </h5>
+        <h5 *ngIf="!klub.trenerImePrezime">Trener: /</h5>
+
+        <h5 *ngIf="stadion">Stadion: {{stadion.naziv}} ({{stadion.grad.naziv}}) - {{stadion.kapacitet}}
+        </h5>
+    </div>
+</div>
+<div class="bottom">
+    <mat-tab-group mat-stretch-tabs="mat-stretch-tabs">
+        <mat-tab label="Rezultati">
+            <mat-tab-group mat-stretch-tabs="mat-stretch-tabs" class="remove-border-bottom set-font">
+                <mat-tab label="Trenutne">
+                    <utakmica-list [uloga]="uloga" [ligaFilter]="false" [statusFilter]="false" [predstojece]="true" [searchObject]="searchObjectTrenutne"></utakmica-list>
+                </mat-tab>
+            </mat-tab-group>
+            <mat-tab-group mat-stretch-tabs="mat-stretch-tabs" class="remove-border-bottom">
+                <mat-tab label="Posljednji rezultati">
+                    <utakmica-list [uloga]="uloga" [ligaFilter]="false" [statusFilter]="false" [rezultati]="true" [searchObject]="searchObjectRezultati"></utakmica-list>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-tab>
+        <mat-tab label="Raspored">
+            <utakmica-list [uloga]="uloga" [ligaFilter]="false" [statusFilter]="false" [predstojece]="true" [searchObject]="searchObjectRaspored"></utakmica-list>
+        </mat-tab>
+        <mat-tab label="Poredak">HI 3</mat-tab>
+        <mat-tab label="Momčad">HI 4</mat-tab>
+    </mat-tab-group>
+
+</div>

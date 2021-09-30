@@ -10,11 +10,20 @@ import data from './../../../assets/config/menu.json';
 export class MenuComponent implements OnChanges {
   @Input() menuList = data.payload1.children;
 
+  expanded: boolean = false;
   ngOnChanges(changes: SimpleChanges): void {
     var currentObject = changes.menuList;
 
     if (!currentObject.firstChange) {
       this.menuList = currentObject.currentValue;
     }
+  }
+
+  mouseLeave() {
+    this.expanded = !this.expanded;
+  }
+
+  mouseEnter() {
+    this.expanded = !this.expanded;
   }
 }

@@ -16,7 +16,8 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "types": ["resize-observer-browser"]
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

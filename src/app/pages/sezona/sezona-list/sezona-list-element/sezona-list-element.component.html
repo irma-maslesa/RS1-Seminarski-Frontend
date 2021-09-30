@@ -1,8 +1,8 @@
 <div class="wrapper" (click)="handleClick()">
     <h4>{{sezona.datumPocetka| date: "yyyy"}}/{{sezona.datumZavrsetka| date: "yyyy"}}</h4>
     <div class="d-flex flex-row-reverse" [ngClass]="{
-        'mat-icon-show': show,
-        'mat-icon-hide': !show }">
+        'mat-icon-show': uloga == uloge.ADMINISTRATOR_KLUBOVA,
+        'mat-icon-hide': uloga != uloge.ADMINISTRATOR_KLUBOVA }">
         <mat-icon class="p-2" (click)="edit()">edit</mat-icon>
         <mat-icon class="p-2" (click)="delete()">delete</mat-icon>
     </div>

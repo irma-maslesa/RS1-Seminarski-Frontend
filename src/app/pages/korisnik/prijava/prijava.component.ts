@@ -1,13 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RestApiService } from '../../shared/rest-api.service';
 import { Uloga } from '../../shared/uloga.constant';
+import { KorisnikApi } from '../shared/korisnik-api.constant';
 import { KorisnikPrijava } from '../shared/korisnik-prijava.model';
-import { KorisnikApi } from '../shared/liga-api.constant';
-
-
-import data from './../../../../assets/config/menu.json';
 
 @Component({
   selector: 'prijava',

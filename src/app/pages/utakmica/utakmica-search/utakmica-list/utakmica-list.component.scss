@@ -1,7 +1,6 @@
 h3,
 h5 {
-    margin-left: 15px;
-    font-weight: 300;
+    margin-bottom: 10px;
 }
 
 .utakmica-list-header {
@@ -10,13 +9,21 @@ h5 {
     justify-content: space-between;
     align-items: center;
     h1 {
-        font-weight: 300;
-        margin-bottom: 0;
         padding-left: 10px;
     }
 }
 
+.buttons,
+.buttons-liga {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 .h5-container {
+    width: 100%;
     min-height: 140px;
     display: flex;
     align-items: center;
@@ -34,4 +41,31 @@ mat-icon {
 
 hr {
     border-top: 2px solid #1a3469;
+}
+
+.utakmica-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.buttons-self,
+.buttons-liga-self {
+    padding-right: 10px;
+}
+
+.pobjeda {
+    transform: scale(1.5);
+    color: green
+}
+
+.poraz {
+    transform: scale(1.5);
+    color: red
+}
+
+.remi {
+    transform: scale(1.5);
+    color: #fcb52f
 }

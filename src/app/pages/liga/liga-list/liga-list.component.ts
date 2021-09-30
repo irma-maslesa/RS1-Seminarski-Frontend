@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RestApiService } from 'src/app/pages/shared/rest-api.service';
 import { ConfirmModal } from '../../shared/confirm-modal/confirm.modal';
+import { Uloga } from '../../shared/uloga.constant';
 import { LigaAddEditFormComponent } from '../liga-add-edit-form/liga-add-edit-form.component';
 import { LigaApi } from '../shared/liga-api.constant';
 import { Liga } from '../shared/liga.model';
@@ -58,8 +59,7 @@ export class LigaListComponent implements OnInit {
   }
 
   handleClick(id) {
-    console.log("HERE");
-    this.router.navigateByUrl(`/liga/${id}`, { state: { show: true } });
+    this.router.navigateByUrl(`/liga/${id}`, { state: { uloga: Uloga.ADMINISTRATOR_KLUBOVA } });
   }
 }
 

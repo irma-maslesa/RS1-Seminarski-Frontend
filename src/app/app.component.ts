@@ -1,8 +1,9 @@
-import { Component, HostListener, OnDestroy } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
+import { Uloga } from './pages/shared/uloga.constant';
 
 import data from './../assets/config/menu.json';
-import { Uloga } from './pages/shared/uloga.constant';
+
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,8 @@ export class AppComponent {
             this.menuList = data.AUtakmice.children;
           else if (korisnik.uloga == Uloga.ADMINISTRATOR_KLUBOVA)
             this.menuList = data.AKlubovi.children;
+          else if (korisnik.uloga == Uloga.KORISNIK)
+            this.menuList = data.Korisnik.children;
           else
             this.menuList = data.payload2.children;
         }
@@ -35,7 +38,6 @@ export class AppComponent {
   unloadHandler(event) {
     if (localStorage.getItem("korisnik")) {
       var korisnik = JSON.parse(localStorage.getItem("korisnik"));
-      console.log(korisnik);
       if (!korisnik.zapamtiMe) {
         localStorage.removeItem("korisnik")
       }

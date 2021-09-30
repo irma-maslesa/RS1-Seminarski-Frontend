@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Uloga } from 'src/app/pages/shared/uloga.constant';
 import { Trener } from '../../../shared/trener.model';
 
 @Component({
@@ -12,6 +13,9 @@ export class TrenerListElementComponent {
   @Output() deleteEmitter = new EventEmitter();
 
   @Input() trener: Trener;
+
+  @Input() uloga = Uloga.ADMINISTRATOR_KLUBOVA;
+  uloge = Uloga;
 
   constructor(private router: Router) { }
 

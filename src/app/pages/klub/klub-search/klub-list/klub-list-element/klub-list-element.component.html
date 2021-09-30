@@ -1,5 +1,8 @@
-<div class="wrapper">
+<div class="wrapper" (click)="handleClick()">
     <div class="container">
+        <img class="klub-cover" *ngIf="klub.slika" [src]="
+                    imageSrcBase + klub.slika" alt="Can't load cover" width="150" height="150">
+
         <div class="klub-details">
             <h4 *ngIf="klub.naziv">{{klub.naziv}}
             </h4>
@@ -13,15 +16,17 @@
                 <em>{{klub.stadionNaziv}}</em>
             </p>
             <p *ngIf="klub.trenerImePrezime">
-                <em>Trener: {{klub.trenerImePrezime}} </em>
+                <em>Trener:
+                        {{klub.trenerImePrezime}}
+                    </em>
             </p>
         </div>
     </div>
 
 
     <div class="d-flex flex-row-reverse" [ngClass]="{
-        'mat-icon-show': show,
-        'mat-icon-hide': !show }">
+                        'mat-icon-show': uloga == uloge.ADMINISTRATOR_KLUBOVA,
+                        'mat-icon-hide': uloga != uloge.ADMINISTRATOR_KLUBOVA }">
         <mat-icon class="p-2" (click)="edit()">edit</mat-icon>
         <mat-icon class="p-2" (click)="delete()">delete</mat-icon>
     </div>

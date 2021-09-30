@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LigaApi } from '../../liga/shared/liga-api.constant';
@@ -23,6 +25,9 @@ export class KlubAddEditFormComponent implements OnInit {
   klub: KlubCreate;
   isEdit = false;
   id: number;
+  imageSrc: string;
+  imageSrcBase: string = "https://localhost:5001";
+  thumbnail: any;
 
   constructor(
     private api: RestApiService,
@@ -30,7 +35,9 @@ export class KlubAddEditFormComponent implements OnInit {
     private toastr: ToastrService,
     private dialogRef: MatDialogRef<KlubAddEditFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private matDialog: MatDialog) { }
+    private matDialog: MatDialog,
+    private http: HttpClient,
+    private sanitizer: DomSanitizer) { }
 
   treneri: MultiselectHelper = new MultiselectHelper();
   settingsTrener = {
@@ -86,6 +93,9 @@ export class KlubAddEditFormComponent implements OnInit {
           this.klub.trenerId = response.trenerID;
           this.klub.stadionId = response.stadionID;
           this.klub.ligaId = response.liga.id;
+          this.klub.slika = response.slika;
+
+          this.imageSrc = this.imageSrcBase +  response.slika;
 
           if (this.klub.trenerId) {
             this.api.get(TrenerApi.GET_TRENER_BY_ID.replace('#', this.klub.trenerId.toString())).subscribe((response) => {
@@ -173,14 +183,30 @@ export class KlubAddEditFormComponent implements OnInit {
       this.klub.mail != null && this.klub.mail.trim().length > 0 &&
       this.klub.adresa != null && this.klub.adresa.trim().length > 0 &&
       this.klub.stadionId != null && this.klub.ligaId != null) {
+
+      let data = new FormData();
+      data.append('naziv', this.klub.naziv);
+      data.append('mail', this.klub.mail);
+      data.append('adresa', this.klub.adresa);
+      if (this.klub.trenerId != null)
+        data.append('trenerId', this.klub.trenerId.toString());
+      else
+        data.append('trenerId', '');
+      data.append('stadionId', this.klub.stadionId.toString());
+      data.append('ligaId', this.klub.ligaId.toString());
+      if (this.klub.slika != null)
+        data.append('slika', this.klub.slika);
+      else
+        data.append('slika', '');
+
       if (this.isEdit) {
-        this.api.put(KlubApi.EDIT_KLUB.replace('#', this.id.toString()), this.klub).subscribe(() => {
+        this.http.put(KlubApi.EDIT_KLUB.replace('#', this.id.toString()), data).subscribe(() => {
           this.toastr.success("Klub uspješno uređen!");
           this.closeModal();
         })
       }
       else {
-        this.api.post(KlubApi.CREATE_KLUB, this.klub).subscribe((response) => {
+        this.http.post(KlubApi.CREATE_KLUB, data).subscribe((response) => {
           if (response) {
             this.toastr.success("Klub uspješno kreiran!");
             this.closeModal();
@@ -220,7 +246,7 @@ export class KlubAddEditFormComponent implements OnInit {
           if (response) {
             this.treneri.dropdownList = [];
             this.getTrenere();
-            
+
             this.treneri.selectedItems = [];
             this.treneri.selectedItems.push({ item_id: response.id, item_text: response.ime + " " + response.prezime });
           }
@@ -247,5 +273,16 @@ export class KlubAddEditFormComponent implements OnInit {
           }
         }
       );
+  }
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      this.klub.slika = event.target.files[0];
+      reader.onload = (event) => {
+        this.imageSrc = event.target.result.toString();
+      }
+    }
   }
 }

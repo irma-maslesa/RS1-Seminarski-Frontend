@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmModal } from 'src/app/pages/shared/confirm-modal/confirm.modal';
 import { RestApiService } from 'src/app/pages/shared/rest-api.service';
+import { Uloga } from 'src/app/pages/shared/uloga.constant';
 import { KlubAddEditFormComponent } from '../../klub-add-edit-form/klub-add-edit-form.component';
 import { KlubApi } from '../../shared/klub-api.constant';
 import { Klub } from '../../shared/klub.model';
@@ -16,7 +17,8 @@ import { Klub } from '../../shared/klub.model';
 export class KlubListComponent implements OnInit, OnChanges {
   @Input() searchObject;
   @Input() scrollable = false;
-  @Input() show = true;
+  @Input() uloga = Uloga.ADMINISTRATOR_KLUBOVA;
+  uloge = Uloga;
 
   klubList: Klub[] = [];
 

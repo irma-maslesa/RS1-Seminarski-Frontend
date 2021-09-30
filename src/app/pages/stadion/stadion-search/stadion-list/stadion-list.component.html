@@ -1,8 +1,8 @@
 <div class="stadion-list-header">
     <h1>Stadioni</h1>
-    <button type="button" class="btn btn-secondary" (click)="handleClick()">Dodaj stadion</button>
+    <button *ngIf="uloga == uloge.ADMINISTRATOR_KLUBOVA" type="button" class="btn btn-secondary" (click)="handleClick()">Dodaj stadion</button>
 </div>
 <hr/>
 <div class="stadion-list">
-    <stadion-list-element *ngFor="let stadion of stadionList" [stadion]="stadion" (editEmitter)="handleClick($event)" (deleteEmitter)="delete($event)" class="stadion-list-element"></stadion-list-element>
+    <stadion-list-element [uloga]="uloga" *ngFor="let stadion of stadionList" [stadion]="stadion" (editEmitter)="handleClick($event)" (deleteEmitter)="delete($event)" class="stadion-list-element"></stadion-list-element>
 </div>

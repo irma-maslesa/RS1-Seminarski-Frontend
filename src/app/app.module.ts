@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { JwtModule } from '@auth0/angular-jwt';
 import { AgGridModule } from 'ag-grid-angular';
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';

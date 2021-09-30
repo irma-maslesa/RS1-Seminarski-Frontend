@@ -16,7 +16,9 @@ import { StadionSearchComponent } from './stadion-search/stadion-search.componen
         MatDialogModule,
         ToastrModule.forRoot()
     ],
-    exports: [],
+    exports: [
+        StadionListElementComponent
+    ],
     declarations: [
         StadionAddEditFormComponent,
         StadionListElementComponent,

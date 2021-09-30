@@ -12,7 +12,7 @@
             {
                 "code": "HUB_STADIONI_STATIC",
                 "label": "Stadioni",
-                "url": "stadion",
+                "url": "stadionAU",
                 "icon": "location_on",
                 "attributes": {}
             },
@@ -65,13 +65,78 @@
             }
         ]
     },
+    "Korisnik": {
+        "label": "Korisnik",
+        "type": "MODULE",
+        "children": [{
+                "code": "HUB_LIGE_STATIC",
+                "label": "Lige",
+                "url": "home",
+                "icon": "emoji_events",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_UTAKMICE_STATIC",
+                "label": "Utakmice",
+                "url": "utakmicaK",
+                "icon": "sports",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_KLUBOVI_STATIC",
+                "label": "Klubovi",
+                "url": "klubG",
+                "icon": "sports_soccer",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_IGRACI_STATIC",
+                "label": "Igrači",
+                "icon": "people",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_NOVOSTI_STATIC",
+                "label": "Novosti",
+                "icon": "article",
+                "attributes": {}
+            },
+            {
+                "code": "HUB_PROFIL_STATIC",
+                "label": "Profil",
+                "icon": "account_circle",
+                "attributes": {},
+                "children": [{
+                        "code": "HUB_OMILJENE_UTAKMICE_STATIC",
+                        "label": "Omiljeno",
+                        "url": "utakmicaKO",
+                        "icon": "favorite",
+                        "attributes": {}
+                    },
+                    {
+                        "code": "HUB_PODACI_STATIC",
+                        "label": "Moji podaci",
+                        "icon": "edit",
+                        "attributes": {}
+                    },
+                    {
+                        "code": "HUB_LOGOUT_STATIC",
+                        "label": "Odjava",
+                        "url": "odjava",
+                        "icon": "logout",
+                        "attributes": {}
+                    }
+                ]
+            }
+        ]
+    },
     "payload1": {
         "label": "HUB",
         "type": "MODULE",
         "children": [{
                 "code": "HUB_STADIONI_STATIC",
                 "label": "Stadioni",
-                "url": "stadion",
+                "url": "stadionAU",
                 "icon": "location_on",
                 "attributes": {}
             },
@@ -85,7 +150,7 @@
             {
                 "code": "HUB_KLUBOVI_STATIC",
                 "label": "Klubovi",
-                "url": "klub",
+                "url": "klubG",
                 "icon": "sports_soccer",
                 "attributes": {}
             },
@@ -110,7 +175,7 @@
         "children": [{
                 "code": "HUB_STADIONI_STATIC",
                 "label": "Stadioni",
-                "url": "stadion",
+                "url": "stadionAU",
                 "icon": "location_on",
                 "attributes": {}
             },
@@ -124,7 +189,7 @@
             {
                 "code": "HUB_KLUBOVI_STATIC",
                 "label": "Klubovi",
-                "url": "klub",
+                "url": "klubG",
                 "icon": "sports_soccer",
                 "attributes": {}
             },

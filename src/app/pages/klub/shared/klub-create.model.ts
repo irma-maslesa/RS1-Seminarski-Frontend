@@ -2,7 +2,7 @@ export class KlubCreate {
     naziv: string;
     mail:string;
     adresa: string;
-    slika: string;
+    slika: File;
 
     igraciIds: number[];
 

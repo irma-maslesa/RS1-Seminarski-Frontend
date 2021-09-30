@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RestApiService } from '../../shared/rest-api.service';
-import { KorisnikApi } from '../shared/liga-api.constant';
+import { KorisnikApi } from '../shared/korisnik-api.constant';
 
 
 @Component({

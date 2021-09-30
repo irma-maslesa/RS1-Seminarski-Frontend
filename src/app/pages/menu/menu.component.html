@@ -1,11 +1,11 @@
-<div id="sidenav">
+<div id="sidenav" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
     <mat-list id="menus">
 
         <!-- <menu-item [data]="{'label':'Home', 'icon':'home', 'url':'liga'}" [depth]="0">
         </menu-item> -->
 
         <ng-container *ngFor="let menuItem of menuList">
-            <menu-item [data]="menuItem" [depth]="0">
+            <menu-item [data]="menuItem" [depth]="0" [parentExpanded]="expanded">
             </menu-item>
         </ng-container>
     </mat-list>

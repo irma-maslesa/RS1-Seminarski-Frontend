@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmModal } from 'src/app/pages/shared/confirm-modal/confirm.modal';
 import { RestApiService } from 'src/app/pages/shared/rest-api.service';
+import { Uloga } from 'src/app/pages/shared/uloga.constant';
 import { StadionApi } from '../../shared/stadion-api.constant';
 import { Stadion } from '../../shared/stadion.model';
 import { StadionAddEditFormComponent } from '../../stadion-add-edit-form/stadion-add-edit-form.component';
@@ -15,13 +16,16 @@ import { StadionAddEditFormComponent } from '../../stadion-add-edit-form/stadion
 })
 export class StadionListComponent implements OnInit, OnChanges {
   @Input() searchObject;
+  @Input() uloga = Uloga.ADMINISTRATOR_KLUBOVA;
+  uloge = Uloga;
 
   stadionList: Stadion[] = [];
 
   constructor(
     private api: RestApiService,
     private toastr: ToastrService,
-    private matDialog: MatDialog) { }
+    private matDialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.api.get(StadionApi.GET_STADION)

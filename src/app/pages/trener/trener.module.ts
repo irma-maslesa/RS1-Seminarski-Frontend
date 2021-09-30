@@ -15,7 +15,9 @@ import { TrenerSearchComponent } from './trener-search/trener-search.component';
         MatDialogModule,
         ToastrModule.forRoot()
     ],
-    exports: [],
+    exports: [
+        TrenerListElementComponent
+    ],
     declarations: [
         TrenerListElementComponent,
         TrenerListComponent,

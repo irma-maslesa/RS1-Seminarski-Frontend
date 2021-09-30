@@ -1,13 +1,13 @@
 <div *ngIf="!scrollable" class="klub-list-header">
     <h1>Klubovi</h1>
-    <button type="button" class="btn btn-secondary" (click)="handleClick()">Dodaj klub</button>
+    <button *ngIf="uloga == uloge.ADMINISTRATOR_KLUBOVA" type="button" class="btn btn-secondary" (click)="handleClick()">Dodaj klub</button>
 </div>
 <hr *ngIf="!scrollable" />
 
 <div *ngIf="klubList.length" [ngClass]="{
-                                    'klub-list-scroll': scrollable,
-                                    'klub-list': !scrollable }">
-    <klub-list-element *ngFor="let klub of klubList" [show]="show" [klub]="klub" (editEmitter)="handleClick($event)" (deleteEmitter)="delete($event)" class="klub-list-element"></klub-list-element>
+                                            'klub-list-scroll': scrollable,
+                                            'klub-list': !scrollable }">
+    <klub-list-element *ngFor="let klub of klubList" [uloga]="uloga" [klub]="klub" (editEmitter)="handleClick($event)" (deleteEmitter)="delete($event)" class="klub-list-element"></klub-list-element>
 
 </div>
 <div *ngIf="!klubList.length" class="h5-container">

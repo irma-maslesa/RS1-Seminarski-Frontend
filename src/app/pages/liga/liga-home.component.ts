@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MultiselectHelper } from '../shared/multiselect-helper.model';
 import { RestApiService } from '../shared/rest-api.service';
 import { SelectItem } from '../shared/select-item.model';
+import { Uloga } from '../shared/uloga.constant';
 import { LigaApi } from './shared/liga-api.constant';
 
 @Component({
@@ -27,7 +28,7 @@ export class LigaHomeComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    
+
     this.api.get(LigaApi.GET_LIGA).subscribe((response) => {
       if (response) {
         var helperList: SelectItem[] = [];
@@ -39,7 +40,7 @@ export class LigaHomeComponent implements OnInit {
     });
   }
 
-  onItemSelect(item:SelectItem){
-    this.router.navigateByUrl(`/liga/${item.item_id}`);
+  onItemSelect(item: SelectItem) {
+    this.router.navigateByUrl(`liga/${item.item_id}`);
   }
 }

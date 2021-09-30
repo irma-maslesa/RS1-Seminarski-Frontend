@@ -2,13 +2,6 @@ form {
     padding-left: 20px;
 }
 
-h3,
-span,
-input,
-button {
-    font-weight: 300;
-}
-
 h3 {
     margin-bottom: 25px;
 }
@@ -18,5 +11,23 @@ mat-icon {
     color: #1a3469;
     &:hover {
         cursor: pointer;
+    }
+}
+
+.image {
+    min-width: 100%;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    justify-content: space-around;
+    label {
+        margin-left: -30px;
+        margin-right: 5px;
+    }
+    img {
+        height: 104px;
+        width: 104px;
+        max-height: 104px;
+        max-width: 104px;
     }
 }

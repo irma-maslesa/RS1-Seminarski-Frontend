@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RestApiService } from '../../shared/rest-api.service';
+import { Uloga } from '../../shared/uloga.constant';
 import { LigaApi } from '../shared/liga-api.constant';
 import { Liga } from '../shared/liga.model';
 
@@ -15,13 +16,12 @@ export class LigaOverviewComponent implements OnInit {
   searchObjectKlubSezona: any = {};
   searchObjectUtakmicaSezona: any = {};
   utakmica = false;
-  show = false;
+
+  uloga = Uloga.GOST;
 
   constructor(
     private route: ActivatedRoute,
-    private api: RestApiService,
-    private router: Router,
-    private toastr: ToastrService) { }
+    private api: RestApiService) { }
 
 
   ngOnInit(): void {
@@ -31,13 +31,14 @@ export class LigaOverviewComponent implements OnInit {
       this.liga = response;
     })
 
-    if(history.state.show){
-      this.show = history.state.show;
+    if (history.state.uloga) {
+      this.uloga = history.state.uloga;
     }
   }
 
   handleClick(sezonaId) {
+    console.log(sezonaId);
     this.utakmica = true;
-    this.searchObjectUtakmicaSezona = { SezonaId: sezonaId };
+    this.searchObjectUtakmicaSezona = { SezonaIds: sezonaId };
   }
 }
