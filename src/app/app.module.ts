@@ -36,7 +36,7 @@ import { appRoutes } from './routes';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { useHash: true }),
     ToastrModule.forRoot(),
     AgGridModule.withComponents([]),
     HttpClientModule,

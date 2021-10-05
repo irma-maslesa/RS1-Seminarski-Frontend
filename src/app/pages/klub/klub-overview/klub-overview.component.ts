@@ -20,13 +20,15 @@ export class KlubOverviewComponent implements OnInit {
     klub: Klub = new Klub();
     trener: Trener;
     stadion: Stadion;
-    imageSrcBase: string = "https://localhost:5001";
+    imageSrcBase: string = "https://api.p2036.app.fit.ba";
 
     uloga = Uloga.GOST;
 
     searchObjectRezultati = {};
     searchObjectRaspored = {};
     searchObjectTrenutne = {};
+
+    imaTrenutne = true;
 
     constructor(private route: ActivatedRoute, private api: RestApiService, private router: Router, private toastr: ToastrService, private matDialog: MatDialog) { }
 
@@ -86,5 +88,10 @@ export class KlubOverviewComponent implements OnInit {
             this.router.navigateByUrl('/' + params.colDef.headerName.toLowerCase() + '/' + params.data.id + '/information');
         });
         return span;
+    }
+
+    hideTrenutne(){
+        console.log("HERE");
+        this.imaTrenutne = false;
     }
 }

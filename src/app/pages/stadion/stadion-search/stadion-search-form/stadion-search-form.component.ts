@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { GradApi } from 'src/app/pages/grad/shared/grad-api.constant';
+import { KlubApi } from 'src/app/pages/klub/shared/klub-api.constant';
 import { MultiselectHelper } from 'src/app/pages/shared/multiselect-helper.model';
 import { RestApiService } from 'src/app/pages/shared/rest-api.service';
 import { SelectItem } from 'src/app/pages/shared/select-item.model';
@@ -50,6 +51,7 @@ export class StadionSearchFormComponent implements OnInit {
     }
 
     this.getGradove();
+    this.getKlubove();
   }
 
   search() {
@@ -72,6 +74,18 @@ export class StadionSearchFormComponent implements OnInit {
           helperList = response.map(function (item) { return { item_id: item.id, item_text: item.naziv }; });
         }
         this.gradovi.dropdownList = helperList;
+      }
+    });
+  }
+
+  private getKlubove() {
+    this.api.get(KlubApi.GET_KLUB).subscribe((response) => {
+      if (response) {
+        var helperList: SelectItem[] = [];
+        if (response != null && response.length > 0) {
+          helperList = response.map(function (item) { return { item_id: item.id, item_text: item.naziv }; });
+        }
+        this.klubovi.dropdownList = helperList.sort((a, b) => (a.item_text > b.item_text) ? 1 : -1);
       }
     });
   }

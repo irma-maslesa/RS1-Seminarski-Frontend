@@ -18,6 +18,7 @@ import { Utakmica } from '../../shared/utakmica.model';
 })
 export class UtakmicaListComponent implements OnInit, OnChanges {
   @Output() clickEmitter = new EventEmitter();
+  @Output() nemaUtakmiceEmitter = new EventEmitter();
   @Input() searchObject = {
     Status: null,
     StadionId: null,
@@ -32,7 +33,7 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
   @Input() uloga = Uloga.ADMINISTRATOR_UTAKMICA;
   uloge = Uloga;
 
-  imageSrcBase: string = "https://localhost:5001";
+  imageSrcBase: string = "https://api.p2036.app.fit.ba";
 
   utakmicaList: Utakmica[] = [];
   ligaList: Liga[] = [];
@@ -41,8 +42,8 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
   omiljeneUtakmiceIds: number[] = [];
 
   omiljene: boolean = false;
-  @Input() rezultati:boolean = false;
-  @Input() predstojece:boolean = false;
+  @Input() rezultati: boolean = false;
+  @Input() predstojece: boolean = false;
 
   constructor(
     private api: RestApiService, private activatedRoute: ActivatedRoute) { }
@@ -101,13 +102,16 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
 
     var options = { params: params };
 
-    console.log(options);
     this.api.get(UtakmicaApi.GET_UTAKMICA, options)
       .subscribe((response) => {
         this.utakmicaList = response;
+      }, () => { }, () => {
+        if (this.utakmicaList.length == 0) {
+          this.nemaUtakmiceEmitter.emit();
+        }
       });
 
-      console.log(this.utakmicaList);
+
   }
 
   private getUtakmiceTrenutneSezone() {
