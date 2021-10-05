@@ -49,7 +49,7 @@ export class StadionListComponent implements OnInit, OnChanges {
       var options = { params: params };
       this.api.get(StadionApi.GET_STADION, options)
         .subscribe((response) => {
-          this.stadionList = response;
+          this.stadionList = response.sort((a, b) => (a.naziv > b.naziv) ? 1 : -1);
         });
     }
   }

@@ -26,7 +26,7 @@ export class TrenerListComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.api.get(TrenerApi.GET_TRENER)
       .subscribe((response) => {
-        this.trenerList = response;
+        this.trenerList = response.sort((a, b) => (a.ime + a.prezime > b.ime + b.prezime) ? 1 : -1);
       });
   }
 
@@ -45,7 +45,7 @@ export class TrenerListComponent implements OnInit, OnChanges {
       var options = { params: params };
       this.api.get(TrenerApi.GET_TRENER, options)
         .subscribe((response) => {
-          this.trenerList = response;
+          this.trenerList = response.sort((a, b) => (a.ime + a.prezime > b.ime + b.prezime) ? 1 : -1);
         });
     }
   }

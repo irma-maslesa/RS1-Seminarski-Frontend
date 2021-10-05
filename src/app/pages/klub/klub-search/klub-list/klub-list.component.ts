@@ -32,10 +32,7 @@ export class KlubListComponent implements OnInit, OnChanges {
     if (this.searchObject)
       this.getKlubve(this.searchObject);
     else
-      this.api.get(KlubApi.GET_KLUB)
-        .subscribe((response) => {
-          this.klubList = response;
-        });
+      this.getKlubve();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -48,19 +45,20 @@ export class KlubListComponent implements OnInit, OnChanges {
     }
   }
 
-  private getKlubve(searchObject: any) {
+  private getKlubve(searchObject: any = null) {
     var params = new HttpParams();
-    params = searchObject.naziv ? params.set('naziv', searchObject.naziv) : params;
-    params = searchObject.mail ? params.set('mail', searchObject.mail) : params;
-    params = searchObject.adresa ? params.set('adresa', searchObject.adresa) : params;
-    params = searchObject.trenerId ? params.set('trenerId', searchObject.trenerId) : params;
-    params = searchObject.stadionId ? params.set('stadionId', searchObject.stadionId) : params;
-    params = searchObject.ligaId ? params.set('ligaId', searchObject.ligaId) : params;
+    params = searchObject?.naziv ? params.set('naziv', searchObject.naziv) : params;
+    params = searchObject?.mail ? params.set('mail', searchObject.mail) : params;
+    params = searchObject?.adresa ? params.set('adresa', searchObject.adresa) : params;
+    params = searchObject?.trenerId ? params.set('trenerId', searchObject.trenerId) : params;
+    params = searchObject?.stadionId ? params.set('stadionId', searchObject.stadionId) : params;
+    params = searchObject?.ligaId ? params.set('ligaId', searchObject.ligaId) : params;
 
     var options = { params: params };
     this.api.get(KlubApi.GET_KLUB, options)
       .subscribe((response) => {
-        this.klubList = response;
+        console.log(response.sort((a, b) => (a.naziv > b.naziv) ? 1 : -1));
+        this.klubList = response.sort((a, b) => (a.naziv > b.naziv) ? 1 : -1);
       });
   }
 
