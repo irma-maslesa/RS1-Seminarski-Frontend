@@ -29,7 +29,7 @@ export class StadionListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.api.get(StadionApi.GET_STADION)
-      .subscribe((response) => {
+      .subscribe((response:Stadion[]) => {
         this.stadionList = response;
       });
   }
@@ -49,7 +49,7 @@ export class StadionListComponent implements OnInit, OnChanges {
       var options = { params: params };
       this.api.get(StadionApi.GET_STADION, options)
         .subscribe((response) => {
-          this.stadionList = response.sort((a, b) => (a.naziv > b.naziv) ? 1 : -1);
+          this.stadionList = response;
         });
     }
   }

@@ -8,7 +8,7 @@ import { Stadion } from '../../../shared/stadion.model';
   templateUrl: './stadion-list-element.component.html',
   styleUrls: ['./stadion-list-element.component.scss']
 })
-export class StadionListElementComponent implements OnInit{
+export class StadionListElementComponent{
   @Output() editEmitter = new EventEmitter();
   @Output() deleteEmitter = new EventEmitter();
 
@@ -17,10 +17,6 @@ export class StadionListElementComponent implements OnInit{
   uloge = Uloga;
 
   constructor(private router: Router) { }
-
-  ngOnInit(): void {
-    console.log(this.stadion);
-  }
 
   edit() {
     this.editEmitter.emit(this.stadion.id);

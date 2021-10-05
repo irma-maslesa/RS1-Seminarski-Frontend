@@ -57,7 +57,6 @@ export class KlubListComponent implements OnInit, OnChanges {
     var options = { params: params };
     this.api.get(KlubApi.GET_KLUB, options)
       .subscribe((response) => {
-        console.log(response.sort((a, b) => (a.naziv > b.naziv) ? 1 : -1));
         this.klubList = response.sort((a, b) => (a.naziv > b.naziv) ? 1 : -1);
       });
   }
