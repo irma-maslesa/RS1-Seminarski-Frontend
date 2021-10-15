@@ -8,22 +8,32 @@ import { Stadion } from '../../../shared/stadion.model';
   templateUrl: './stadion-list-element.component.html',
   styleUrls: ['./stadion-list-element.component.scss']
 })
-export class StadionListElementComponent{
+export class StadionListElementComponent implements OnInit {
+
   @Output() editEmitter = new EventEmitter();
   @Output() deleteEmitter = new EventEmitter();
 
   @Input() stadion: Stadion;
-  @Input() uloga = Uloga.ADMINISTRATOR_KLUBOVA;
+  uloga = Uloga.GOST;
   uloge = Uloga;
 
-  constructor(private router: Router) { }
+  ngOnInit(): void {
+    if (sessionStorage.getItem("korisnik") || localStorage.getItem("korisnik")) {
+      var korisnik = JSON.parse(sessionStorage.getItem("korisnik"));
+
+      if(korisnik == null)
+        korisnik = JSON.parse(localStorage.getItem("korisnik"));
+
+      this.uloga = korisnik.uloga;
+    }
+  }
 
   edit() {
     this.editEmitter.emit(this.stadion.id);
   }
 
   delete() {
-    this.deleteEmitter.emit({ id: this.stadion.id, naziv: this.stadion.naziv});
+    this.deleteEmitter.emit({ id: this.stadion.id, naziv: this.stadion.naziv });
   }
 
 }

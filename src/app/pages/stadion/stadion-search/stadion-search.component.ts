@@ -8,18 +8,18 @@ import { Uloga } from '../../shared/uloga.constant';
   styleUrls: ['./stadion-search.component.scss']
 })
 export class StadionSearchComponent implements OnInit {
-  @Input() uloga = Uloga.ADMINISTRATOR_KLUBOVA;
+  uloga = Uloga.GOST;
   searchObject;
 
-  constructor(private activatedRoute: ActivatedRoute) {
-  }
-
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(data => {
-      if (data != null && data.uloga != null && data.uloga != Uloga.ADMINISTRATOR_KLUBOVA) {
-        this.uloga = data.uloga;
-      }
-    });
+    if (sessionStorage.getItem("korisnik") || localStorage.getItem("korisnik")) {
+      var korisnik = JSON.parse(sessionStorage.getItem("korisnik"));
+
+      if(korisnik == null)
+        korisnik = JSON.parse(localStorage.getItem("korisnik"));
+
+      this.uloga = korisnik.uloga;
+    }
   }
 
   submit(searchObject) {

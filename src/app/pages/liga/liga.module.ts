@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ToastrModule } from 'ngx-toastr';
 import { KlubModule } from '../klub/klub.module';
 import { SezonaModule } from '../sezona/sezona.module';
@@ -18,7 +20,8 @@ import { LigaOverviewComponent } from './liga-overview/liga-overview.component';
         ToastrModule.forRoot(),
         KlubModule,
         SezonaModule,
-        UtakmicaModule
+        UtakmicaModule,
+        MatTabsModule
     ],
     exports: [],
     declarations: [

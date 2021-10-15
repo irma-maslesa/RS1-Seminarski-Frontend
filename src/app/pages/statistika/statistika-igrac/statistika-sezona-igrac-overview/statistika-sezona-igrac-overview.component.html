@@ -1,0 +1,54 @@
+<div class="wrapper">
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="Sezona">event</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center; ">
+                    <mat-icon data-toggle="tooltip" title="Odigrane utakmice">sports_soccer</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="Prosječno odigranih minuta">timer</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="Golovi">adjust</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="Asistencije">assistant</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="Broj žutih kartona" class="zuti-karton">stop</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="OBroj crvenih kartona" class="crveni-karton">stop</mat-icon>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let statistika of statistike">
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.sezona}}
+                </td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.odigraneUtakmice}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.brojMinuta}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.golovi}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.asistencije}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.zutiKarton}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.crveniKarton}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="divcic mb-3" *ngIf="utakmiceHasData">
+        <canvas baseChart="baseChart" [datasets]="utakmiceData" [labels]="utakmiceLabels" [chartType]="utakmiceType" [options]="utakmiceOptions" [legend]="utakmiceLegend" [colors]="utakmiceColors"></canvas>
+        <a class="btn btn-secondary mt-3" (click)="downloadCanvas($event)">Download
+        </a>
+    </div>
+</div>

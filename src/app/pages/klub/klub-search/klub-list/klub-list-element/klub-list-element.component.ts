@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Uloga } from 'src/app/pages/shared/uloga.constant';
 import { Klub } from '../../../shared/klub.model';
@@ -8,17 +8,28 @@ import { Klub } from '../../../shared/klub.model';
   templateUrl: './klub-list-element.component.html',
   styleUrls: ['./klub-list-element.component.scss']
 })
-export class KlubListElementComponent {
+export class KlubListElementComponent implements OnInit{
   @Output() editEmitter = new EventEmitter();
   @Output() deleteEmitter = new EventEmitter();
 
   @Input() klub: Klub;
-  @Input() uloga = Uloga.ADMINISTRATOR_KLUBOVA;
+  uloga = Uloga.GOST;
   uloge = Uloga;
 
-  imageSrcBase: string = "https://api.p2036.app.fit.ba";
+  imageSrcBase: string = "https://localhost:5001";
 
   constructor(private router: Router) { }
+
+  ngOnInit(): void {
+    if (sessionStorage.getItem("korisnik") || localStorage.getItem("korisnik")) {
+      var korisnik = JSON.parse(sessionStorage.getItem("korisnik"));
+
+      if(korisnik == null)
+        korisnik = JSON.parse(localStorage.getItem("korisnik"));
+
+      this.uloga = korisnik.uloga;
+    }
+  }
 
   edit() {
     this.editEmitter.emit(this.klub.id);

@@ -1,0 +1,14 @@
+<div class="wrapper">
+    <div class="divcic mr-1 ml-1 mb-3" *ngIf="rezultatiHasData">
+        <canvas baseChart="baseChart" [data]="rezultatiData" [labels]="rezultatiLabels" [chartType]="rezultatiType" [options]="rezultatiOptions" [legend]="rezultatiLegend" [colors]="rezultatiColors"></canvas>
+        <a class="btn btn-secondary mt-3" (click)="downloadCanvas($event, 0)">Download
+        </a>
+    </div>
+
+    <div class="divcic mr-1 ml-1" *ngIf="goloviHasData">
+        <canvas baseChart="baseChart" [data]="goloviData" [labels]="goloviLabels" [chartType]="goloviType" [options]="goloviOptions" [legend]="goloviLegend" [colors]="rezultatiColors"></canvas>
+
+        <a class="btn btn-secondary mt-3" (click)="downloadCanvas($event, 1)">Download
+        </a>
+    </div>
+</div>

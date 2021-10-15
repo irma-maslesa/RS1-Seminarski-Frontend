@@ -1,0 +1,29 @@
+<div class="top" *ngIf="statistika">
+    <div class="left">
+        <img [src]="imageSrcBase + statistika.statistikaDomacin.klubSlika" alt="grb" />
+        <h3>{{statistika.statistikaDomacin.klubNaziv}}</h3>
+    </div>
+    <div class="top-middle">
+        <h3>{{statistika.rezultatDomacin}}</h3>
+        <h3>:</h3>
+        <h3>{{statistika.rezultatGost}}</h3>
+    </div>
+    <div class="right">
+        <img [src]="imageSrcBase + statistika.statistikaGost.klubSlika" alt="grb" />
+        <h3>{{statistika.statistikaGost.klubNaziv}}</h3>
+    </div>
+</div>
+
+<div class="bottom" *ngIf="statistika">
+
+    <statistika-poredjenje class="left" [gost]="statistika.statistikaGost" [domacin]="statistika.statistikaDomacin"></statistika-poredjenje>
+
+    <mat-tab-group mat-stretch-tabs="mat-stretch-tabs" class="right">
+        <mat-tab [label]="statistika.statistikaDomacin.klubNaziv">
+            <statistika-igrac-overview [statistike]="statistika.statistikaDomaciIgraci "></statistika-igrac-overview>
+        </mat-tab>
+        <mat-tab [label]="statistika.statistikaGost.klubNaziv">
+            <statistika-igrac-overview [statistike]="statistika.statistikaGostujuciIgraci "></statistika-igrac-overview>
+        </mat-tab>
+    </mat-tab-group>
+</div>

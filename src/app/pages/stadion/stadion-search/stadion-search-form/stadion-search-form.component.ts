@@ -43,6 +43,8 @@ export class StadionSearchFormComponent implements OnInit {
     private api: RestApiService) { }
 
   ngOnInit(): void {
+    this.gradovi.selectedItems = [];
+    this.klubovi.selectedItems = [];
     this.searchObject = {
       naziv: "",
       kapacitet: null,
@@ -55,8 +57,8 @@ export class StadionSearchFormComponent implements OnInit {
   }
 
   search() {
-    this.searchObject.gradId = this.gradovi.selectedItems[0]?.item_id;
-    this.searchObject.klubId = this.klubovi.selectedItems[0]?.item_id;
+    this.searchObject.gradId = this.gradovi?.selectedItems?.length > 0 ? this.gradovi?.selectedItems[0]?.item_id : null;
+    this.searchObject.klubId = this.klubovi?.selectedItems?.length > 0 ? this.klubovi?.selectedItems[0]?.item_id : null;
 
     this.searchEmitter.emit({ ...this.searchObject });
   }

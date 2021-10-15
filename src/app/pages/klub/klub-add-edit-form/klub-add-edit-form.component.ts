@@ -26,7 +26,7 @@ export class KlubAddEditFormComponent implements OnInit {
   isEdit = false;
   id: number;
   imageSrc: string;
-  imageSrcBase: string = "https://api.p2036.app.fit.ba";
+  imageSrcBase: string = "https://localhost:5001";
   thumbnail: any;
 
   constructor(
@@ -107,7 +107,7 @@ export class KlubAddEditFormComponent implements OnInit {
               }
             });
           }
-
+          
           this.api.get(StadionApi.GET_STADION_BY_ID.replace('#', this.klub.stadionId.toString())).subscribe((response) => {
             if (response) {
               if (response != null) {
@@ -140,6 +140,7 @@ export class KlubAddEditFormComponent implements OnInit {
         }
         this.treneri.dropdownList = helperList;
         this.treneri.selectedItems = []
+
       }
     });
   }

@@ -17,7 +17,7 @@ import { Klub } from '../../shared/klub.model';
 export class KlubListComponent implements OnInit, OnChanges {
   @Input() searchObject;
   @Input() scrollable = false;
-  @Input() uloga = Uloga.ADMINISTRATOR_KLUBOVA;
+  uloga = Uloga.GOST;
   uloge = Uloga;
 
   klubList: Klub[] = [];
@@ -28,6 +28,14 @@ export class KlubListComponent implements OnInit, OnChanges {
     private matDialog: MatDialog) { }
 
   ngOnInit(): void {
+    if (sessionStorage.getItem("korisnik") || localStorage.getItem("korisnik")) {
+      var korisnik = JSON.parse(sessionStorage.getItem("korisnik"));
+
+      if(korisnik == null)
+        korisnik = JSON.parse(localStorage.getItem("korisnik"));
+
+      this.uloga = korisnik.uloga;
+    }
 
     if (this.searchObject)
       this.getKlubve(this.searchObject);

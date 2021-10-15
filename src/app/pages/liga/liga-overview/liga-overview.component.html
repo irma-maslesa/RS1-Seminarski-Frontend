@@ -1,12 +1,21 @@
 <div class="wrapper">
     <h1 *ngIf="liga">{{liga.naziv}}</h1>
-    <div class="klubovi">
-        <h3>Klubovi</h3>
-        <klub-list [uloga]="uloga" [searchObject]="searchObjectKlubSezona" [scrollable]="true" class="klub-list"></klub-list>
-    </div>
 
+    <mat-tab-group mat-stretch-tabs="mat-stretch-tabs" class="top tab" *ngIf="liga">
+        <mat-tab label="Klubovi" class="tab">
+            <div class="klubovi">
+                <klub-list [searchObject]="searchObjectKlubSezona" [scrollable]="true" class="klub-list"></klub-list>
+            </div>
+        </mat-tab>
+        <mat-tab label="Poredak">
+            <klub-poredak *ngIf="imaPoredak" [ligaId]="liga.id" (nemaPoredak)="setImaPoredak()"></klub-poredak>
+            <div *ngIf="!imaPoredak" style="display: flex; width: 100%; height: 310px; justify-content: center; align-items: center;">Poredak je dosupan samo tokom sezone. Nova sezona počinje uskoro.</div>
+        </mat-tab>
+    </mat-tab-group>
+
+    <hr>
     <div class="bottom-container">
-        <sezona-list [searchObject]="searchObjectKlubSezona" [uloga]="uloga" (clickEmitter)="handleClick($event)" class="sezona-list"></sezona-list>
-        <utakmica-list [uloga]="uloga" [ligaFilter]="false" *ngIf="utakmica" [searchObject]="searchObjectUtakmicaSezona" class="utakmica-list"></utakmica-list>
+        <sezona-list [searchObject]="searchObjectKlubSezona" (clickEmitter)="handleClick($event)" [ngClass]="{'sezona-list-self': !utakmica, 'sezona-list':utakmica}"></sezona-list>
+        <utakmica-list [ligaFilter]="false" *ngIf="utakmica" [searchObject]="searchObjectUtakmicaSezona" class="utakmica-list"></utakmica-list>
     </div>
 </div>

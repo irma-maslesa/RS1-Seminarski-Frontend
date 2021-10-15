@@ -9,6 +9,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { GradModule } from './pages/grad/grad.module';
+import { IgracModule } from './pages/igrac/igrac.module';
 import { KlubModule } from './pages/klub/klub.module';
 import { KorisnikModule } from './pages/korisnik/korisnik.module';
 import { LigaModule } from './pages/liga/liga.module';
@@ -17,6 +18,7 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { SezonaModule } from './pages/sezona/sezona.module';
 import { SharedModule } from './pages/shared/shared.module';
 import { StadionModule } from './pages/stadion/stadion.module';
+import { StatistikaModule } from './pages/statistika/statistika.module';
 import { TrenerModule } from './pages/trener/trener.module';
 import { UtakmicaModule } from './pages/utakmica/utakmica.module';
 import { appRoutes } from './routes';
@@ -36,7 +38,7 @@ import { appRoutes } from './routes';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes, { useHash: true }),
+    RouterModule.forRoot(appRoutes, { useHash: true}),
     ToastrModule.forRoot(),
     AgGridModule.withComponents([]),
     HttpClientModule,
@@ -47,7 +49,9 @@ import { appRoutes } from './routes';
     KlubModule,
     SezonaModule,
     UtakmicaModule,
-    KorisnikModule
+    KorisnikModule,
+    StatistikaModule,
+    IgracModule
   ],
   providers: [],
   bootstrap: [AppComponent]

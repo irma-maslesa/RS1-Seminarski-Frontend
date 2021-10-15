@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Uloga } from 'src/app/pages/shared/uloga.constant';
 import { Trener } from '../../../shared/trener.model';
@@ -8,16 +8,25 @@ import { Trener } from '../../../shared/trener.model';
   templateUrl: './trener-list-element.component.html',
   styleUrls: ['./trener-list-element.component.scss']
 })
-export class TrenerListElementComponent {
+export class TrenerListElementComponent implements OnInit{
   @Output() editEmitter = new EventEmitter();
   @Output() deleteEmitter = new EventEmitter();
 
   @Input() trener: Trener;
 
-  @Input() uloga = Uloga.ADMINISTRATOR_KLUBOVA;
+  uloga = Uloga.GOST;
   uloge = Uloga;
+  
+  ngOnInit(): void {
+    if (sessionStorage.getItem("korisnik") || localStorage.getItem("korisnik")) {
+      var korisnik = JSON.parse(sessionStorage.getItem("korisnik"));
 
-  constructor(private router: Router) { }
+      if(korisnik == null)
+        korisnik = JSON.parse(localStorage.getItem("korisnik"));
+
+      this.uloga = korisnik.uloga;
+    }
+  }
 
   edit() {
     this.editEmitter.emit(this.trener.id);

@@ -1,0 +1,188 @@
+<div class="row">
+    <div class="info">
+        <p>{{domacin.posjed}}%</p>
+        <p>
+            <strong>Posjed lopte</strong>
+        </p>
+        <p>{{gost.posjed}}%</p>
+    </div>
+    <div class="stats">
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.posjed < gost.posjed || domacin.posjed == gost.posjed}" style="margin-right: 3px;" mode="determinate" [value]="domacin.posjed" dir="rtl"></mat-progress-bar>
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.posjed > gost.posjed || domacin.posjed == gost.posjed}" style="margin-right: 3px;" mode="determinate" [value]="gost.posjed"></mat-progress-bar>
+    </div>
+</div>
+<div class="row">
+    <div class="info">
+        <p>{{domacin.sutevi}}</p>
+        <p>
+            <strong>Ukupno šuteva</strong>
+        </p>
+        <p>{{gost.sutevi}}</p>
+    </div>
+    <div class="stats">
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.sutevi < gost.sutevi || domacin.sutevi == gost.sutevi}" style="margin-right: 3px;" mode="determinate" [value]="(domacin.sutevi/ (domacin.sutevi + gost.sutevi))*100" dir="rtl"></mat-progress-bar>
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.sutevi > gost.sutevi || domacin.sutevi == gost.sutevi}" style="margin-right: 3px;" mode="determinate" [value]="(gost.sutevi/ (domacin.sutevi + gost.sutevi))*100"></mat-progress-bar>
+    </div>
+</div>
+<div class="row">
+    <div class="info">
+        <p>{{domacin.suteviOkvir}}</p>
+        <p>
+            <strong>Šutevi u okvir</strong>
+        </p>
+        <p>{{gost.suteviOkvir}}</p>
+    </div>
+    <div class="stats">
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.suteviOkvir < gost.suteviOkvir || domacin.suteviOkvir == gost.suteviOkvir}" style="margin-right: 3px;" mode="determinate" [value]="(domacin.suteviOkvir/ (domacin.suteviOkvir + gost.suteviOkvir))*100"
+            dir="rtl"></mat-progress-bar>
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.suteviOkvir > gost.suteviOkvir || domacin.suteviOkvir == gost.suteviOkvir}" style="margin-right: 3px;" mode="determinate" [value]="(gost.suteviOkvir/ (domacin.suteviOkvir + gost.suteviOkvir))*100"></mat-progress-bar>
+    </div>
+</div>
+<div class="row">
+    <div class="info">
+        <p>{{domacin.suteviVanOkvira}}</p>
+        <p>
+            <strong>Šutevi van okvira</strong>
+        </p>
+        <p>{{gost.suteviVanOkvira}}</p>
+    </div>
+    <div class="stats">
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.suteviVanOkvira < gost.suteviVanOkvira || domacin.suteviVanOkvira == gost.suteviVanOkvira}" style="margin-right: 3px;" mode="determinate" [value]="(domacin.suteviVanOkvira/ (domacin.suteviVanOkvira + gost.suteviVanOkvira))*100"
+            dir="rtl"></mat-progress-bar>
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.suteviVanOkvira > gost.suteviVanOkvira || domacin.suteviVanOkvira == gost.suteviVanOkvira}" style="margin-right: 3px;" mode="determinate" [value]="(gost.suteviVanOkvira/ (domacin.suteviVanOkvira + gost.suteviVanOkvira))*100"></mat-progress-bar>
+    </div>
+</div>
+<div class="row">
+    <div class="info">
+        <p>{{domacin.suteviBlokirani}}</p>
+        <p>
+            <strong>Blokirani šutevi</strong>
+        </p>
+        <p>{{gost.suteviBlokirani}}</p>
+    </div>
+    <div class="stats">
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.suteviBlokirani < gost.suteviBlokirani || domacin.suteviBlokirani == gost.suteviBlokirani}" style="margin-right: 3px;" mode="determinate" [value]="(domacin.suteviBlokirani/ (domacin.suteviBlokirani + gost.suteviBlokirani))*100"
+            dir="rtl"></mat-progress-bar>
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.suteviBlokirani > gost.suteviBlokirani || domacin.suteviBlokirani == gost.suteviBlokirani}" style="margin-right: 3px;" mode="determinate" [value]="(gost.suteviBlokirani/ (domacin.suteviBlokirani + gost.suteviBlokirani))*100"></mat-progress-bar>
+    </div>
+</div>
+<div class="row">
+    <div class="info">
+        <p>{{domacin.korneri}}</p>
+        <p>
+            <strong>Korneri</strong>
+        </p>
+        <p>{{gost.korneri}}</p>
+    </div>
+    <div class="stats">
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.korneri < gost.korneri || domacin.korneri == gost.korneri}" style="margin-right: 3px;" mode="determinate" [value]="(domacin.korneri/ (domacin.korneri + gost.korneri))*100" dir="rtl"></mat-progress-bar>
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.korneri > gost.korneri || domacin.korneri == gost.korneri}" style="margin-right: 3px;" mode="determinate" [value]="(gost.korneri/ (domacin.korneri + gost.korneri))*100"></mat-progress-bar>
+    </div>
+</div>
+<div class="row">
+    <div class="info">
+        <p>{{domacin.ofsajdi}}</p>
+        <p>
+            <strong>Ofsajdi</strong>
+        </p>
+        <p>{{gost.ofsajdi}}</p>
+    </div>
+    <div class="stats">
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.ofsajdi < gost.ofsajdi || domacin.ofsajdi == gost.ofsajdi}" style="margin-right: 3px;" mode="determinate" [value]="(domacin.ofsajdi/ (domacin.ofsajdi + gost.ofsajdi))*100" dir="rtl"></mat-progress-bar>
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.ofsajdi > gost.ofsajdi || domacin.ofsajdi == gost.ofsajdi}" style="margin-right: 3px;" mode="determinate" [value]="(gost.ofsajdi/ (domacin.ofsajdi + gost.ofsajdi))*100"></mat-progress-bar>
+    </div>
+</div>
+<div class="row">
+    <div class="info">
+        <p>{{domacin.odbrane}}</p>
+        <p>
+            <strong>Odbrane golmana</strong>
+        </p>
+        <p>{{gost.odbrane}}</p>
+    </div>
+    <div class="stats">
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.odbrane < gost.odbrane || domacin.odbrane == gost.odbrane}" style="margin-right: 3px;" mode="determinate" [value]="(domacin.odbrane/ (domacin.odbrane + gost.odbrane))*100" dir="rtl"></mat-progress-bar>
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.odbrane > gost.odbrane || domacin.odbrane == gost.odbrane}" style="margin-right: 3px;" mode="determinate" [value]="(gost.odbrane/ (domacin.odbrane + gost.odbrane))*100"></mat-progress-bar>
+    </div>
+</div>
+<div class="row">
+    <div class="info">
+        <p>{{domacin.prekrsaji}}</p>
+        <p>
+            <strong>Prekršaji</strong>
+        </p>
+        <p>{{gost.prekrsaji}}</p>
+    </div>
+    <div class="stats">
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.prekrsaji < gost.prekrsaji || domacin.prekrsaji == gost.prekrsaji}" style="margin-right: 3px;" mode="determinate" [value]="(domacin.prekrsaji/ (domacin.prekrsaji + gost.prekrsaji))*100" dir="rtl"></mat-progress-bar>
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.prekrsaji > gost.prekrsaji || domacin.prekrsaji == gost.prekrsaji}" style="margin-right: 3px;" mode="determinate" [value]="(gost.prekrsaji/ (domacin.prekrsaji + gost.prekrsaji))*100"></mat-progress-bar>
+    </div>
+</div>
+<div class="row">
+    <div class="info">
+        <p>{{domacin.zutiKarton}}</p>
+        <p>
+            <strong>Žuti kartoni</strong>
+        </p>
+        <p>{{gost.zutiKarton}}</p>
+    </div>
+    <div class="stats">
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.zutiKarton < gost.zutiKarton || domacin.zutiKarton == gost.zutiKarton}" style="margin-right: 3px;" mode="determinate" [value]="(domacin.zutiKarton/ (domacin.zutiKarton + gost.zutiKarton))*100"
+            dir="rtl"></mat-progress-bar>
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.zutiKarton > gost.zutiKarton || domacin.zutiKarton == gost.zutiKarton}" style="margin-right: 3px;" mode="determinate" [value]="(gost.zutiKarton/ (domacin.zutiKarton + gost.zutiKarton))*100"></mat-progress-bar>
+    </div>
+</div>
+<div class="row">
+    <div class="info">
+        <p>{{domacin.dodavanja}}</p>
+        <p>
+            <strong>Dodavanja</strong>
+        </p>
+        <p>{{gost.dodavanja}}</p>
+    </div>
+    <div class="stats">
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.dodavanja < gost.dodavanja || domacin.dodavanja == gost.dodavanja}" style="margin-right: 3px;" mode="determinate" [value]="(domacin.dodavanja/ (domacin.dodavanja + gost.dodavanja))*100" dir="rtl"></mat-progress-bar>
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.dodavanja > gost.dodavanja || domacin.dodavanja == gost.dodavanja}" style="margin-right: 3px;" mode="determinate" [value]="(gost.dodavanja/ (domacin.dodavanja + gost.dodavanja))*100"></mat-progress-bar>
+    </div>
+</div>
+<div class="row">
+    <div class="info">
+        <p>{{domacin.uklizavanja}}</p>
+        <p>
+            <strong>Uklizavanja</strong>
+        </p>
+        <p>{{gost.uklizavanja}}</p>
+    </div>
+    <div class="stats">
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.uklizavanja < gost.uklizavanja || domacin.uklizavanja == gost.uklizavanja}" style="margin-right: 3px;" mode="determinate" [value]="(domacin.uklizavanja/ (domacin.uklizavanja + gost.uklizavanja))*100"
+            dir="rtl"></mat-progress-bar>
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.uklizavanja > gost.uklizavanja || domacin.uklizavanja == gost.uklizavanja}" style="margin-right: 3px;" mode="determinate" [value]="(gost.uklizavanja/ (domacin.uklizavanja + gost.uklizavanja))*100"></mat-progress-bar>
+    </div>
+</div>
+<div class="row">
+    <div class="info">
+        <p>{{domacin.napadi}}</p>
+        <p>
+            <strong>Napadi</strong>
+        </p>
+        <p>{{gost.napadi}}</p>
+    </div>
+    <div class="stats">
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.napadi < gost.napadi || domacin.napadi == gost.napadi}" style="margin-right: 3px;" mode="determinate" [value]="(domacin.napadi/ (domacin.napadi + gost.napadi))*100" dir="rtl"></mat-progress-bar>
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.napadi > gost.napadi || domacin.napadi == gost.napadi}" style="margin-right: 3px;" mode="determinate" [value]="(gost.napadi/ (domacin.napadi + gost.napadi))*100"></mat-progress-bar>
+    </div>
+</div>
+<div class="row">
+    <div class="info">
+        <p>{{domacin.napadiOpasni}}</p>
+        <p>
+            <strong>Opasni napadi</strong>
+        </p>
+        <p>{{gost.napadiOpasni}}</p>
+    </div>
+    <div class="stats">
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.napadiOpasni < gost.napadiOpasni || domacin.napadiOpasni == gost.napadiOpasni}" style="margin-right: 3px;" mode="determinate" [value]="(domacin.napadiOpasni/ (domacin.napadiOpasni + gost.napadiOpasni))*100"
+            dir="rtl"></mat-progress-bar>
+        <mat-progress-bar class="stats" [ngClass]="{'gray': domacin.napadiOpasni > gost.napadiOpasni || domacin.napadiOpasni == gost.napadiOpasni}" style="margin-right: 3px;" mode="determinate" [value]="(gost.napadiOpasni/ (domacin.napadiOpasni + gost.napadiOpasni))*100"></mat-progress-bar>
+    </div>
+</div>

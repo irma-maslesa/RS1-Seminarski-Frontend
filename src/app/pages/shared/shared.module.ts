@@ -16,7 +16,6 @@ import { RestApiService } from './rest-api.service';
         FormsModule,
         ReactiveFormsModule,
         ToastrModule.forRoot(),
-        RouterModule,
         CommonModule,
         MatIconModule,
         BrowserAnimationsModule,
@@ -26,7 +25,6 @@ import { RestApiService } from './rest-api.service';
     exports: [
         FormsModule,
         ReactiveFormsModule,
-        RouterModule,
         CommonModule,
         MatIconModule,
         BrowserAnimationsModule,

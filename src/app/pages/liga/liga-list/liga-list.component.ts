@@ -59,7 +59,7 @@ export class LigaListComponent implements OnInit {
   }
 
   handleClick(id) {
-    this.router.navigateByUrl(`/liga/${id}`, { state: { uloga: Uloga.ADMINISTRATOR_KLUBOVA } });
+    this.router.navigateByUrl(`/liga/${id}`);
   }
 }
 

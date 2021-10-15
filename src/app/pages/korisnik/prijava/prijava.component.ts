@@ -24,14 +24,18 @@ export class PrijavaComponent implements OnInit {
   prijava() {
     this.api.post(KorisnikApi.KORISNIK_PRIJAVA, this.korisnik).subscribe(
       (response) => {
-        localStorage.setItem("korisnik", JSON.stringify(response));
+        sessionStorage.setItem("korisnik", JSON.stringify(response));
+        if (response.zapamtiMe) {
+          localStorage.setItem("korisnik", JSON.stringify(response));
+        }
         this.toastr.info(`Dobrodošli, ${response.ime} ${response.prezime}!`);
         if (response.uloga == Uloga.ADMINISTRATOR_UTAKMICA)
           this.router.navigateByUrl('utakmica');
         else if (response.uloga == Uloga.ADMINISTRATOR_KLUBOVA)
-          this.router.navigateByUrl('klub');
+          this.router.navigateByUrl('klubb');
         else
           this.router.navigateByUrl('');
+
 
 
       })

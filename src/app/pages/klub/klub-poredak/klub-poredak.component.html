@@ -1,0 +1,70 @@
+<div class="wrapper">
+
+    <a class="btn btn-secondary mt-3 mb-3" (click)="downloadTable($event)" *ngIf="klubovi && klubovi.length">Download
+    </a>
+    <table class="table" *ngIf="klubovi && klubovi.length">
+        <thead class="thead-light">
+            <tr>
+                <th class="align-middle" style="text-align:center; ">
+                    <mat-icon data-toggle="tooltip" title="Redni broj">numbers</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:left;">
+                    <mat-icon data-toggle="tooltip" title="Klub">group</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center; ">
+                    <mat-icon data-toggle="tooltip" title="Odigrane utakmice">sports_soccer</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center; ">
+                    <mat-icon data-toggle="tooltip" title="Pobjede">emoji_events</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center; ">
+                    <mat-icon data-toggle="tooltip" title="Remi">graphic_eq</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center; ">
+                    <mat-icon data-toggle="tooltip" title="Porazi">cancel</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center; ">
+                    <mat-icon data-toggle="tooltip" title="Golovi">star_half</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center; ">
+                    <mat-icon data-toggle="tooltip" title="Bodovi">radio_button_checked</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="Forma">history</mat-icon>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let klub of klubovi; let i= index" [ngClass]="{'active': klub.id == klubId}">
+                <td class="align-middle" style="text-align:center;" [ngClass]="{'first': i < 3, 'last': i > klubovi.length - 4}">
+                    {{i+1}}
+                </td>
+                <td class="align-middle" style="text-align:left; cursor: pointer;" (click)="showKlub(klub.id)">
+                    <img style="width:30px;height:30px;" [src]="imageSrcBase + klub.slika"> {{klub.naziv}}
+                </td>
+                <td class="align-middle" style="text-align:center;">
+                    {{klub.odigraneUtakmice}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{klub.pobjede}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{klub.remi}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{klub.porazi}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{klub.postignutiGolovi}}:{{klub.primljeniGolovi}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{klub.bodovi}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" [title]="generateTitleIduca(klub.iducaUtakmica)" style="transform:scale(0.65);">help_center</mat-icon>
+                    <mat-icon *ngFor="let utakmica of klub.prethodneUtakmice" [ngClass]="{'green': (utakmica.klubDomacinNaziv == klub.naziv && utakmica.rezultatDomacin > utakmica.rezultatGost) ||  (utakmica.klubGostNaziv == klub.naziv && utakmica.rezultatGost > utakmica.rezultatDomacin),
+                'red':(utakmica.klubDomacinNaziv == klub.naziv && utakmica.rezultatDomacin < utakmica.rezultatGost) ||  (utakmica.klubGostNaziv == klub.naziv &&  utakmica.rezultatGost < utakmica.rezultatDomacin),
+            'yellow': utakmica.rezultatDomacin == utakmica.rezultatGost}" data-toggle="tooltip" [title]="generateTitlePrethodna(utakmica)" (click)="showUtakmica(utakmica.id)">stop</mat-icon>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="!klubovi">
+        <h5>Poredak je dostupan samo tokom sezone. Nova sezona počinje uskoro.</h5>
+    </div>
+</div>

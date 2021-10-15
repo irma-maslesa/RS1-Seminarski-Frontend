@@ -1,11 +1,16 @@
-import { Component, OnInit} from '@angular/core';
+import { HttpParams } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { IgracApi } from '../../igrac/shared/igrac-api.constant';
+import { Igrac } from '../../igrac/shared/igrac.model';
 import { RestApiService } from '../../shared/rest-api.service';
 import { Uloga } from '../../shared/uloga.constant';
 import { StadionApi } from '../../stadion/shared/stadion-api.constant';
 import { Stadion } from '../../stadion/shared/stadion.model';
+import { StatistikaApi } from '../../statistika/shared/statistika-api.constant';
+import { StatistikaSezonaKlub } from '../../statistika/statistika-klub/shared/statistika-sezona-klub.model';
 import { TrenerApi } from '../../trener/shared/trener-api.constant';
 import { Trener } from '../../trener/shared/trener.model';
 import { KlubApi } from '../shared/klub-api.constant';
@@ -17,10 +22,11 @@ import { Klub } from '../shared/klub.model';
     styleUrls: ['./klub-overview.component.scss']
 })
 export class KlubOverviewComponent implements OnInit {
-    klub: Klub = new Klub();
+    klub: Klub;
+    id: number;
     trener: Trener;
     stadion: Stadion;
-    imageSrcBase: string = "https://api.p2036.app.fit.ba";
+    imageSrcBase: string = "https://localhost:5001";
 
     uloga = Uloga.GOST;
 
@@ -30,25 +36,53 @@ export class KlubOverviewComponent implements OnInit {
 
     imaTrenutne = true;
 
-    constructor(private route: ActivatedRoute, private api: RestApiService, private router: Router, private toastr: ToastrService, private matDialog: MatDialog) { }
+    igraci: Igrac[] = [];
+    sezone: StatistikaSezonaKlub[] = [];
+
+    showCharts = false;
+    chartStats: StatistikaSezonaKlub;
+    selectedTab: number = 0;
+
+    constructor(private route: ActivatedRoute,
+        private api: RestApiService,
+        private router: Router,
+        private toastr: ToastrService) {
+
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    }
 
     ngOnInit() {
+        this.id = +this.route.snapshot.paramMap.get('id');
         this.getData();
+
+        this.api.get(StatistikaApi.GET_STATISTIKA_SEZONA_BY_KLUB.replace("#", this.id.toString())).subscribe(
+            (response: StatistikaSezonaKlub[]) => {
+                if (response) {
+                    this.sezone = response;
+                }
+            }
+        )
     }
 
     getData() {
-        const id = +this.route.snapshot.paramMap.get('id');
-
-        this.api.get(KlubApi.GET_KLUB_BY_ID.replace('#', id.toString())).subscribe(
+        this.api.get(KlubApi.GET_KLUB_BY_ID.replace('#', this.id.toString())).subscribe(
             klub => {
                 if (klub) {
-                    console.log(klub);
                     this.klub = klub;
+
+                    let params = new HttpParams();
+                    params = params.set("klubId", this.klub.id.toString());
+
+                    this.api.get(IgracApi.GET_IGRAC_BY_KLUB_ID, { params: params })
+                        .subscribe(response => {
+                            if (response) {
+                                this.igraci = response;
+                            }
+                        });
                 }
             },
             () => { },
             () => {
-
                 this.searchObjectRezultati = {
                     KlubId: this.klub.id,
                     Status: 'ZAVRSENA'
@@ -81,17 +115,28 @@ export class KlubOverviewComponent implements OnInit {
         )
     }
 
-    createLink(params) {
-        var span = document.createElement('span');
-        span.innerHTML = `<p> ${params.value} </p> `;
-        span.addEventListener('click', () => {
-            this.router.navigateByUrl('/' + params.colDef.headerName.toLowerCase() + '/' + params.data.id + '/information');
-        });
-        return span;
+    hideTrenutne() {
+        this.imaTrenutne = false;
     }
 
-    hideTrenutne(){
-        console.log("HERE");
-        this.imaTrenutne = false;
+    prikaziGrafove(statistika: StatistikaSezonaKlub) {
+        if (statistika.pobjeda == 0 && statistika.poraz == 0 && statistika.remi == 0 &&
+            statistika.postignutiGolovi == 0 && statistika.primljeniGolovi == 0) {
+            this.showCharts = false;
+            this.toastr.info("Nema dovoljno podataka za prikaz grafova sezone " + statistika.sezona + "!");
+        }
+        else {
+            this.chartStats = statistika;
+            this.showCharts = true;
+            this.selectedTab = 1;
+        }
+    }
+
+    changeSelectedIndex(selectedTab) {
+        if (selectedTab == 0) {
+            this.showCharts = false;
+        }
+
+        this.selectedTab = selectedTab;
     }
 }

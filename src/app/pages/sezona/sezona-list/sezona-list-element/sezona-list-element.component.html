@@ -1,5 +1,5 @@
-<div class="wrapper" (click)="handleClick()">
-    <h4>{{sezona.datumPocetka| date: "yyyy"}}/{{sezona.datumZavrsetka| date: "yyyy"}}</h4>
+<div class="wrapper" [ngClass]="{'wider-wrapper': uloga == uloge.ADMINISTRATOR_KLUBOVA}" (click)="handleClick()">
+    <h4 [ngClass]="{'center': uloga != uloge.ADMINISTRATOR_KLUBOVA}">{{sezona.datumPocetka| date: "yyyy"}}/{{sezona.datumZavrsetka| date: "yyyy"}}</h4>
     <div class="d-flex flex-row-reverse" [ngClass]="{
         'mat-icon-show': uloga == uloge.ADMINISTRATOR_KLUBOVA,
         'mat-icon-hide': uloga != uloge.ADMINISTRATOR_KLUBOVA }">

@@ -1,0 +1,38 @@
+    .row {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+    
+    .info {
+        display: flex;
+        align-items: flex-end;
+        width: 95%;
+        justify-content: space-between;
+        p {
+            margin-bottom: 0;
+        }
+    }
+    
+    .stats {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    mat-progress-bar {
+        height: 6px;
+    }
+    
+     ::ng-deep .mat-progress-bar-fill::after {
+        background-color: #1a3469;
+    }
+    
+     ::ng-deep .gray .mat-progress-bar-fill::after {
+        background-color: gray;
+    }
+    
+     ::ng-deep .mat-progress-bar-buffer {
+        background: #E4E8EB;
+    }

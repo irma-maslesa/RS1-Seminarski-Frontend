@@ -1,0 +1,39 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    min-height: 300px;
+}
+
+mat-icon {
+    padding-top: -15px;
+    color: #1a3469;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.first {
+    background-color: rgba(#1a3469, 0.5);
+}
+
+.last {
+    background-color: rgba(red, 0.3);
+}
+
+.active {
+    background-color: #f0ecec;
+}
+
+.green {
+    color: green
+}
+
+.red {
+    color: red
+}
+
+.yellow {
+    color: #fcb52f
+}

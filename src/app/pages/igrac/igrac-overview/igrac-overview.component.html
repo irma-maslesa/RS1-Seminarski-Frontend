@@ -1,0 +1,27 @@
+<div class="top" *ngIf="igrac">
+    <div class="top-info">
+        <div>
+            <h1>{{igrac.imePrezime}}</h1>
+        </div>
+        <h4>{{igrac.klub}}
+        </h4>
+        <h4 style="color: #1a3469">&#9679;
+        </h4>
+        <h4>{{igrac.pozicija}}</h4>
+    </div>
+</div>
+<div class="bottom">
+    <mat-tab-group mat-stretch-tabs="mat-stretch-tabs">
+        <mat-tab label="Posljednje utakmice">
+            <statistika-utakmica-igrac-overview *ngIf="utakmice.length" [statistike]="utakmice"></statistika-utakmica-igrac-overview>
+
+            <div *ngIf="!utakmice.length" style="display: flex; width: 100%; height: 300px; justify-content: center; align-items: center;">Igrač nema prethodnih utakmica</div>
+            <button *ngIf="utakmice.length" class="btn btn-outline-secondary" style="width: 100%; display: none;" id="more-button" type="button" (click)="getUtakmice($event)">Učitaj još</button>
+        </mat-tab>
+
+        <mat-tab label="Statistika">
+            <statistika-sezona-igrac-overview [statistike]="sezone"></statistika-sezona-igrac-overview>
+        </mat-tab>
+    </mat-tab-group>
+
+</div>

@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { KorisnikApi } from 'src/app/pages/korisnik/shared/korisnik-api.constant';
 import { KorisnikOmiljenaUtakmica } from 'src/app/pages/korisnik/shared/korisnik-omiljena-utakmica.model';
 import { LigaApi } from 'src/app/pages/liga/shared/liga-api.constant';
@@ -25,15 +25,17 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
     KlubId: null,
     KlubDomacinId: null,
     KlubGostId: null,
-    SezonaIds: null
+    SezonaIds: null,
+    Analitika: null
   }
 
   @Input() ligaFilter = true;
   @Input() statusFilter = true;
-  @Input() uloga = Uloga.ADMINISTRATOR_UTAKMICA;
+
+  uloga = Uloga.GOST;
   uloge = Uloga;
 
-  imageSrcBase: string = "https://api.p2036.app.fit.ba";
+  imageSrcBase: string = "https://localhost:5001";
 
   utakmicaList: Utakmica[] = [];
   ligaList: Liga[] = [];
@@ -41,22 +43,28 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
   omiljeneUtakmice: Utakmica[] = [];
   omiljeneUtakmiceIds: number[] = [];
 
+  saStatistikomIds: number[] = [];
+
   omiljene: boolean = false;
   @Input() rezultati: boolean = false;
   @Input() predstojece: boolean = false;
 
   constructor(
-    private api: RestApiService, private activatedRoute: ActivatedRoute) { }
+    private api: RestApiService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) {
+  }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(data => {
+      if (sessionStorage.getItem("korisnik") || localStorage.getItem("korisnik")) {
+        var korisnik = JSON.parse(sessionStorage.getItem("korisnik"));
 
-      console.log(this.searchObject);
+        if (korisnik == null)
+          korisnik = JSON.parse(localStorage.getItem("korisnik"));
 
-      if (data != null && data.uloga != null && data.uloga != Uloga.ADMINISTRATOR_UTAKMICA) {
-        this.uloga = data.uloga;
+        this.uloga = korisnik.uloga;
       }
-
       if (data != null && data.omiljene != null && data.omiljene) {
         this.omiljene = true;
         this.getOmiljeneUtakmice();
@@ -67,18 +75,38 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
           (this.searchObject == null || this.searchObject.SezonaIds == null ||
             this.searchObject.SezonaIds.length == 0))
           this.getUtakmiceTrenutneSezone();
+        else if (this.uloga == Uloga.ANALITICAR && !this.rezultati) {
+          if (this.searchObject) {
+            this.searchObject.Status = 'ZAVRSENA';
+          }
+          else
+            this.searchObject = {
+              StadionId: null,
+              KlubId: null,
+              KlubDomacinId: null,
+              KlubGostId: null,
+              SezonaIds: null,
+              Analitika: null,
+              Status: 'ZAVRSENA'
+            };
+          this.getUtakmiceTrenutneSezone();
+        }
         else
           this.getUtakmice(this.searchObject);
       }
     });
 
-    if (JSON.parse(localStorage.getItem('korisnik'))?.uloga) {
-      this.uloga = JSON.parse(localStorage.getItem('korisnik')).uloga;
-    }
     if (this.uloga == Uloga.KORISNIK)
       this.getOmiljeneUtakmice();
 
     this.getLige();
+
+    let params = new HttpParams();
+    params = params.set('Analitika', "true");
+    this.api.get(UtakmicaApi.GET_UTAKMICA, { params: params }).subscribe((response: Utakmica[]) => {
+      if (response)
+        this.saStatistikomIds = response.map(e => e.id);
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -98,10 +126,13 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
     params = searchObject?.KlubId ? params.set('KlubId', searchObject.KlubId) : params;
     params = searchObject?.KlubDomacinId ? params.set('KlubDomacinId', searchObject.KlubDomacinId) : params;
     params = searchObject?.KlubGostId ? params.set('KlubGostId', searchObject.KlubGostId) : params;
-    params = searchObject?.SezonaIds ? params.set('SezonaIds', searchObject.SezonaIds) : params;
+    params = searchObject?.Analitika != null ? params.set('Analitika', searchObject.Analitika) : params;
+
+    if (searchObject?.SezonaIds != null)
+      for (let sezonaId of searchObject.SezonaIds)
+        params = params.append("SezonaIds", sezonaId.toString());
 
     var options = { params: params };
-
     this.api.get(UtakmicaApi.GET_UTAKMICA, options)
       .subscribe((response) => {
         this.utakmicaList = response;
@@ -110,8 +141,26 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
           this.nemaUtakmiceEmitter.emit();
         }
       });
+  }
 
+  private setActiveButton(className: any, event: any = null) {
+    let elements = document.getElementsByClassName(className);
+    if (elements[0]) {
+      elements = elements[0].children;
+      for (let i = 0; i < elements.length; i++) {
+        elements[i].classList.remove('btn-secondary');
+        elements[i].classList.add('btn-outline-secondary');
+      }
 
+      if (event) {
+        event.target.classList.add('btn-secondary');
+        event.target.classList.remove('btn-outline-secondary');
+      }
+      else {
+        elements[0].classList.add('btn-secondary');
+        elements[0].classList.remove('btn-outline-secondary');
+      }
+    }
   }
 
   private getUtakmiceTrenutneSezone() {
@@ -120,7 +169,6 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
 
     params = params.set('DatumPocetka', new Date().toLocaleString())
       .set('DatumZavrsetka', new Date().toLocaleString());
-
 
     var options = { params: params };
 
@@ -131,7 +179,6 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
           sezonaIds = response.map(r => r.id);
         }
       }, () => { }, () => {
-
         if (this.searchObject) {
           this.searchObject.SezonaIds = sezonaIds;
           this.getUtakmice(this.searchObject);
@@ -143,7 +190,7 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
   }
 
   getOmiljeneUtakmice() {
-    this.api.get(KorisnikApi.GET_OMILJENE_UTAKMICE.replace('#', JSON.parse(localStorage.getItem("korisnik")).id))
+    this.api.get(KorisnikApi.GET_OMILJENE_UTAKMICE.replace('#', JSON.parse(sessionStorage.getItem("korisnik")).id))
       .subscribe((response) => {
         this.omiljeneUtakmice = response;
         this.omiljeneUtakmiceIds = this.omiljeneUtakmice.map(u => u.id);
@@ -172,36 +219,30 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
   }
 
   filter(event, status: string) {
-    let elements = document.getElementsByClassName("buttons")[0].children;
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].classList.remove('btn-secondary');
-      elements[i].classList.add('btn-outline-secondary');
-    }
-
-    event.target.classList.add('btn-secondary');
-    event.target.classList.remove('btn-outline-secondary');
-
-    if (this.searchObject) {
+    if (this.searchObject)
       this.searchObject.Status = status;
-      this.getUtakmice(this.searchObject);
-    }
     else
-      this.getUtakmice({ Status: status });
+      this.searchObject = {
+        Status: status,
+        StadionId: null,
+        KlubId: null,
+        KlubDomacinId: null,
+        KlubGostId: null,
+        SezonaIds: null,
+        Analitika: null
+      }
+
+    this.getUtakmice(this.searchObject);
+    this.setActiveButton("buttons", event);
   }
 
   filterLiga(event, id: number = null) {
-    let elements = document.getElementsByClassName("buttons-liga")[0].children;
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].classList.remove('btn-secondary');
-      elements[i].classList.add('btn-outline-secondary');
-    }
-
-    event.target.classList.add('btn-secondary');
-    event.target.classList.remove('btn-outline-secondary');
-
     if (id == null) {
+
+      this.setActiveButton("buttons");
       this.getUtakmiceTrenutneSezone();
     }
+
     else {
       var sezonaId: number = -1;
       var params = new HttpParams();
@@ -217,19 +258,49 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
             sezonaId = response[0].id;
           }
         }, () => { }, () => {
-          if (this.searchObject) {
-            this.searchObject.SezonaIds = sezonaId;
-            this.getUtakmice(this.searchObject);
-          }
+          if (this.searchObject)
+            this.searchObject.SezonaIds = [sezonaId];
           else
-            this.getUtakmice({ SezonaId: sezonaId });
+            this.searchObject = {
+              Status: null,
+              StadionId: null,
+              KlubId: null,
+              KlubDomacinId: null,
+              KlubGostId: null,
+              SezonaIds: [sezonaId],
+              Analitika: null
+            }
+          this.getUtakmice(this.searchObject);
+
+          this.setActiveButton("buttons-liga", event);
         });
     }
   }
 
+  filterAnalitika(event, analitika: boolean = null) {
+    if (this.searchObject != null) {
+      this.searchObject.Status = 'ZAVRSENA';
+      this.searchObject.Analitika = analitika;
+    }
+    else {
+      this.searchObject = {
+        Status: 'ZAVRSENA',
+        StadionId: null,
+        KlubId: null,
+        KlubDomacinId: null,
+        KlubGostId: null,
+        SezonaIds: null,
+        Analitika: analitika
+      }
+    }
+    
+    this.getUtakmice(this.searchObject);
+    this.setActiveButton("buttons-analitika", event);
+  }
+
   dodajOmiljenu(utakmicaId) {
     let korisnikOmiljenaUtakmica = new KorisnikOmiljenaUtakmica();
-    korisnikOmiljenaUtakmica.korisnikId = JSON.parse(localStorage.getItem("korisnik")).id;
+    korisnikOmiljenaUtakmica.korisnikId = JSON.parse(sessionStorage.getItem("korisnik")).id;
     korisnikOmiljenaUtakmica.utakmicaID = utakmicaId;
 
     this.api.post(KorisnikApi.OMILJENE_UTAKMICE, korisnikOmiljenaUtakmica)
@@ -245,7 +316,13 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
   ukloniOmiljenu(utakmicaId) {
 
     var params = new HttpParams();
-    params = params.set('korisnikId', JSON.parse(localStorage.getItem("korisnik")).id)
+
+    var korisnik = JSON.parse(sessionStorage.getItem("korisnik"));
+
+    if (korisnik == null)
+      korisnik = JSON.parse(localStorage.getItem("korisnik"));
+
+    params = params.set('korisnikId', korisnik.id)
       .set('utakmicaID', utakmicaId);
 
     var options = { params: params };
@@ -258,6 +335,17 @@ export class UtakmicaListComponent implements OnInit, OnChanges {
         if (this.omiljene)
           this.utakmicaList = response;
       });
+  }
 
+  handleClick(id) {
+    this.router.navigateByUrl(`utakmica/${id}`);
+  }
+
+  handleClickKlub(id) {
+    this.router.navigateByUrl(`klub/${id}`);
+  }
+
+  handleDodajStatistiku(id) {
+    this.router.navigateByUrl(`utakmica/${id}/statistika`);
   }
 }

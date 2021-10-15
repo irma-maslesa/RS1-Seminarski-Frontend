@@ -1,0 +1,18 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 5px 1%;
+}
+
+.divcic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 49%;
+    height: 400px;
+    padding: 10px;
+    border: 2px solid #1a3469;
+    border-radius: 5px;
+}

@@ -1,0 +1,59 @@
+<div class="wrapper">
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="Datum održavanja">event</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="Domaćin">shield</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="Gost">security</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="Rezultat">sports_score</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="Odigranih minuta">timer</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="Golovi">adjust</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="Asistencije">assistant</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="Broj žutih kartona" class="zuti-karton">stop</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="OBroj crvenih kartona" class="crveni-karton">stop</mat-icon>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let statistika of statistike">
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.utakmica.datumOdrzavanja | date:"dd/MM/yyyy"}}
+                </td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.utakmica.klubDomacinNaziv}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.utakmica.klubGostNaziv}}
+                </td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.utakmica.rezultatDomacin}} : {{statistika.utakmica.rezultatGost}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.brojMinuta}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.golovi}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.asistencije}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.zutiKarton}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.crveniKarton}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

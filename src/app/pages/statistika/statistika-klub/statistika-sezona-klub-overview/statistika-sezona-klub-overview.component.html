@@ -1,0 +1,49 @@
+<div class="wrapper">
+    <table class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th class="align-middle" style="text-align:center;">
+                    <mat-icon data-toggle="tooltip" title="Sezona">event</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center; ">
+                    <mat-icon data-toggle="tooltip" title="Odigrane utakmice">sports_soccer</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center; ">
+                    <mat-icon data-toggle="tooltip" title="Pobjede">emoji_events</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center; ">
+                    <mat-icon data-toggle="tooltip" title="Remi">graphic_eq</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center; ">
+                    <mat-icon data-toggle="tooltip" title="Porazi">cancel</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center; ">
+                    <mat-icon data-toggle="tooltip" title="Postignuti golovi">north</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center; ">
+                    <mat-icon data-toggle="tooltip" title="Primljeni golovi">south</mat-icon>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let statistika of statistike">
+                <td class="align-middle" style="text-align:center; display: flex; justify-content: center;" (click)="showStats(statistika)">
+                    {{statistika.sezona}}
+                    <mat-icon class="ml-3" data-toggle="tooltip" title="Prikaži grafove">show_chart</mat-icon>
+                </td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.odigraneUtakmice}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.pobjeda}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.remi}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.poraz}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.postignutiGolovi}}</td>
+                <td class="align-middle" style="text-align:center;">
+                    {{statistika.primljeniGolovi}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -13,60 +13,70 @@
     <button type="button" *ngFor="let liga of ligaList" class="btn btn-outline-secondary ml-2 col-3" (click)="filterLiga($event, liga.id)">{{liga.naziv}}</button>
 </div>
 
-<div class="buttons btn-group" [ngClass]="{'buttons-self': uloga == uloge.KORISNIK}" role="group" *ngIf="!omiljene && statusFilter">
+<div class="buttons-analitika btn-group" role="group" *ngIf="uloga == uloge.ANALITICAR && !rezultati && !predstojece">
+    <button type="button" class="btn btn-secondary col-4" (click)="filterAnalitika($event)">Sve</button>
+    <button type="button" class="btn btn-outline-secondary ml-2 mr-2 col-4" (click)="filterAnalitika($event,true)">Sa statistikom</button>
+    <button type="button" class="btn btn-outline-secondary col-4" (click)="filterAnalitika($event,false)">Bez statistike</button>
+</div>
+
+<div class="buttons btn-group" [ngClass]="{'buttons-self': uloga == uloge.KORISNIK}" role="group" *ngIf="!omiljene && statusFilter && uloga != uloge.ANALITICAR">
     <button type="button" class="btn btn-secondary col-3" (click)="filter($event, 'SVE')">Svi statusi</button>
     <button type="button" class="btn btn-outline-secondary ml-2 col-3" (click)="filter($event,'ZAVRSENA')">Završene</button>
     <button type="button" class="btn btn-outline-secondary mr-2 ml-2 col-3" (click)="filter($event,'U TOKU')">U toku</button>
     <button type="button" class="btn btn-outline-secondary col-3" (click)="filter($event,'PREDSTOJECA')">Predstojeće</button>
 </div>
 
-<div [ngClass]="{
-                                                                                                                                                                                            'utakmica-list': true}">
-    <table class="table table-striped" *ngIf="utakmicaList.length">
+<div [ngClass]="{'utakmica-list': true}">
+    <table class="table table-hover" *ngIf="utakmicaList.length">
         <tbody>
             <tr *ngFor="let utakmica of utakmicaList">
-                <td class="align-middle" *ngIf="utakmica.isZavrsena && !rezultati" style="text-align:center; width: 90px;">Kraj</td>
-                <td class="align-middle" *ngIf="utakmica.minutaIgre == -1 || rezultati" style="text-align:center; width: 90px;">{{utakmica.datumOdrzavanja | date:"dd/MM/yyyy hh:mm"}}</td>
+                <td class="align-middle" *ngIf="utakmica.isZavrsena && !rezultati && uloga != uloge.ANALITICAR" style="text-align:center;">
+                    Kraj
+                </td>
+                <td class="align-middle" *ngIf="utakmica.minutaIgre == -1 || rezultati || uloga == uloge.ANALITICAR" style="text-align:center;">{{utakmica.datumOdrzavanja | date:"dd/MM/yyyy hh:mm"}}</td>
 
-                <td class="align-middle" *ngIf="!utakmica.isZavrsena && !utakmica.minutaIgre == -1 && !utakmica.isPoluvrijeme && utakmica.isProduzeci && !rezultati" style="text-align:center; width: 90px;">(Produžeci)</td>
-                <td class="align-middle" *ngIf="!utakmica.isZavrsena && utakmica.minutaIgre != -1 && !utakmica.isProduzeci && !rezultati" style="text-align:center; width: 90px;">U toku</td>
 
-                <td class="align-middle" style="text-align:right; width:150px">
+                <td class="align-middle" *ngIf="utakmica.isZavrsena && saStatistikomIds.includes(utakmica.id)" style="text-align:center; ">
+                    <mat-icon class="pt-2" data-toggle="tooltip" title="Pregledaj statistiku" (click)="handleClick(utakmica.id)">analytics</mat-icon>
+                </td>
+                <td class="align-middle" *ngIf="!utakmica.isZavrsena && !utakmica.minutaIgre == -1 && !utakmica.isPoluvrijeme && utakmica.isProduzeci && !rezultati" style="text-align:center;">(Produžeci)</td>
+                <td class="align-middle" *ngIf="!utakmica.isZavrsena && utakmica.minutaIgre != -1 && !utakmica.isProduzeci && !rezultati" style="text-align:center;">U toku</td>
+
+                <td class="align-middle" *ngIf="!utakmica.isZavrsena  || !saStatistikomIds.includes(utakmica.id)" style="text-align:center;"></td>
+                <td class="align-middle" style="text-align:right;  cursor: pointer; width: 250px;" (click)="handleClickKlub(utakmica.klubDomacinID)">
                     {{utakmica.klubDomacinNaziv}}
-                    <img style="width:20px;height:20px;" [src]="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    imageSrcBase + utakmica.klubDomacinSlika"
-                        alt="grb" />
+                    <img style="width:20px;height:20px;" [src]="imageSrcBase + utakmica.klubDomacinSlika" alt="grb" />
                 </td>
 
-                <td class="align-middle" *ngIf="utakmica.minutaIgre == -1" style="text-align:center; width: 45px;">/</td>
-                <td class="align-middle" *ngIf="utakmica.minutaIgre == -1" style="text-align:center; width: 40px;">
+                <td class="align-middle" *ngIf="utakmica.minutaIgre == -1" style="text-align:center;">/</td>
+                <td class="align-middle" *ngIf="utakmica.minutaIgre == -1" style="text-align:center; ">
                     <span>-</span>
                 </td>
-                <td class="align-middle" *ngIf="utakmica.minutaIgre == -1" style="text-align:center; width: 45px;">/</td>
+                <td class="align-middle" *ngIf="utakmica.minutaIgre == -1" style="text-align:center;">/</td>
 
 
-                <td class="align-middle" *ngIf="utakmica.minutaIgre != -1" style="text-align:center; width: 45px;">{{utakmica.rezultatDomacin}}</td>
-                <td class="align-middle" *ngIf="utakmica.minutaIgre != -1 && !utakmica.isZavrsena" style="text-align:center; width: 40px;">
+                <td class="align-middle" *ngIf="utakmica.minutaIgre != -1" style="text-align:center; ">{{utakmica.rezultatDomacin}}</td>
+                <td class="align-middle" *ngIf="utakmica.minutaIgre != -1 && !utakmica.isZavrsena" style="text-align:center; ">
                     <span *ngIf="!utakmica.isPoluvrijeme" style="font-size: 11px; color: red;">{{utakmica.minutaIgre}}'</span>
                     <span *ngIf="utakmica.isPoluvrijeme" style="font-size: 11px; color: red;">POLUVRIJEME</span>
                 </td>
-                <td class="align-middle" *ngIf="utakmica.minutaIgre != -1 && utakmica.isZavrsena" style="text-align:center; width: 40px;">
+                <td class="align-middle" *ngIf="utakmica.minutaIgre != -1 && utakmica.isZavrsena" style="text-align:center;">
                     <span>-</span>
                 </td>
-                <td class="align-middle" *ngIf="utakmica.minutaIgre != -1" style="text-align:center; width: 45px;">{{utakmica.rezultatGost}}</td>
+                <td class="align-middle" *ngIf="utakmica.minutaIgre != -1" style="text-align:center;">{{utakmica.rezultatGost}}</td>
 
-                <td class="align-middle" style="text-align:left; width:150px; font-weight: 300;">
+                <td class="align-middle" style="text-align:left; font-weight: 300;cursor: pointer; width: 250px;" (click)="handleClickKlub(utakmica.klubGostID)">
                     <img style="width:20px;height:20px;" [src]="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    imageSrcBase + utakmica.klubGostSlika"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    imageSrcBase + utakmica.klubGostSlika"
                         alt="grb" /> {{utakmica.klubGostNaziv}}
                 </td>
 
-                <td class="align-middle" *ngIf="uloga== uloge.ADMINISTRATOR_UTAKMICA" style="text-align:center; width:100px">
-                    <mat-icon class="p-2" (click)="edit(utakmica.id)">edit</mat-icon>
-                    <mat-icon class="p-2" (click)="delete(utakmica.id)">delete</mat-icon>
+                <td class="align-middle" *ngIf="uloga== uloge.ADMINISTRATOR_UTAKMICA" style="display: flex; text-align:center;">
+                    <mat-icon class="mr-3" (click)="edit(utakmica.id)">edit</mat-icon>
+                    <mat-icon class="mr-5" (click)="delete(utakmica.id)">delete</mat-icon>
                 </td>
 
-                <td class="align-middle" *ngIf="uloga == uloge.KORISNIK && rezultati" style="text-align:center; width:47px; padding: 0;">
+                <td class="align-middle" *ngIf="rezultati" style="text-align:center; padding: 0;">
                     <mat-icon class="pobjeda" data-toggle="tooltip" title="Pobjeda" *ngIf="(utakmica.klubDomacinID == searchObject.KlubId && utakmica.rezultatDomacin > utakmica.rezultatGost) ||  (utakmica.klubGostID == searchObject.KlubId && utakmica.rezultatGost > utakmica.rezultatDomacin)">
                         stop</mat-icon>
                     <mat-icon class="poraz" data-toggle="tooltip" title="Poraz" *ngIf="(utakmica.klubDomacinID == searchObject.KlubId && utakmica.rezultatDomacin < utakmica.rezultatGost) ||  (utakmica.klubGostID == searchObject.KlubId &&  utakmica.rezultatGost < utakmica.rezultatDomacin)">
@@ -75,9 +85,13 @@
                         stop</mat-icon>
                 </td>
 
-                <td class="align-middle" *ngIf="uloga == uloge.KORISNIK" style="text-align:center; padding: 0;" [ngStyle]="{'width': rezultati? 47+ 'px' : 85+'px' }">
-                    <mat-icon data-toggle="tooltip" title="Ukloni utakmicu iz omiljenih" *ngIf="omiljeneUtakmiceIds.includes(utakmica.id)" class="p-2" (click)="ukloniOmiljenu(utakmica.id)">favorite</mat-icon>
-                    <mat-icon data-toggle="tooltip" title="Dodaj utakmicu u omiljene" *ngIf="!omiljeneUtakmiceIds.includes(utakmica.id)" class="p-2" (click)="dodajOmiljenu(utakmica.id)">favorite_border</mat-icon>
+                <td class="align-middle" *ngIf="uloga == uloge.KORISNIK" style="text-align:center; padding: 0; ">
+                    <mat-icon class="mr-5" data-toggle="tooltip" title="Ukloni utakmicu iz omiljenih" *ngIf="omiljeneUtakmiceIds.includes(utakmica.id)" (click)="ukloniOmiljenu(utakmica.id)">favorite</mat-icon>
+                    <mat-icon class="mr-5" data-toggle="tooltip" title="Dodaj utakmicu u omiljene" *ngIf="!omiljeneUtakmiceIds.includes(utakmica.id)" (click)="dodajOmiljenu(utakmica.id)">favorite_border</mat-icon>
+                </td>
+
+                <td class="align-middle" *ngIf="uloga == uloge.ANALITICAR" style="text-align:center; padding: 0;">
+                    <mat-icon class="mr-5" data-toggle="tooltip" title="Dodaj statistiku" *ngIf="!saStatistikomIds.includes(utakmica.id)" (click)="handleDodajStatistiku(utakmica.id)">add_circle_outline</mat-icon>
                 </td>
 
             </tr>

@@ -4,5 +4,5 @@
 </div>
 <hr/>
 <div class="stadion-list">
-    <stadion-list-element [uloga]="uloga" *ngFor="let stadion of stadionList" [stadion]="stadion" (editEmitter)="handleClick($event)" (deleteEmitter)="delete($event)" class="stadion-list-element"></stadion-list-element>
+    <stadion-list-element *ngFor="let stadion of stadionList" [stadion]="stadion" (editEmitter)="handleClick($event)" (deleteEmitter)="delete($event)" class="stadion-list-element"></stadion-list-element>
 </div>

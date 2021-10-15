@@ -1,0 +1,11 @@
+.wrapper {
+    display: flex;
+}
+
+mat-icon {
+    padding-top: -15px;
+    color: #1a3469;
+    &:hover {
+        cursor: pointer;
+    }
+}

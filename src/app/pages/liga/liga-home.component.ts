@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { MultiselectHelper } from '../shared/multiselect-helper.model';
 import { RestApiService } from '../shared/rest-api.service';
 import { SelectItem } from '../shared/select-item.model';
-import { Uloga } from '../shared/uloga.constant';
 import { LigaApi } from './shared/liga-api.constant';
 
 @Component({

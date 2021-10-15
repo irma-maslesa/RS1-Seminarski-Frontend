@@ -8,17 +8,25 @@ import { Sezona } from '../../shared/sezona.model';
   templateUrl: './sezona-list-element.component.html',
   styleUrls: ['./sezona-list-element.component.scss']
 })
-export class SezonaListElementComponent {
+export class SezonaListElementComponent implements OnInit{
   @Output() editEmitter = new EventEmitter();
   @Output() deleteEmitter = new EventEmitter();
   @Output() clickEmitter = new EventEmitter();
 
-  @Input() uloga = Uloga.ADMINISTRATOR_KLUBOVA;
+  uloga = Uloga.GOST;
   uloge = Uloga;
   
   @Input() sezona: Sezona;
 
-  constructor(private router: Router) {
+  ngOnInit(): void {
+    if (sessionStorage.getItem("korisnik") || localStorage.getItem("korisnik")) {
+      var korisnik = JSON.parse(sessionStorage.getItem("korisnik"));
+
+      if(korisnik == null)
+        korisnik = JSON.parse(localStorage.getItem("korisnik"));
+
+      this.uloga = korisnik.uloga;
+    }
   }
 
   edit() {

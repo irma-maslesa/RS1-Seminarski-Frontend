@@ -1,11 +1,11 @@
 <div class="sezona-list-header">
-    <h1 *ngIf="uloga == uloge.ADMINISTRATOR_KLUBOVA">Sezone</h1>
+    <h1 *ngIf="uloga == uloge.ADMINISTRATOR_KLUBOVA" class="mr-1">Sezone</h1>
     <h3 *ngIf="uloga != uloge.ADMINISTRATOR_KLUBOVA">Sezone</h3>
-    <button *ngIf="uloga == uloge.ADMINISTRATOR_KLUBOVA" type="button" class="btn btn-secondary" (click)="edit()">Dodaj sezonu</button>
+    <button *ngIf="uloga == uloge.ADMINISTRATOR_KLUBOVA" type="button" class="btn btn-secondary ml-5" (click)="edit()">Dodaj sezonu</button>
 </div>
 <div class="sezona-list">
     <div *ngIf="sezonaList.length">
-        <sezona-list-element *ngFor="let sezona of sezonaList" [uloga]="uloga" [sezona]="sezona" (editEmitter)="edit($event)" (deleteEmitter)="delete($event)" (clickEmitter)="handleClick($event)" class="sezona-list-element"></sezona-list-element>
+        <sezona-list-element *ngFor="let sezona of sezonaList" [sezona]="sezona" (editEmitter)="edit($event)" (deleteEmitter)="delete($event)" (clickEmitter)="handleClick($event)" class="sezona-list-element"></sezona-list-element>
     </div>
     <div *ngIf="!sezonaList.length" class="h5-container">
         <h5>Trenutno nema sezona.</h5>

@@ -16,7 +16,7 @@ import { StadionAddEditFormComponent } from '../../stadion-add-edit-form/stadion
 })
 export class StadionListComponent implements OnInit, OnChanges {
   @Input() searchObject;
-  @Input() uloga = Uloga.ADMINISTRATOR_KLUBOVA;
+  uloga = Uloga.GOST;
   uloge = Uloga;
 
   stadionList: Stadion[] = [];
@@ -28,6 +28,15 @@ export class StadionListComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    if (sessionStorage.getItem("korisnik") || localStorage.getItem("korisnik")) {
+      var korisnik = JSON.parse(sessionStorage.getItem("korisnik"));
+
+      if(korisnik == null)
+        korisnik = JSON.parse(localStorage.getItem("korisnik"));
+
+      this.uloga = korisnik.uloga;
+    }
+    
     this.api.get(StadionApi.GET_STADION)
       .subscribe((response:Stadion[]) => {
         this.stadionList = response;

@@ -1,0 +1,30 @@
+<div class="top">
+    <div class="left">
+        <img [src]="imageSrcBase + utakmica.klubDomacinSlika" alt="grb" />
+        <h1>{{utakmica.klubDomacinNaziv}}</h1>
+    </div>
+    <div class="middle">
+        <input [(ngModel)]="statistikaCreate.rezultatDomacin" type="number" min="0" placeholder="Rezultat" class="form-control" name="rezultatDomacin" id="rezultatDomacin">
+        <h1>:</h1>
+        <input [(ngModel)]="statistikaCreate.rezultatGost" type="number" min="0" placeholder="Rezultat" class="form-control" name="rezultatGost" id="rezultatGost">
+    </div>
+    <div class="right">
+        <img [src]="imageSrcBase + utakmica.klubGostSlika" alt="grb" />
+        <h1 style="float: right;">{{utakmica.klubGostNaziv}}</h1>
+    </div>
+</div>
+<div class="bottom">
+    <div class="left">
+        <statistika-klub-add-edit-form #domacin class="mb-5"></statistika-klub-add-edit-form>
+        <statistika-igrac-add-edit-form #domacinStat [igraci]="domaciIgraci" [igraciStat]="domaciIgraciMapa"></statistika-igrac-add-edit-form>
+    </div>
+
+    <div class="right">
+        <statistika-klub-add-edit-form #gost class="mb-5"></statistika-klub-add-edit-form>
+        <statistika-igrac-add-edit-form #gostStat [igraci]="gostujuciIgraci" [igraciStat]="gostujuciIgraciMapa"></statistika-igrac-add-edit-form>
+    </div>
+</div>
+
+<div class="col btn-group">
+    <button type="submit" class="btn btn-secondary" (click)="save()">Spremi</button>
+</div>

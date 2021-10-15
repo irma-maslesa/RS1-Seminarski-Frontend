@@ -1,0 +1,77 @@
+.top {
+    display: flex;
+    margin-right: 5px;
+    padding-top: 5px;
+    .left {
+        display: flex;
+        width: 40%;
+    }
+    .middle {
+        display: flex;
+        width: 20%;
+        justify-content: space-around;
+        align-items: center;
+        input {
+            height: 50px;
+            width: 40%;
+            font-size: xx-large;
+            text-align: center;
+        }
+        input::-webkit-input-placeholder {
+            transform: translate3d(0, -10px, 0);
+            font-size: initial;
+        }
+        h1 {
+            padding-top: 0;
+        }
+    }
+    .right {
+        width: 40%;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    img {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+    }
+    h1 {
+        padding-top: 30px;
+    }
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 5px;
+    .left {
+        width: 49%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .right {
+        width: 49%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+button {
+    margin: 0px 5px 10px 65px;
+}
+
+::ng-deep .remove-border-bottom.mat-tab-group.mat-primary .mat-ink-bar {
+    background-color: rgba(39, 184, 176, 0) !important;
+}
+
+::ng-deep .set-font.mat-tab-group.mat-primary .mat-tab-body-conetnt {
+    td {
+        font-weight: 300;
+    }
+}
+
+::ng-deep #toast-container>div {
+    width: 400px;
+}

@@ -1,0 +1,19 @@
+<div class="wrapper" *ngFor="let igrac of igraci">
+    <label class="col-3">{{igrac.brojDresa}}
+        {{igrac.imePrezime}}</label>
+
+
+    <form #statistikaKlubForm="ngForm" novalidate="novalidate" class="col-8 myRow">
+        <input [(ngModel)]="igraciStat.get(igrac.id).BrojMinuta" type="number" min="0" max="100" placeholder="M" data-toggle="tooltip" data-placement="top" title="Odigranih minuta" class="col-2 mb-3 form-control" name="brojMinuta" id="brojMinuta">
+
+        <input [(ngModel)]="igraciStat.get(igrac.id).Golovi" type="number" min="0" placeholder="G" data-toggle="tooltip" data-placement="top" title="Golovi" class="col-2 mr-2 ml-2 form-control" name="golovi" id="golovi">
+        <input [(ngModel)]="igraciStat.get(igrac.id).Asistencije" type="number" min="0" placeholder="A" data-toggle="tooltip" data-placement="top" title="Asistencije" class="col-2 form-control" name="asistencije" id="asistencije">
+
+        <input [(ngModel)]="igraciStat.get(igrac.id).ZutiKarton" type="number" min="0" placeholder="ŽK" data-toggle="tooltip" data-placement="top" title="Zuti kartoni" class="col-2 mr-2 ml-2 form-control" name="zutiKarton" id="zutiKarton">
+        <input [(ngModel)]="igraciStat.get(igrac.id).CrveniKarton" type="number" min="0" placeholder="CK" data-toggle="tooltip" data-placement="top" title="Crveni kartoni" class="col-2 form-control" name="crveniKarton" id="crveniKarton">
+
+        <div class="col-2">
+            <button type="reset" class="btn btn-outline-secondary" (click)="clear(igrac.id)">Očisti</button>
+        </div>
+    </form>
+</div>

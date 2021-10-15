@@ -8,7 +8,7 @@ import data from './../../../assets/config/menu.json';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnChanges {
-  @Input() menuList = data.payload1.children;
+  @Input() menuList;
 
   expanded: boolean = false;
   ngOnChanges(changes: SimpleChanges): void {

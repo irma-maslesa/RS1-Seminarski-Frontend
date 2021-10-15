@@ -1,11 +1,20 @@
 .wrapper {
-    width: 500px;
+    width: 250px;
     height: 50px;
     border: 2px solid #1a3469;
     border-radius: 5px;
     margin: 10px 5px;
     padding: 5px 15px;
     box-shadow: 3px 3px #6c757d;
+}
+
+.wider-wrapper {
+    width: 300px;
+}
+
+.center {
+    width: 225px;
+    text-align: center;
 }
 
 .mat-icon-show {

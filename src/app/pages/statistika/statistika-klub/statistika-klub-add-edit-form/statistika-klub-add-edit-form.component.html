@@ -1,0 +1,35 @@
+<form #statistikaKlubForm="ngForm" novalidate="novalidate">
+    <input [(ngModel)]="statistika.Posjed" type="number" min="0" max="100" placeholder="Posjed lopte" class="myRow mb-3 form-control" name="posjed" id="posjed">
+
+    <div class="myRow mb-3">
+        <input [(ngModel)]="statistika.SuteviOkvir" type="number" min="0" placeholder="Šutevi u okvir" class="form-control" name="suteviOkvir" id="suteviOkvir">
+        <input [(ngModel)]="statistika.SuteviVanOkvira" type="number" min="0" placeholder="Šutevi van okvira" class="form-control mr-2 ml-2" name="suteviVanOkvira" id="suteviVanOkvira">
+        <input [(ngModel)]="statistika.SuteviBlokirani" type="number" min="0" placeholder="Blokirani šutevi" class="form-control" name="suteviOpasni" id="suteviOpasni">
+    </div>
+
+    <div class="myRow mb-3">
+        <input [(ngModel)]="statistika.Napadi" type="number" min="0" placeholder="Napadi" class="form-control" name="napadi" id="napadi">
+        <input [(ngModel)]="statistika.NapadiOpasni" type="number" min="0" placeholder="Opasni napadi" class="form-control ml-2" name="napadiOpasni" id="napadiOpasni">
+    </div>
+
+    <div class="myRow mb-3">
+        <input [(ngModel)]="statistika.Korneri" type="number" min="0" placeholder="Korneri" class="form-control" name="korneri" id="korneri">
+        <input [(ngModel)]="statistika.Ofsajdi" type="number" min="0" placeholder="Ofsajdi" class="form-control mr-2 ml-2" name="ofsajdi" id="ofsajdi">
+        <input [(ngModel)]="statistika.Odbrane" type="number" min="0" placeholder="Odbrane golmana" class="form-control" name="odbrane" id="odbrane">
+    </div>
+
+    <div class="myRow mb-3">
+        <input [(ngModel)]="statistika.Dodavanja" type="number" min="0" placeholder="Dodavanja" class="form-control" name="dodavanja" id="dodavanja">
+        <input [(ngModel)]="statistika.Uklizavanja" type="number" min="0" placeholder="Uklizavanja" class="form-control ml-2" name="uklizavanja" id="uklizavanja">
+    </div>
+
+    <div class="myRow mb-3">
+        <input [(ngModel)]="statistika.Prekrsaji" type="number" min="0" placeholder="Prekršaji" class="form-control" name="prekrsaji" id="prekrsaji">
+    </div>
+
+    <div class="row">
+        <div class="col btn-group">
+            <button type="reset" class="btn btn-outline-secondary" (click)="clear()">Očisti</button>
+        </div>
+    </div>
+</form>

@@ -1,6 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { RestApiService } from '../../shared/rest-api.service';
 import { Uloga } from '../../shared/uloga.constant';
 import { LigaApi } from '../shared/liga-api.constant';
@@ -18,6 +17,9 @@ export class LigaOverviewComponent implements OnInit {
   utakmica = false;
 
   uloga = Uloga.GOST;
+  prikaziPoredak = true;
+
+  imaPoredak:boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,20 +27,32 @@ export class LigaOverviewComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if (sessionStorage.getItem("korisnik") || localStorage.getItem("korisnik")) {
+      var korisnik = JSON.parse(sessionStorage.getItem("korisnik"));
+
+      if(korisnik == null)
+        korisnik = JSON.parse(localStorage.getItem("korisnik"));
+
+      this.uloga = korisnik.uloga;
+    }
+
     this.searchObjectKlubSezona.ligaId = +this.route.snapshot.paramMap.get('id');
 
     this.api.get(LigaApi.GET_LIGA_BY_ID.replace('#', this.route.snapshot.paramMap.get('id'))).subscribe((response) => {
       this.liga = response;
     })
-
-    if (history.state.uloga) {
-      this.uloga = history.state.uloga;
-    }
   }
 
   handleClick(sezonaId) {
-    console.log(sezonaId);
     this.utakmica = true;
-    this.searchObjectUtakmicaSezona = { SezonaIds: sezonaId };
+    this.searchObjectUtakmicaSezona = { SezonaIds: [sezonaId] };
+  }
+
+  hidePoredak(){
+    this.prikaziPoredak = false
+  }
+
+  setImaPoredak(){
+    this.imaPoredak = false;
   }
 }

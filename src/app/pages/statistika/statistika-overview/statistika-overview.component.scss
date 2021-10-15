@@ -1,0 +1,64 @@
+.top {
+    display: flex;
+    margin-right: 10px;
+    padding-top: 2px;
+    justify-content: space-between;
+    .left {
+        display: flex;
+        width: 40%;
+    }
+    .top-middle {
+        display: flex;
+        width: 20%;
+        justify-content: space-around;
+        align-items: center;
+        h3 {
+            width: 33%;
+            text-align: center;
+            padding-top: 0;
+        }
+    }
+    .right {
+        width: 40%;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    img {
+        width: 100px;
+        height: 100px;
+        margin: 5px;
+    }
+    h3 {
+        padding-top: 30px;
+    }
+}
+
+.bottom {
+    display: flex;
+    justify-content: center;
+    .left {
+        width: 50%;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .right {
+        width: 50%;
+        margin-right: 5px;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+::ng-deep .remove-border-bottom.mat-tab-group.mat-primary .mat-ink-bar {
+    background-color: rgba(39, 184, 176, 0) !important;
+}
+
+::ng-deep .set-font.mat-tab-group.mat-primary .mat-tab-body-conetnt {
+    td {
+        font-weight: 300;
+    }
+}

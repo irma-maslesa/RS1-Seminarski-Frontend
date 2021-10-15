@@ -1,0 +1,36 @@
+.top {
+    display: flex;
+    margin-right: 5px;
+}
+
+.top-info {
+    width: 100%;
+    h1 {
+        margin-bottom: 10px;
+    }
+    h4 {
+        display: inline;
+        margin-bottom: 10px;
+    }
+}
+
+.bottom {
+    margin-top: 10px;
+    align-content: center;
+    width: 99%;
+}
+
+p {
+    margin-bottom: 0px;
+    margin-left: 5px;
+}
+
+::ng-deep .remove-border-bottom.mat-tab-group.mat-primary .mat-ink-bar {
+    background-color: rgba(39, 184, 176, 0) !important;
+}
+
+::ng-deep .set-font.mat-tab-group.mat-primary .mat-tab-body-conetnt {
+    td {
+        font-weight: 300;
+    }
+}

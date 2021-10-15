@@ -14,18 +14,18 @@
         margin-bottom: 10px;
     }
     h5:first-of-type {
-        margin-top: 10px;
-        padding-top: 15px;
+        margin-top: 5px;
+        padding-top: 10px;
         border-top: 1px solid #1a3469;
     }
     h5 {
-        margin-top: 15px;
+        margin-top: 5px;
     }
 }
 
 img {
-    width: 200px;
-    height: 200px;
+    width: 175px;
+    height: 175px;
 }
 
 .klub-info {
@@ -56,7 +56,8 @@ img {
 
 .bottom {
     margin-top: 10px;
-    width: 100%;
+    align-content: center;
+    width: 99%;
 }
 
 p {
@@ -64,7 +65,7 @@ p {
     margin-left: 5px;
 }
 
- ::ng-deep .remove-border-bottom.mat-tab-group.mat-primary .mat-ink-bar {
+::ng-deep .remove-border-bottom.mat-tab-group.mat-primary .mat-ink-bar {
     background-color: rgba(39, 184, 176, 0) !important;
 }
 

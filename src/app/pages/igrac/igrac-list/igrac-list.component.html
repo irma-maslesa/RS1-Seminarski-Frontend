@@ -1,0 +1,78 @@
+<div class="wrapper">
+    <h1 *ngIf="statistika">Igrači</h1>
+    <div style="display: flex;">
+        <div class="input-group mt-3 mb-3 pr-3" *ngIf="statistika">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Pretraga igrača</span>
+            </div>
+            <input class="form-control" placeholder="Ime i prezime igrača" type="text" (keyup)="search()" [(ngModel)]="searchObject.ImePrezime">
+            <select class="form-control" [(ngModel)]="searchObject.KlubId" (change)="search()">
+                    <option aria-placeholder="Naziv kluba" [value]="0">Odaberi klub</option>
+                    <option *ngFor="let klub of klubovi" [value]="klub.id">{{klub.naziv}}</option>
+                </select>
+        </div>
+    </div>
+
+    <table class="table table-hover" style="width: 99%;" id="list">
+        <thead class="thead-light">
+            <tr>
+                <th class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    <mat-icon data-toggle="tooltip" title="Broj dresa">numbers</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;" (click)="sortTable(0)" [ngClass]="{'name-width': statistika}">
+                    <mat-icon data-toggle="tooltip" title="Ime i prezime">person</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;" (click)="sortTable(1)" *ngIf="statistika">
+                    <mat-icon data-toggle="tooltip" title="Klub">shield</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    <mat-icon data-toggle="tooltip" title="Pozicija">radar</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    <mat-icon data-toggle="tooltip" title="Godine">cake</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    <mat-icon data-toggle="tooltip" title="Odigrane utakmice">sports_soccer</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    <mat-icon data-toggle="tooltip" title="Golovi">adjust</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    <mat-icon data-toggle="tooltip" title="Asistencije">assistant</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    <mat-icon data-toggle="tooltip" title="Žuti kartoni" class="zuti-karton">stop</mat-icon>
+                </th>
+                <th class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    <mat-icon data-toggle="tooltip" title="Crveni kartoni" class="crveni-karton">stop</mat-icon>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let igrac of igraci" style="cursor: pointer;" data-toggle="tooltip" title="Pregledaj statistiku" (click)="handleClickIgrac(igrac.id)">
+                <td class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    {{igrac.brojDresa}}
+                </td>
+                <td class="align-middle" style="text-align:center;">
+                    {{igrac.imePrezime}}</td>
+                <td class="align-middle" style="text-align:center;" *ngIf="statistika">
+                    {{igrac.klub}}
+                </td>
+                <td class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    {{igrac.pozicija}}</td>
+                <td class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    {{igrac.godine}}</td>
+                <td class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    {{igrac.odigraneUtakmice}}</td>
+                <td class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    {{igrac.golovi}}</td>
+                <td class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    {{igrac.asistencije}}</td>
+                <td class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    {{igrac.zutiKarton}}</td>
+                <td class="align-middle" style="text-align:center;" *ngIf="!statistika">
+                    {{igrac.crveniKarton}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -16,6 +16,7 @@ export class OdjavaComponent implements OnInit {
   ngOnInit(): void {
     this.api.post(KorisnikApi.KORISNIK_ODJAVA).subscribe(
       (response) => {
+        sessionStorage.removeItem("korisnik");
         localStorage.removeItem("korisnik");
         this.router.navigateByUrl('prijava');
       })

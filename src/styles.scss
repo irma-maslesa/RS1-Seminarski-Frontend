@@ -59,6 +59,18 @@ button,
 span,
 input,
 angular2-multiselect,
-td {
+td,
+select,
+option {
     font-weight: 300 !important;
+}
+
+::-webkit-scrollbar {
+    width: 0.75em;
+    height: 0.75em;
+    background: transparent;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background: rgba(#1a3469, 1);
 }

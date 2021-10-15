@@ -17,7 +17,7 @@ import { Sezona } from '../shared/sezona.model';
 export class SezonaListComponent implements OnInit, OnChanges {
   @Output() clickEmitter = new EventEmitter();
   @Input() searchObject;
-  @Input() uloga = Uloga.ADMINISTRATOR_KLUBOVA;
+  uloga = Uloga.GOST;
   uloge = Uloga;
 
   sezonaList: Sezona[] = [];
@@ -29,6 +29,15 @@ export class SezonaListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getSezone(this.searchObject);
+
+    if (sessionStorage.getItem("korisnik") || localStorage.getItem("korisnik")) {
+      var korisnik = JSON.parse(sessionStorage.getItem("korisnik"));
+
+      if(korisnik == null)
+        korisnik = JSON.parse(localStorage.getItem("korisnik"));
+
+      this.uloga = korisnik.uloga;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

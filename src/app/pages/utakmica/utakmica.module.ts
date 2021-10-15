@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { ChartsModule } from 'ng2-charts';
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmModal } from '../shared/confirm-modal/confirm.modal';
 import { SharedModule } from '../shared/shared.module';
@@ -8,13 +9,13 @@ import { UtakmicaListComponent } from './utakmica-search/utakmica-list/utakmica-
 import { UtakmicaSearchFormComponent } from './utakmica-search/utakmica-search-form/utakmica-search-form.component';
 import { UtakmicaSearchComponent } from './utakmica-search/utakmica-search.component';
 
-
 @NgModule({
     imports: [
         SharedModule,
         MatDialogModule,
         MatIconModule,
-        ToastrModule.forRoot()
+        ToastrModule.forRoot(),
+        ChartsModule
     ],
     exports: [
         UtakmicaListComponent

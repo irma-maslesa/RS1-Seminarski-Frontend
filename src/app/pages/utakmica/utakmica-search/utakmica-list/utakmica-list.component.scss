@@ -14,7 +14,8 @@ h5 {
 }
 
 .buttons,
-.buttons-liga {
+.buttons-liga,
+.buttons-analitika {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -25,6 +26,7 @@ h5 {
 
 .h5-container {
     width: 100%;
+    padding-left: 65px;
     min-height: 140px;
     display: flex;
     align-items: center;
@@ -33,7 +35,6 @@ h5 {
 
 mat-icon {
     position: relative;
-    margin-right: 15px;
     color: #1a3469;
     &:hover {
         cursor: pointer;
@@ -46,9 +47,9 @@ hr {
 
 .utakmica-list {
     display: flex;
+    padding-right: 10px;
     flex-direction: row;
     justify-content: space-between;
-    padding-right: 10px;
 }
 
 .buttons-self,
