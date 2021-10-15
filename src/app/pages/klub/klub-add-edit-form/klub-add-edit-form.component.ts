@@ -26,7 +26,7 @@ export class KlubAddEditFormComponent implements OnInit {
   isEdit = false;
   id: number;
   imageSrc: string;
-  imageSrcBase: string = "https://localhost:5001";
+  imageSrcBase: string = "https://api.p2036.app.fit.ba";
   thumbnail: any;
 
   constructor(

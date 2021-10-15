@@ -38,7 +38,7 @@ export class StatistikaAddEditFormComponent implements OnInit {
     gostujuciIgraci: IgracSimple[] = [];
     gostujuciIgraciStatistika: StatistikaIgracCreate[] = [];
 
-    imageSrcBase: string = "https://localhost:5001";
+    imageSrcBase: string = "https://api.p2036.app.fit.ba";
 
     uloga = Uloga.GOST;
 

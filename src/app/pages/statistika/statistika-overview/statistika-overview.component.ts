@@ -17,7 +17,7 @@ import { StatistikaKlub } from '../statistika-klub/shared/statistika-klub.model'
 export class StatistikaOverviewComponent implements OnInit {
     statistika;
 
-    imageSrcBase: string = "https://localhost:5001";
+    imageSrcBase: string = "https://api.p2036.app.fit.ba";
 
     uloga = Uloga.GOST;
 

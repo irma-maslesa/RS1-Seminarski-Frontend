@@ -21,7 +21,7 @@ export class KlubPoredakComponent implements OnInit {
 
   klubovi: KlubPoredak[] = [];
 
-  imageSrcBase: string = "https://localhost:5001";
+  imageSrcBase: string = "https://api.p2036.app.fit.ba";
 
   constructor(private api: RestApiService, private datepipe: DatePipe, private router: Router) { }
 

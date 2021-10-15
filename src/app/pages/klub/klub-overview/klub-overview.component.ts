@@ -26,7 +26,7 @@ export class KlubOverviewComponent implements OnInit {
     id: number;
     trener: Trener;
     stadion: Stadion;
-    imageSrcBase: string = "https://localhost:5001";
+    imageSrcBase: string = "https://api.p2036.app.fit.ba";
 
     uloga = Uloga.GOST;
 

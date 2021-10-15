@@ -16,7 +16,7 @@ export class KlubListElementComponent implements OnInit{
   uloga = Uloga.GOST;
   uloge = Uloga;
 
-  imageSrcBase: string = "https://localhost:5001";
+  imageSrcBase: string = "https://api.p2036.app.fit.ba";
 
   constructor(private router: Router) { }
 
